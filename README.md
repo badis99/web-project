@@ -1,10 +1,9 @@
 # THEATRO
-
-A modern, dynamic website for THEATRO, where stories come alive.
+The website needed for the club Theatro
 
 ## Overview
 
-THEATRO is a responsive theatre website featuring a captivating landing page with fog effects, spotlights, and a premium design aesthetic. It is built to showcase shows, provide information about the theatre, and allow users to join or contact the theatre.
+THEATRO is a responsive theatre website with a featuristic aesthetic. It is built to showcase shows, provide information about the club, and allow users to join or contact Theatro. It connects the audience with the club.
 
 ## Features
 
@@ -13,11 +12,11 @@ THEATRO is a responsive theatre website featuring a captivating landing page wit
 -   **Modern Aesthetics**: Uses Google Fonts (Playfair Display and Inter) and a clean, dark-themed design.
 -   **Navigation**: Easy-to-use navigation bar links to key sections (About, Shows, Join, Contact).
 
-## Tech Stack
+## Tech Stack Used Until Now
 
 -   **HTML5**: Semantic markup for structure.
 -   **CSS3**: Custom styling with animations and flexbox/grid layouts.
--   **Bootstrap 5**: Used for some layout components and utilities.
+
 
 ## Setup and Installation
 
@@ -34,6 +33,4 @@ To run this project locally:
 3.  **Open `index.html` in your browser:**
     You can simply double-click the `index.html` file, or if you are using VS Code, use the "Live Server" extension to launch it.
 
-## License
 
-ISC
