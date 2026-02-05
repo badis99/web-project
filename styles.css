@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background-color: #0a0a0a;
     color: white;
     overflow-x: hidden;
@@ -19,14 +19,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 60px;
-    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px 60px;
+    background-color: transparent;
     z-index: 100;
 }
 
 .logo {
     display: flex;
     align-items: center;
+    margin-left: 150px;
     gap: 15px;
 }
 
@@ -35,15 +36,14 @@ body {
     width: auto;
 }
 
-.logo span {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    font-weight: 400;
-    letter-spacing: 4px;
-    color: white;
+.logo-name {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 40px;
+    padding-left: 0;
 }
 
 .nav-links {
+    margin-right: 150px;
     display: flex;
     list-style: none;
     gap: 40px;
@@ -52,8 +52,10 @@ body {
 .nav-links a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     transition: opacity 0.3s;
 }
 
@@ -159,30 +161,103 @@ body {
 }
 
 .welcome-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
+    font-family: 'Cinzel', serif;
+    font-size: 25px;
     font-weight: 400;
     margin-bottom: 25px;
-    letter-spacing: 0.5px;
+    padding-bottom: 0;
+    letter-spacing: 2px;
     color: rgba(255, 255, 255, 0.95);
+    text-transform: uppercase;
 }
 
 .main-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bodoni Moda', serif;
     font-size: 130px;
-    font-weight: 400;
+    font-weight: 700;
+    padding-top: 0;
     letter-spacing: 8px;
     margin-bottom: 25px;
     color: white;
 }
 
 .tagline {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
     font-weight: 400;
-    font-style: italic;
+    font-style: normal;
     color: rgba(255, 255, 255, 0.9);
     letter-spacing: 0.5px;
+    margin-bottom: 40px;
+}
+
+/* Button Styles */
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 15px 40px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.btn-primary:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: white;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
+    color: white;
+    transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
@@ -190,11 +265,16 @@ body {
         padding: 15px 30px;
     }
 
-    .logo span {
-        font-size: 16px;
+    .logo {
+        margin-left: 0;
+    }
+
+    .logo img {
+        height: 60px;
     }
 
     .nav-links {
+        margin-right: 0;
         gap: 20px;
     }
 
@@ -210,5 +290,17 @@ body {
     .welcome-text,
     .tagline {
         font-size: 16px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 12px 30px;
+        width: 100%;
+        max-width: 250px;
     }
 }
