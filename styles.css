@@ -54,7 +54,7 @@ body {
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     transition: opacity 0.3s;
 }
