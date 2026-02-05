@@ -271,7 +271,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #0a0a0a;
+    background: #141414;
+    /* Brighter dark */
     padding: 100px 60px;
 }
 
