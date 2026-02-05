@@ -90,6 +90,7 @@ body {
     z-index: 2;
 }
 
+/* Floating Star Animation - Layer 1: Small stars (1px) */
 .spotlight::before {
     content: '';
     position: absolute;
@@ -156,6 +157,7 @@ body {
     z-index: 1;
 }
 
+/* Layer 2: Medium stars (2px) - Different positions and slower movement */
 .spotlight::after {
     content: '';
     position: absolute;
@@ -214,6 +216,7 @@ body {
     }
 }
 
+/* Twinkle animation - creates pulsing opacity effect */
 @keyframes twinkle {
 
     0%,
