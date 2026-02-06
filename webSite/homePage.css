@@ -4,9 +4,75 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Video Background (plays behind curtains) */
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+    filter: grayscale(100%);
+}
+
+.video-bg.fade-out {
+    opacity: 0;
+}
+
+/* Curtain Overlay Styles - HIDDEN */
+.curtain {
+    position: fixed;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #ffffff 50%, #1a1a1a 100%);
+    z-index: 1000;
+    display: none !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset -20px 0 40px rgba(0, 0, 0, 0.5);
+}
+
+.curtain-left {
+    left: 0;
+    display: none !important;
+}
+
+.curtain-right {
+    right: 0;
+    display: none !important;
+}
+
+/* Main Content */
+.main-content {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    pointer-events: none;
+    position: relative;
+    z-index: 10;
+}
+
+.main-content.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Elegant curtain texture effect - REMOVED */
+
+/* Add gold trim effect - REMOVED */
+
 body {
     font-family: 'Bel MT', sans-serif;
-    background-image: url('/picProj/bgLast.png');
+    background-image: url('/assets/theatre.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -14,6 +80,11 @@ body {
     background-color: #0a0a0a;
     color: white;
     overflow-x: hidden;
+    filter: brightness(1.1) contrast(1.25);
+}
+
+.main-content {
+    filter: brightness(1.1) contrast(1.25);
 }
 
 .navbar {
@@ -91,7 +162,7 @@ body {
 .fog-segment {
     flex: 0 0 100vw;
     height: 100%;
-    background-image: url('/picProj/fog.png');
+    background-image: url('/assets/fog.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     mix-blend-mode: screen;
@@ -105,14 +176,23 @@ body {
     left: -90vw;
     z-index: 5;
     opacity: 0.45;
-    animation: loop-right 60s linear infinite;
+    animation: loop-right 40s linear infinite;
 }
 
 .flow-left {
     left: -90vw;
     z-index: 6;
     opacity: 0.4;
-    animation: loop-left 65s linear infinite;
+    animation: loop-left 45s linear infinite;
+}
+
+.flow-middle {
+    left: -90vw;
+    z-index: 5;
+    opacity: 0.35;
+    top: 25%;
+    bottom: auto;
+    animation: loop-right 50s linear infinite;
 }
 
 .flow-left .fog-segment {
@@ -146,6 +226,17 @@ body {
     text-align: center;
 }
 
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .welcome-text {
     font-family: 'Bel MT', serif;
     font-size: 22px;
@@ -154,6 +245,9 @@ body {
     letter-spacing: 0.5px;
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    animation: fade-in-up 1s ease-out forwards;
+    animation-delay: 1.8s;
 }
 
 .main-title {
@@ -164,6 +258,9 @@ body {
     margin-bottom: 10px;
     color: white;
     text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    animation: fade-in-up 1.2s ease-out forwards;
+    animation-delay: 2s;
 }
 
 .tagline {
@@ -173,6 +270,9 @@ body {
     color: rgba(255, 255, 255, 0.9);
     letter-spacing: 0.5px;
     text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    animation: fade-in-up 1s ease-out forwards;
+    animation-delay: 2.3s;
 }
 
 @media (max-width: 768px) {

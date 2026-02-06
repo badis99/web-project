@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theatro</title>
+    <link rel="stylesheet" href="homePage.css">
+</head>
+
+<body>
+    <video class="vid" autoplay muted loop playsinline>
+        <source src="/assets/curtains.mp4" type="video/mp4">
+
+    </video>
+
+    <div class="curtain curtain-left"></div>
+    <div class="curtain curtain-right"></div>
+
+    <div class="main-content">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../assets/logo.png" alt="Theatro Logo">
+            <span>THEATRO</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#shows">Shows</a></li>
+            <li><a href="#join">Join</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="fog-stream flow-right">
+            <div class="fog-segment"></div>
+            <div class="fog-segment"></div>
+            <div class="fog-segment"></div>
+        </div>
+
+        <div class="fog-stream flow-left">
+            <div class="fog-segment"></div>
+            <div class="fog-segment"></div>
+            <div class="fog-segment"></div>
+        </div>
+
+        <div class="fog-stream flow-middle">
+            <div class="fog-segment"></div>
+            <div class="fog-segment"></div>
+            <div class="fog-segment"></div>
+        </div>
+
+        
+        <div class="hero-content">
+            <p class="welcome-text">Welcome to the stage</p>
+            <h1 class="main-title">THEATRO</h1>
+            <p class="tagline">Dream. Act. Inspire...</p>
+        </div>
+    </section>
+    </div>
+
+    <script>
+        //fade out video smoothly and show content
+        window.addEventListener('load', () => {
+            const videoBg = document.querySelector('.vid');
+            const mainContent = document.querySelector('.main-content');
+            
+            setTimeout(() => {
+                videoBg.classList.add('fade-out');
+                mainContent.classList.add('visible');
+            }, 1500);
+        });
+    </script>
+</body>
+
+</html>

@@ -5,16 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THEATRO</title>
-    <link rel="stylesheet" href="first.css">
+    <link rel="stylesheet" href="homePage.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400&display=swap"
         rel="stylesheet">
 </head>
 
 <body>
+    <!-- Video Background (plays behind curtains) -->
+    <video class="video-bg" autoplay muted loop playsinline>
+        <source src="/assets/curtains.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Curtain Effect -->
+    <div class="curtain curtain-left"></div>
+    <div class="curtain curtain-right"></div>
+
+    <!-- Main Website Content (appears after curtains open) -->
+    <div class="main-content">
     <nav class="navbar">
         <div class="logo">
-            <img src="../picProj/logo.png" alt="Theatro Logo">
+            <img src="../assets/logo.png" alt="Theatro Logo">
             <span>THEATRO</span>
         </div>
         <ul class="nav-links">
@@ -38,6 +50,12 @@
             <div class="fog-segment"></div>
         </div>
 
+        <div class="fog-stream flow-middle">
+            <div class="fog-segment"></div>
+            <div class="fog-segment"></div>
+            <div class="fog-segment"></div>
+        </div>
+
         
         <div class="hero-content">
             <p class="welcome-text">Welcome to the stage</p>
@@ -45,6 +63,20 @@
             <p class="tagline">Dream. Act. Inspire...</p>
         </div>
     </section>
+    </div>
+
+    <script>
+        // Fade out video smoothly and show content
+        window.addEventListener('load', () => {
+            const videoBg = document.querySelector('.video-bg');
+            const mainContent = document.querySelector('.main-content');
+            
+            setTimeout(() => {
+                videoBg.classList.add('fade-out');
+                mainContent.classList.add('visible');
+            }, 1500);
+        });
+    </script>
 </body>
 
 </html>
