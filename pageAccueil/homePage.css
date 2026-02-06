@@ -67,7 +67,7 @@ html, body {
 
 body {
     font-family: 'Bel MT', sans-serif;
-    background-image: url('/assets/stage.jpg');
+    background-image: url('../assets/stage.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
