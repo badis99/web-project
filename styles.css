@@ -80,7 +80,7 @@ body {
     transform: translateX(-50%);
     width: 100%;
     height: 100%;
-    background-image: url('assets/.png');
+    background-image: url('assets/spotlight.png');
     background-size: 80% auto;
     background-position: center top;
     background-repeat: no-repeat;
