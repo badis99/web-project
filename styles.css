@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #0a0a0a;
@@ -52,8 +56,8 @@ body {
 .nav-links a {
     color: white;
     text-decoration: none;
-    font-size: 15px;
-    font-weight: 400;
+    font-size: 14px;
+    font-weight: 500;
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: opacity 0.3s;
@@ -395,6 +399,124 @@ body {
     transform: translateY(-2px);
 }
 
+.about {
+    display: block;
+    background: #141414;
+    padding: 0;
+}
+
+.about-container {
+    display: flex;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 80px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 60px 100px;
+}
+
+.about-text-content {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+
+    opacity: 0;
+    animation: fade-in-up linear forwards;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+}
+
+.about-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    display: block;
+    margin-bottom: 20px;
+}
+
+.about-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    line-height: 1.1;
+    color: white;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+.about-heading .italic-text {
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.about-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 25px;
+    max-width: 550px;
+}
+
+.about-stats-grid {
+    flex: 1;
+    min-width: 300px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.stat-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 50px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.02);
+
+    opacity: 0;
+    animation: fade-in-up linear forwards;
+    animation-timeline: view();
+    animation-range: entry 20% cover 40%;
+}
+
+.stat-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    display: inline;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 48px;
+    color: white;
+}
+
+.stat-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    display: block;
+    margin-top: 15px;
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @media (max-width: 768px) {
     .navbar {
         padding: 15px 30px;
@@ -437,5 +559,492 @@ body {
         padding: 12px 30px;
         width: 100%;
         max-width: 250px;
+    }
+
+    .about {
+        padding: 60px 20px;
+    }
+
+    .about-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .about-heading {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .about-label {
+        text-align: center;
+    }
+
+    .about-description {
+        text-align: center;
+        margin: 0 auto 20px;
+    }
+
+    .about-stats-grid {
+        width: 100%;
+        gap: 15px;
+    }
+}
+
+/* ============================================
+   NEW ABOUT US SECTION STYLES
+   ============================================ */
+
+/* Section Labels and Titles */
+.section-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.subsection-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.section-hero-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: white;
+    margin-bottom: 80px;
+    line-height: 1.2;
+}
+
+.section-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: white;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-description {
+    font-family: 'Marcellus', serif;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 80px;
+    line-height: 1.8;
+}
+
+/* About Intro Section */
+.about-intro {
+    text-align: center;
+    padding: 100px 50px 40px;
+}
+
+/* Stats Grid Enhancement */
+.stat-plus {
+    display: inline;
+    font-size: 48px;
+    color: white;
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+/* ============================================
+   TIMELINE COMPONENT
+   ============================================ */
+
+.timeline-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 80px 50px;
+    height: 220px;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    right: 5%;
+    height: 4px;
+    background: white;
+    transform: translateY(-50%);
+}
+
+.timeline-milestone {
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.milestone-dot {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    margin: -10px auto 15px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.milestone-year {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.milestone-text {
+    font-family: 'Marcellus', serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    white-space: nowrap;
+}
+
+.milestone-subtext {
+    font-family: 'Marcellus', serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+    margin-top: 5px;
+}
+
+/* ============================================
+   POLAROID EFFECTS
+   ============================================ */
+
+.polaroid {
+    background: white;
+    padding: 15px 15px 60px 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: rotate(-2deg);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.polaroid:nth-child(even) {
+    transform: rotate(2deg);
+}
+
+.polaroid:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+    z-index: 10;
+}
+
+.polaroid-img {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%);
+    transition: filter 0.4s ease;
+}
+
+.polaroid:hover .polaroid-img {
+    filter: grayscale(0%);
+}
+
+.polaroid-caption {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    padding-top: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.polaroid:hover .polaroid-caption {
+    opacity: 1;
+}
+
+/* Polaroid Gallery */
+.polaroid-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 50px 100px;
+}
+
+/* ============================================
+   DEPARTMENTS SECTION
+   ============================================ */
+
+.departments {
+    padding: 100px 50px;
+    background: #0a0a0a;
+}
+
+.department-row {
+    position: relative;
+    margin: 120px 0;
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.department-bg-text {
+    position: absolute;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(100px, 15vw, 220px);
+    font-weight: 900;
+    color: white;
+    opacity: 1;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 15px;
+    z-index: 1;
+}
+
+@keyframes departmentTextDrop {
+    0% {
+        transform: translate(-50%, -150%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+.department-content {
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 100px 30px;
+    pointer-events: none;
+}
+
+.department-content.reverse {
+    flex-direction: row-reverse;
+}
+
+.department-content.reverse>* {
+    direction: ltr;
+}
+
+.department-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 25px;
+    max-width: 320px;
+    border-left: none;
+    pointer-events: auto;
+    z-index: 5;
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+.department-visual {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.department-silhouette {
+    max-width: 500px;
+    max-height: 550px;
+    width: auto;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8));
+}
+
+/* ============================================
+   ACTIVITIES SECTION
+   ============================================ */
+
+.activities {
+    padding: 100px 50px;
+    text-align: center;
+}
+
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Activities section uses same polaroid hover as gallery */
+
+/* ============================================
+   GUESTS SECTION
+   ============================================ */
+
+.guests {
+    padding: 100px 50px;
+    text-align: center;
+}
+
+.guests-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   MEDIA PRESENCE SECTION
+   ============================================ */
+
+.media-presence {
+    padding: 100px 50px 150px;
+    text-align: center;
+}
+
+.media-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.media-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.media-logo-img {
+    width: 120px;
+    height: 80px;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(1.5);
+    transition: filter 0.3s ease;
+}
+
+.media-item:hover .media-logo-img {
+    filter: grayscale(0%) brightness(1);
+}
+
+.media-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.media-logo:hover {
+    color: white;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - NEW SECTIONS
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .section-hero-title {
+        font-size: 48px;
+    }
+
+    .section-title {
+        font-size: 36px;
+    }
+
+    .polaroid-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .department-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .department-silhouette {
+        max-width: 300px;
+    }
+
+    .activities-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .guests-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .section-hero-title {
+        font-size: 36px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .polaroid-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-container {
+        height: auto;
+        padding: 40px 20px;
+    }
+
+    .timeline-line {
+        display: none;
+    }
+
+    .timeline-milestone {
+        position: static;
+        transform: none;
+        margin: 40px 0;
+    }
+
+    .guests-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .media-logos {
+        gap: 30px;
+    }
+
+    .department-bg-text {
+        font-size: 60px;
     }
 }
