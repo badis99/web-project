@@ -266,7 +266,7 @@ body {
 }
 
 .about {
-    min-height: 100vh;
+    max-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -276,6 +276,7 @@ body {
 
 .about-container {
     display: flex;
+    max-height: 80vh;
     max-width: 1200px;
     width: 100%;
     gap: 80px;
@@ -296,7 +297,7 @@ body {
 
 .about-label {
     font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.6);
@@ -306,7 +307,7 @@ body {
 
 .about-heading {
     font-family: 'Playfair Display', serif;
-    font-size: 80px;
+    font-size: 60px;
     line-height: 1.1;
     color: white;
     margin-bottom: 40px;
@@ -321,7 +322,7 @@ body {
 
 .about-description {
     font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 25px;
@@ -358,7 +359,7 @@ body {
 .stat-number {
     display: block;
     font-family: 'Cinzel Decorative', cursive;
-    font-size: 64px;
+    font-size: 48px;
     color: white;
     margin-bottom: 15px;
 }
