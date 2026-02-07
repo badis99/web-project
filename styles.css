@@ -266,7 +266,7 @@ body {
 }
 
 .about {
-    max-height: 100vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -276,7 +276,6 @@ body {
 
 .about-container {
     display: flex;
-    max-height: 80vh;
     max-width: 1200px;
     width: 100%;
     gap: 80px;
