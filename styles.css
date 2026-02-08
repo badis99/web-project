@@ -643,14 +643,14 @@ body {
     color: rgba(255, 255, 255, 0.7);
     text-align: center;
     max-width: 800px;
-    margin: 0 auto 80px;
+    margin: 0 auto 0;
     line-height: 1.8;
 }
 
 /* About Intro Section */
 .about-intro {
     text-align: center;
-    padding: 100px 50px 10px;
+    padding: 100px 50px 0;
 }
 
 /* Stats Grid Enhancement */
@@ -669,9 +669,9 @@ body {
 .timeline-container {
     position: relative;
     max-width: 1200px;
-    margin: 60px auto;
-    padding: 80px 50px;
-    height: 220px;
+    margin: -170px auto 100px;
+    padding: 0 50px 80px;
+    height: 180px;
 }
 
 .timeline-line {
@@ -792,9 +792,13 @@ body {
     background: #0a0a0a;
 }
 
+.departments .section-title {
+    margin-bottom: 20px;
+}
+
 .department-row {
     position: relative;
-    margin: 120px 0;
+    margin: 40px 0;
     min-height: 600px;
     overflow: hidden;
     display: flex;
