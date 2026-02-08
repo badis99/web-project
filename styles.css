@@ -623,7 +623,7 @@ body {
     font-weight: 700;
     letter-spacing: 4px;
     color: white;
-    margin-bottom: 80px;
+    margin-bottom: 30px;
     line-height: 1.2;
 }
 
@@ -650,7 +650,7 @@ body {
 /* About Intro Section */
 .about-intro {
     text-align: center;
-    padding: 100px 50px 40px;
+    padding: 100px 50px 10px;
 }
 
 /* Stats Grid Enhancement */
@@ -788,7 +788,7 @@ body {
    ============================================ */
 
 .departments {
-    padding: 100px 50px;
+    padding: 100px 50px 30px;
     background: #0a0a0a;
 }
 
@@ -887,7 +887,7 @@ body {
    ============================================ */
 
 .activities {
-    padding: 100px 50px;
+    padding: 30px 50px 100px;
     text-align: center;
 }
 
@@ -901,6 +901,19 @@ body {
 
 /* Activities section uses same polaroid hover as gallery */
 
+/* Video Polaroid */
+.polaroid-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.4s ease;
+}
+
+.video-polaroid:hover .polaroid-video {
+    filter: grayscale(0%);
+}
+
 /* ============================================
    GUESTS SECTION
    ============================================ */
@@ -912,7 +925,7 @@ body {
 
 .guests-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 40px;
     max-width: 1400px;
     margin: 0 auto;
@@ -948,12 +961,12 @@ body {
     width: 120px;
     height: 80px;
     object-fit: contain;
-    filter: grayscale(100%) brightness(1.5);
-    transition: filter 0.3s ease;
+    filter: none;
+    transition: transform 0.3s ease;
 }
 
 .media-item:hover .media-logo-img {
-    filter: grayscale(0%) brightness(1);
+    transform: scale(1.1);
 }
 
 .media-logo {

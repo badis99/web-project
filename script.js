@@ -7,10 +7,10 @@ function animateValue(element, start, end, duration) {
     const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
         const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        
+
         // Easing function for smooth animation
         const easeOutQuad = progress * (2 - progress);
-        
+
         element.textContent = Math.floor(easeOutQuad * (end - start) + start);
         if (progress < 1) {
             window.requestAnimationFrame(step);
@@ -78,5 +78,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
+    });
+
+    // Video Polaroid Hover Effect
+    const videoPolaroids = document.querySelectorAll('.video-polaroid');
+    videoPolaroids.forEach(polaroid => {
+        const video = polaroid.querySelector('.polaroid-video');
+
+        if (video) {
+            // Get custom start time or default to 0
+            const startTime = parseFloat(video.getAttribute('data-start-time')) || 0;
+
+            // Set initial start time when video loads
+            video.addEventListener('loadedmetadata', () => {
+                video.currentTime = startTime;
+            });
+
+            polaroid.addEventListener('mouseenter', () => {
+                video.play();
+            });
+
+            polaroid.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = startTime; // Reset to chosen frame
+            });
+
+            // Reset to custom start time when video ends
+            video.addEventListener('ended', () => {
+                video.pause();
+                video.currentTime = startTime;
+            });
+        }
     });
 });
