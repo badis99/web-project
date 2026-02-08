@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THEATRO</title>
-    <link rel="stylesheet" href="homePage.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400&display=swap"
-        rel="stylesheet">
+    <title>Theatro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" 
+    rel="stylesheet">
 </head>
 
 <body>
-    <!-- Video Background (plays behind curtains) -->
-    <video class="video-bg" autoplay muted loop playsinline>
-        <source src="/assets/curtains.mp4" type="video/mp4">
-        Your browser does not support the video tag.
+    <video class="vid" autoplay muted playsinline>
+        <source src="/assets/curtains5.mp4" type="video/mp4">
+
     </video>
 
-    <!-- Curtain Effect -->
     <div class="curtain curtain-left"></div>
     <div class="curtain curtain-right"></div>
 
-    <!-- Main Website Content (appears after curtains open) -->
     <div class="main-content">
     <nav class="navbar">
         <div class="logo">
@@ -30,8 +25,9 @@
             <span>THEATRO</span>
         </div>
         <ul class="nav-links">
-            <li><a href="#about">About</a></li>
+            <li><a href="#about">About Us</a></li>
             <li><a href="#shows">Shows</a></li>
+            <li><a href="#workshops">Workshops</a></li>
             <li><a href="#join">Join</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -56,7 +52,9 @@
             <div class="fog-segment"></div>
         </div>
 
-        
+        <!-- stars -->
+        <div class="spotlight"></div>
+
         <div class="hero-content">
             <p class="welcome-text">Welcome to the stage</p>
             <h1 class="main-title">THEATRO</h1>
@@ -66,15 +64,15 @@
     </div>
 
     <script>
-        // Fade out video smoothly and show content
+        //fade out video smoothly and show content
         window.addEventListener('load', () => {
-            const videoBg = document.querySelector('.video-bg');
+            const videoBg = document.querySelector('.vid');
             const mainContent = document.querySelector('.main-content');
             
             setTimeout(() => {
                 videoBg.classList.add('fade-out');
                 mainContent.classList.add('visible');
-            }, 1500);
+            }, 5000);
         });
     </script>
 </body>
