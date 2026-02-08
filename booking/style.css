@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.theater-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: linear-gradient(to bottom, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+    padding: 50px 40px;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.scene {
+    background: linear-gradient(90deg, #c9a961 0%, #e8d4a0 50%, #c9a961 100%);
+    color: #1a1a1a;
+    text-align: center;
+    padding: 18px 80px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 4px;
+    margin: 0 auto 60px;
+    width: fit-content;
+    box-shadow: 0 8px 30px rgba(201, 169, 97, 0.4);
+    font-family: 'Georgia', serif;
+}
+
+.seating-layout {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-label {
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: 25px;
+    letter-spacing: 2px;
+    color: #c9a961;
+    font-family: 'Georgia', serif;
+}
+
+.seats-grid {
+    display: flex;
+    gap: 12px;
+}
+
+.row-labels {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5px;
+    justify-content: flex-start;
+}
+
+.row-label {
+    height: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c9a961;
+    font-weight: bold;
+    font-size: 12px;
+    width: 16px;
+    font-family: 'Georgia', serif;
+}
+
+.rows-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5px;
+}
+
+.seat-row {
+    display: flex;
+    gap: 2.5px;
+    align-items: center;
+    height: 19px;
+}
+
+.seat {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid #8b0000;
+    border-radius: 3px 3px 0 0;
+    background: linear-gradient(to bottom, #c41e3a 0%, #8b0000 100%);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.seat::before {
+    content: '';
+    position: absolute;
+    bottom: -2.5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 55%;
+    height: 2.5px;
+    background: linear-gradient(to bottom, #6b0000 0%, #4a0000 100%);
+    border-radius: 0 0 1.5px 1.5px;
+}
+
+.seat:hover {
+    background: linear-gradient(to bottom, #e8d4a0 0%, #c9a961 100%);
+    border-color: #c9a961;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(201, 169, 97, 0.5);
+}
+
+.seat.selected {
+    background: linear-gradient(to bottom, #c9a961 0%, #a0854d 100%);
+    border-color: #c9a961;
+    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.6);
+}
+
+.seat.occupied {
+    background: linear-gradient(to bottom, #4a4a4a 0%, #2a2a2a 100%);
+    border-color: #3a3a3a;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.seat-numbers {
+    display: flex;
+    gap: 2.5px;
+    margin-top: 8px;
+}
+
+.seat-number {
+    width: 16px;
+    text-align: center;
+    font-size: 9px;
+    color: #c9a961;
+    flex-shrink: 0;
+    font-family: 'Georgia', serif;
+}
+
+.left-labels {
+    margin-right: 12px;
+}
+
+.right-labels {
+    margin-left: 12px;
+}
+
+.numbers-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+/* Spotlight effect on scene */
+@keyframes spotlight {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.scene {
+    animation: spotlight 3s ease-in-out infinite;
+}
