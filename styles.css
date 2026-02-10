@@ -10,7 +10,7 @@ html {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #0a0a0a;
+    background-color: transparent;
     color: white;
     overflow-x: hidden;
 }
@@ -74,7 +74,18 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    background: transparent;
+}
+
+#star-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: #0a0a0a;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .spotlight {
@@ -94,7 +105,7 @@ body {
     z-index: 2;
 }
 
-.spotlight::before {
+#star-container::before {
     content: '';
     position: absolute;
     top: 0;
@@ -160,7 +171,7 @@ body {
     z-index: 1;
 }
 
-.spotlight::after {
+#star-container::after {
     content: '';
     position: absolute;
     top: 0;
@@ -401,7 +412,7 @@ body {
 
 .about {
     display: block;
-    background: #141414;
+    background: transparent;
     padding: 0;
 }
 
@@ -789,7 +800,7 @@ body {
 
 .departments {
     padding: 100px 50px 30px;
-    background: #0a0a0a;
+    background: transparent;
 }
 
 .departments .section-title {
