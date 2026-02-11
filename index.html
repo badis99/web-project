@@ -10,71 +10,150 @@
 </head>
 
 <body>
-    <video class="vid" autoplay muted playsinline>
-        <source src="/assets/curtains5.mp4" type="video/mp4">
+    <div class="section1">
+        <video class="vid" autoplay muted playsinline>
+            <source src="/assets/curtains5.mp4" type="video/mp4">
 
-    </video>
+        </video>
 
-    <div class="curtain curtain-left"></div>
-    <div class="curtain curtain-right"></div>
+        <div class="curtain curtain-left"></div>
+        <div class="curtain curtain-right"></div>
 
-    <div class="main-content">
-    <nav class="navbar">
-        <div class="logo">
-            <img src="../assets/logo.png" alt="Theatro Logo">
-            <span>THEATRO</span>
+        <div class="main-content">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="../assets/logo.png" alt="Theatro Logo">
+                <span>THEATRO</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#shows">Shows</a></li>
+                <li><a href="#workshops">Workshops</a></li>
+                <li><a href="#join">Join</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <section class="hero">
+            <div class="fog-stream flow-right">
+                <div class="fog-segment"></div>
+                <div class="fog-segment"></div>
+                <div class="fog-segment"></div>
+            </div>
+
+            <div class="fog-stream flow-left">
+                <div class="fog-segment"></div>
+                <div class="fog-segment"></div>
+                <div class="fog-segment"></div>
+            </div>
+
+            <div class="fog-stream flow-middle">
+                <div class="fog-segment"></div>
+                <div class="fog-segment"></div>
+                <div class="fog-segment"></div>
+            </div>
+
+            <!-- stars -->
+            <div class="spotlight"></div>
+
+            <div class="hero-content">
+                <p class="welcome-text">Welcome to the stage</p>
+                <h1 class="main-title">THEATRO</h1>
+                <p class="tagline">Dream. Act. Inspire...</p>
+            </div>
+        </section>
         </div>
-        <ul class="nav-links">
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#shows">Shows</a></li>
-            <li><a href="#workshops">Workshops</a></li>
-            <li><a href="#join">Join</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
 
-    <section class="hero">
-        <div class="fog-stream flow-right">
-            <div class="fog-segment"></div>
-            <div class="fog-segment"></div>
-            <div class="fog-segment"></div>
+        <script>
+            //fade out video smoothly and show content
+            window.addEventListener('load', () => {
+                const videoBg = document.querySelector('.vid');
+                const mainContent = document.querySelector('.main-content');
+                
+                setTimeout(() => {
+                    videoBg.classList.add('fade-out');
+                    mainContent.classList.add('visible');
+                }, 5000);
+            });
+        </script>
+    </div>
+    
+    <div class="upcoming-shows">
+        <h1 class="title-upcoming-shows">Upcoming Shows</h1>
+        <div class="show1">
+            <div class="media rotation">
+                <img class="eighty-show" src="/assets/80trim.jpeg" alt="Eighty Show">
+                <video class="hover-video" loop>
+                    <source src="/assets/ep1.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="text">
+                <h2 class="titles">3am-ba3d-80</h2>
+                <p class="desc">3am-Ba3d-80, a compelling blend of comedy and tragedy, will be performed on Wednesday, n month, 2000, at the INSAT auditorium. This powerful piece explores a profound social issue, confronting truths that make you think, laugh, and reflect. Don’t miss the chance to experience a story 
+                that stays with you long after the curtain falls.
+                </p>
+            </div>
         </div>
-
-        <div class="fog-stream flow-left">
-            <div class="fog-segment"></div>
-            <div class="fog-segment"></div>
-            <div class="fog-segment"></div>
+        <div class="show2">
+            <media class="media">
+                <img class="fazaa-show" src="/assets/fazaa.jpeg" alt="Fazaa Show">
+                <video class="hover-video" loop>
+                        <source src="/assets/ep2.mp4" type="video/mp4">
+                    </video>
+            </media>
+            <div class="text">
+                <h2 class="titles">El-Faz3a</h2>
+                <p class="desc">El-Faz3a, a compelling blend of comedy and tragedy, will be performed on Wednesday, March 3, 2025, at the INSAT auditorium. This powerful piece explores a profound social issue, confronting truths that make you think, laugh, and reflect. Don’t miss the chance to experience a story 
+                that stays with you long after the curtain falls.
+            </div>
         </div>
-
-        <div class="fog-stream flow-middle">
-            <div class="fog-segment"></div>
-            <div class="fog-segment"></div>
-            <div class="fog-segment"></div>
+        <div class="show3"> 
+            <div class="text">
+                <h2 class="titles">El-Damous</h2>
+                <p class="desc">El-Damous, a compelling blend of comedy and tragedy, will be performed on Wednesday, n month, 2000, at the INSAT auditorium. This powerful piece explores a profound social issue, confronting truths that make you think, laugh, and reflect. Don’t miss the chance to experience a story 
+                that stays with you long after the curtain falls.
+                </p>
+            </div>
+            <img class="damous-show" src="/assets/damous.jpeg" alt="Damous Show">
         </div>
-
-        <!-- stars -->
-        <div class="spotlight"></div>
-
-        <div class="hero-content">
-            <p class="welcome-text">Welcome to the stage</p>
-            <h1 class="main-title">THEATRO</h1>
-            <p class="tagline">Dream. Act. Inspire...</p>
-        </div>
-    </section>
     </div>
 
     <script>
-        //fade out video smoothly and show content
-        window.addEventListener('load', () => {
-            const videoBg = document.querySelector('.vid');
-            const mainContent = document.querySelector('.main-content');
-            
-            setTimeout(() => {
-                videoBg.classList.add('fade-out');
-                mainContent.classList.add('visible');
-            }, 5000);
+        const mediaBlocks = document.querySelectorAll('.media');
+
+        mediaBlocks.forEach(block => {
+            const video = block.querySelector('video');
+
+            block.addEventListener('mouseenter', () => {
+                video.play();
+            });
+
+            block.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const shows = document.querySelectorAll('.title-upcoming-shows, .show1, .show2, .show3');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible'); // fade in + float
+                }
+            });
+        }, { threshold: 0.3 }); // trigger when 30% visible
+
+        shows.forEach(show => observer.observe(show));
+    });
+
+
+    </script>
+
+
+ 
 </body>
 
 </html>

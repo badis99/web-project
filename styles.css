@@ -8,10 +8,15 @@
 html, body {
     font-family: 'Montserrat', sans-serif;
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
-
+.section1 {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* at least the viewport height */
+    overflow: hidden;
+}
 .vid {
     position: fixed;
     top: 0;
@@ -434,3 +439,169 @@ body {
 }
 
 /**/
+
+/*scroll bar*/
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 6px;
+    border: 3px solid #111;
+}
+
+
+/*Upcoming shows*/
+.upcoming-shows {
+    background-color: black;
+    padding: 40px 0 40px 0; /* top right bottom left */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;   /* space between title and images */
+}
+
+.show1 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.eighty-show {
+    width: 100%;
+    max-height: 70vh;   /* don't force full height */
+    height: auto;
+    object-fit: contain;
+}
+
+.title-upcoming-shows {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    padding-left: 30px;   /* horizontal spacing only */
+    margin: 0;            /* no extra vertical margin needed */
+}
+
+.show2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.fazaa-show {
+    width: 50%;
+    height: 70vh;   /* don't force full height */
+    height: auto;
+    object-fit: contain;
+}
+
+.show3 {
+    display: flex;
+    /*flex-direction: row-reverse;*/
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.damous-show {
+    width: 50%;
+    height: 70vh;   /* don't force full height */
+    height: auto;
+    object-fit: contain;
+}
+
+
+.text {
+    display: flex;
+    flex-direction: column;
+    margin: auto 30px;
+    gap: 10px;
+}
+
+/*video hover*/
+.media {
+    position: relative;
+    width: 100%;
+    height: 350px;   /* important: gives the video a reference */
+    background: black;
+    overflow: hidden;
+}
+
+.media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* fills the container */
+    display: block;
+}
+
+.media video {
+    /*filter: grayscale(100%);*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 100%;
+    max-height: 100%;
+    transform: translate(-50%, -50%);
+}
+
+.media.rotation video {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.hover-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* on hover: show video, hide image */
+.media:hover .hover-video {
+    opacity: 1;
+}
+
+.media:hover img {
+    opacity: 0;
+}
+
+/*FLOATING**/
+/* Initial state: hidden and slightly shifted down */
+.show1, .show2, .show3, .title-upcoming-shows {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Visible state: fade in + move to normal position */
+.show1.visible, .show2.visible, .show3.visible, .title-upcoming-shows.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional: stagger children */
+.title-upcoming-shows,
+.show1 h2, .show1 p, .show1 img,
+.show2 h2, .show2 p, .show2 img,
+.show3 h2, .show3 p, .show3 img {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.title-upcoming-shows.visible,
+.show1.visible h2, .show1.visible p, .show1.visible img,
+.show2.visible h2, .show2.visible p, .show2.visible img,
+.show3.visible h2, .show3.visible p, .show3.visible img {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+
