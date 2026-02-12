@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Theatro - Member Registration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles2.css">
+</head>        
+<body>
+    <!-- Stage Lights -->
+    <div class="stage-lights">
+        <div class="spotlight spotlight-left"></div>
+        <div class="spotlight spotlight-right"></div>
+    </div>
+    
+    <div class="stars-bg"></div>
+
+    <div class="page-container">
+        <!-- Registration Closed Screen -->
+        <div id="closedScreen" class="registration-closed hidden">
+            <div class="closed-card">
+                <div class="theater-icon-wrapper slideshow-wrapper">
+                    <div class="slideshow-container">
+                            <img src="im1.jpg" class="slideshow-image active" alt="Theater photo 1">
+                            <img src="im2.jpg" class="slideshow-image" alt="Theater photo 2">
+                            <img src="im3.jpg" class="slideshow-image" alt="Theater photo 3">
+                            <img src="im4.jpg" class="slideshow-image" alt="Theater photo 4">
+                            <img src="im5.jpg" class="slideshow-image" alt="Theater photo 5">
+                            <img src="im6.jpg" class="slideshow-image" alt="Theater photo 6">
+                            <img src="im7.jpg" class="slideshow-image" alt="Theater photo 7">
+                            <img src="im8.jpg" class="slideshow-image" alt="Theater photo 8">
+                            <img src="im9.jpg" class="slideshow-image" alt="Theater photo 9">
+                    </div>
+                </div>
+                <h1 class="closed-title">Registration Currently Closed</h1>
+                <div class="opens-badge">
+                    <svg class="calendar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span>Registration Opens in September 2026</span>
+                </div>
+                <p class="closed-message">Stay tuned for updates about joining Theatro!</p>
+                <div class="notification-box">
+                    <svg class="bell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <p>Follow us on social media or check back here to be notified when applications open.</p>
+                </div>
+                <div class="loading-dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div id="formScreen" class="registration-form-container hidden">
+            <div class="form-card">
+                <div class="form-header">
+                    <div class="theater-icon-wrapper slideshow-wrapper">
+                        <div class="slideshow-container">
+                            <img src="im1.jpg" class="slideshow-image active" alt="Theater photo 1">
+                            <img src="im2.jpg" class="slideshow-image" alt="Theater photo 2">
+                            <img src="im3.jpg" class="slideshow-image" alt="Theater photo 3">
+                            <img src="im4.jpg" class="slideshow-image" alt="Theater photo 4">
+                            <img src="im5.jpg" class="slideshow-image" alt="Theater photo 5">
+                            <img src="im6.jpg" class="slideshow-image" alt="Theater photo 6">
+                            <img src="im7.jpg" class="slideshow-image" alt="Theater photo 7">
+                            <img src="im8.jpg" class="slideshow-image" alt="Theater photo 8">
+                            <img src="im9.jpg" class="slideshow-image" alt="Theater photo 9">
+                        </div>
+                    </div>
+                    <h1 class="form-title">Join Theatro</h1>
+                    <p class="form-subtitle">Begin your journey in theatrical arts</p>
+                </div>
+
+                <form id="registrationForm" class="registration-form">
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullName" class="form-label">
+                            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            Full Name
+                        </label>
+                        <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Ex : Jean Leblanc" required>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email" class="form-label">
+                            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            Email Address
+                        </label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label for="phone" class="form-label">
+                            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            Phone Number
+                        </label>
+                        <input type="tel" id="phone" name="phone" class="form-input" placeholder="+216 ** *** ***" required>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <!-- Year and Field Grid -->
+                    <div class="form-grid">
+                        <!-- Year of Study -->
+                        <div class="form-group">
+                            <label for="yearOfStudy" class="form-label">
+                                <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                                </svg>
+                                Year of Study
+                            </label>
+                            <select id="yearOfStudy" name="yearOfStudy" class="form-select" required>
+                                <option value="">Select year</option>
+                                <option value="1st Year">1st Year</option>
+                                <option value="2nd Year">2nd Year</option>
+                                <option value="3rd Year">3rd Year</option>
+                                <option value="4th Year">4th Year</option>
+                                <option value="5th Year">5th Year</option>
+                                <option value="Graduate">Graduate</option>
+                            </select>
+                            <span class="error-message"></span>
+                        </div>
+
+                        <!-- Field of Study -->
+                        <div class="form-group">
+                            <label for="fieldOfStudy" class="form-label">
+                                <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                </svg>
+                                Field of Study
+                            </label>
+                            <select id="fieldOfStudy" name="fieldOfStudy" class="form-select" required disabled>
+                                <option value="">Select year first</option>
+                            </select>
+                            <span class="error-message"></span>
+                        </div>
+                    </div>
+
+                    <!-- Department -->
+                    <div class="form-group">
+                        <label for="department" class="form-label">
+                            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                <polyline points="2 17 12 22 22 17"></polyline>
+                                <polyline points="2 12 12 17 22 12"></polyline>
+                            </svg>
+                            Which Department Would You Like to Join?
+                        </label>
+                        <select id="department" name="department" class="form-select" required>
+                            <option value="">Select a department</option>
+                            <option value="Acting">Acting</option>
+                            <option value="Technical (Lighting & Sound)">Technical (Lighting & Sound)</option>
+                            <option value="Set Design">Set Design</option>
+                            <option value="Costume Design">Costume Design</option>
+                            <option value="Direction">Direction</option>
+                            <option value="Stage Management">Stage Management</option>
+                            <option value="Scriptwriting">Scriptwriting</option>
+                            <option value="Marketing & Communication">Marketing & Communication</option>
+                        </select>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <!-- Why Join -->
+                    <div class="form-group">
+                        <label for="whyJoin" class="form-label">
+                            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"></path>
+                                <line x1="2" y1="20" x2="2" y2="20"></line>
+                            </svg>
+                            Why Do You Want to Join Theatro?
+                        </label>
+                        <textarea id="whyJoin" name="whyJoin" class="form-textarea" rows="5" placeholder="Tell us about your passion for theatre and what you hope to achieve..." required></textarea>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn">
+                        Submit Application
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div id="successModal" class="modal-overlay hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <button class="modal-close" id="closeModal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+                
+                <div class="confetti-container"></div>
+                
+                <div class="modal-body">
+                    <div class="success-icon-wrapper">
+                        <svg class="success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    
+                    <h2 class="modal-title">Application Submitted!</h2>
+                    
+                    <div class="mail-icon-wrapper">
+                        <svg class="mail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+                    
+                    <p class="modal-description">Thank you for your interest in joining Theatro!</p>
+                    
+                    <div class="modal-info-box">
+                        <p>Please wait for our email with details for your technical recruitment interview.</p>
+                    </div>
+                    
+                    <p class="modal-note">We'll review your application and get back to you soon.</p>
+                    
+                    <button class="modal-btn" id="modalOkBtn">Got it!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script1.js"></script>
+</body>
+</html>
