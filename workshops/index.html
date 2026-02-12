@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshops - THEATRO</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="workshops.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Marcellus&family=Pinyon+Script&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html#about">About</a></li>
+            <li><a href="../index.html#shows">Shows</a></li>
+            <li><a href="../index.html#join">Join Us</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Stars Background -->
+    <div class="stars-background"></div>
+
+    <!-- Workshops Section -->
+    <section class="workshops-section">
+        <h5 class="section-title"> AVAILABLE WORKSHOPS</h5>
+        <h2 class="section-subtitle">Learn. Grow. Perform</h2>
+        <h1 class="section-description">From raw talents to stage ready stars. Discover your inner performer with our
+            comprehensive workshops.</h1>
+
+        <!-- Workshop Information Sections -->
+        <div class="workshops-info-container">
+            <!-- Acting Workshop Info -->
+            <div class="workshop-info-section">
+                <h3 class="workshop-title">Acting Workshop</h3>
+
+                <div class="workshop-polaroid">
+                    <div class="polaroid activity-polaroid video-polaroid">
+                        <div class="polaroid-img">
+                            <video class="polaroid-video" loop muted playsinline>
+                                <source src="../assets/acting_workshop1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workshop-full-description">
+                    <p>Master the art of performance with professional guidance in our comprehensive Acting Workshop.
+                        This immersive program is designed for passionate individuals who want to develop their acting
+                        skills,
+                        explore character development, and learn essential stage techniques.</p>
+
+                    <p>Through a combination of practical exercises, scene work, and improvisation, you'll discover how
+                        to
+                        bring characters to life, develop your vocal and physical presence, and build confidence on
+                        stage.
+                        Our experienced instructors will guide you through various acting methods and help you find your
+                        unique
+                        artistic voice.</p>
+
+                    <p>Whether you're a beginner or looking to refine your craft, this workshop offers a supportive
+                        environment to grow as a performer and connect with fellow theatre enthusiasts.</p>
+                </div>
+            </div>
+
+            <!-- Dancing Workshop Info -->
+            <div class="workshop-info-section">
+                <h3 class="workshop-title">Dancing Workshop</h3>
+
+                <div class="workshop-polaroid">
+                    <div class="polaroid activity-polaroid video-polaroid">
+                        <div class="polaroid-img">
+                            <video class="polaroid-video" loop muted playsinline>
+                                <source src="../assets/dancing_workshop1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workshop-full-description">
+                    <p>Express yourself through movement in our dynamic Dancing Workshop. This program welcomes dancers
+                        of
+                        all levels to explore various dance styles, improve technique, and discover the joy of movement
+                        as a
+                        form of artistic expression.</p>
+
+                    <p>You'll learn fundamental choreography, develop rhythm and coordination, and understand how dance
+                        complements theatrical performance. Our instructors will teach you how to tell stories through
+                        movement,
+                        work with music, and create compelling stage presence through dance.</p>
+
+                    <p>Join us to enhance your physical expression, build stamina and flexibility, and become part of a
+                        vibrant community that celebrates the art of dance in theatre.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unified Registration Form -->
+        <div class="unified-form-container">
+            <h3 class="form-section-title">Workshop Registration</h3>
+
+            <div class="membership-notice">
+                <svg class="notice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <p>These workshops are exclusively accessible to Theatro INSAT club members only</p>
+            </div>
+
+            <form class="workshop-form" id="unified-workshop-form">
+                <div class="form-group">
+                    <label for="workshop-selection">Select Workshop *</label>
+                    <select id="workshop-selection" name="workshop" required>
+                        <option value="">Choose a workshop...</option>
+                        <option value="Acting Workshop">Acting Workshop</option>
+                        <option value="Dancing Workshop">Dancing Workshop</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="surname">Surname</label>
+                    <input type="text" id="surname" name="surname" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="identifier">Member Identifier</label>
+                    <input type="text" id="identifier" name="identifier" placeholder="Your club membership ID" required>
+                    <span class="field-hint">Enter the identifier you received after signing up</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Are you sure you're coming?</label>
+                    <div class="rating-container">
+                        <input type="radio" id="star5" name="rating" value="5" />
+                        <label for="star5" class="star">★</label>
+                        <input type="radio" id="star4" name="rating" value="4" />
+                        <label for="star4" class="star">★</label>
+                        <input type="radio" id="star3" name="rating" value="3" />
+                        <label for="star3" class="star">★</label>
+                        <input type="radio" id="star2" name="rating" value="2" />
+                        <label for="star2" class="star">★</label>
+                        <input type="radio" id="star1" name="rating" value="1" />
+                        <label for="star1" class="star">★</label>
+                    </div>
+                    <span class="rating-text">Select stars to rate your commitment level</span>
+                </div>
+
+                <button type="submit" class="btn btn-primary submit-btn">Register for Workshop</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="workshops.js"></script>
+</body>
+
+</html>
