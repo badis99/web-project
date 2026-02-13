@@ -24,7 +24,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 60px;
+    padding: 5px 20px;
     /* Reduced vertical padding */
     background-color: rgba(0, 0, 0, 0.5);
     /* Semi-transparent background */
@@ -1248,6 +1248,106 @@ body {
 
 .media-logo:hover {
     color: white;
+}
+
+.show,
+.title-upcoming-shows {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Visible state: fade in + move to normal position */
+.show.visible,
+.title-upcoming-shows.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional: stagger children */
+.title-upcoming-shows,
+.show h2,
+.show p,
+.show img {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.title-upcoming-shows.visible,
+.show.visible h2,
+.show.visible p,
+.show.visible img {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*Upcoming shows section*/
+.upcoming-shows {
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.upcoming-shows .shows {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.upcoming-shows .show {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 20px 20px;
+}
+
+.title-upcoming-shows {
+    margin-left: 10px;
+    font-weight: 300;
+}
+
+.upcoming-shows .titles {
+    margin-bottom: 8px;
+}
+
+.upcoming-shows p {
+    margin-bottom: 8px;
+}
+
+.upcoming-shows img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.upcoming-shows button {
+    width: 30%;
+    height: 40px;
+    /*center it*/
+    margin-left: auto;
+    margin-right: auto;
+    /**/
+    color: white;
+    font-size: 16px;
+    background-color: black;
+    border: 1px solid;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.upcoming-shows button:hover {
+    opacity: 0.7;
+}
+
+.book-button {
+    color: white;
+    text-decoration: none;
 }
 
 /* ============================================
