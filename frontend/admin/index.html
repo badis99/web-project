@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — Workshop Registrations | THEATRO</title>
+    <meta name="description" content="THEATRO admin panel for viewing and managing workshop registrations.">
+    <link rel="stylesheet" href="./styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Marcellus&family=Pinyon+Script&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Stars Background -->
+    <div class="stars-background"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro Logo">
+        </div>
+        <span class="admin-badge">ADMIN PANEL</span>
+        <ul class="nav-links">
+            <li><a href="../home/index.html">← Back to Site</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+
+        <!-- Page Header -->
+        <header class="page-header">
+            <p class="page-label">THEATRO INSAT</p>
+            <h1 class="page-title">Workshop Registrations</h1>
+            <p class="page-subtitle">Manage and review all member sign-ups</p>
+        </header>
+
+        <!-- Stats Row -->
+        <section class="stats-row" id="stats-row">
+            <div class="stat-card" id="stat-total">
+                <span class="stat-icon">✦</span>
+                <div class="stat-body">
+                    <span class="stat-value" id="stat-total-val">—</span>
+                    <span class="stat-label">Total Registrations</span>
+                </div>
+            </div>
+            <div class="stat-card" id="stat-acting">
+                <span class="stat-icon">🎭</span>
+                <div class="stat-body">
+                    <span class="stat-value" id="stat-acting-val">—</span>
+                    <span class="stat-label">Acting Workshop</span>
+                </div>
+            </div>
+            <div class="stat-card" id="stat-dancing">
+                <span class="stat-icon">💃</span>
+                <div class="stat-body">
+                    <span class="stat-value" id="stat-dancing-val">—</span>
+                    <span class="stat-label">Dancing Workshop</span>
+                </div>
+            </div>
+            <div class="stat-card" id="stat-rating">
+                <span class="stat-icon">★</span>
+                <div class="stat-body">
+                    <span class="stat-value" id="stat-rating-val">—</span>
+                    <span class="stat-label">Avg. Commitment</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Controls Bar -->
+        <section class="controls-bar">
+            <div class="search-wrapper">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="search-input" class="search-input" placeholder="Search by name, ID, workshop…">
+            </div>
+
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all" id="filter-all">All</button>
+                <button class="filter-btn" data-filter="Acting Workshop" id="filter-acting">Acting</button>
+                <button class="filter-btn" data-filter="Dancing Workshop" id="filter-dancing">Dancing</button>
+            </div>
+
+            <div class="sort-wrapper">
+                <select id="sort-select" class="sort-select">
+                    <option value="date-desc">Newest First</option>
+                    <option value="date-asc">Oldest First</option>
+                    <option value="rating-desc">Rating ↓</option>
+                    <option value="rating-asc">Rating ↑</option>
+                    <option value="name-asc">Name A–Z</option>
+                </select>
+            </div>
+
+            <button class="export-btn" id="export-btn" title="Export to CSV">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Export CSV
+            </button>
+        </section>
+
+        <!-- Table Section -->
+        <section class="table-section">
+            <!-- Loading State -->
+            <div class="loading-state" id="loading-state">
+                <div class="spinner"></div>
+                <p>Loading registrations…</p>
+            </div>
+
+            <!-- Error State -->
+            <div class="error-state hidden" id="error-state">
+                <span class="error-icon">⚠</span>
+                <p id="error-message">Could not load registrations.</p>
+                <button class="retry-btn" id="retry-btn">Retry</button>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state hidden" id="empty-state">
+                <span class="empty-icon">✦</span>
+                <p>No registrations found.</p>
+            </div>
+
+            <!-- Table -->
+            <div class="table-wrapper hidden" id="table-wrapper">
+                <table class="registrations-table" id="registrations-table">
+                    <thead>
+                        <tr>
+                            <th class="col-id">#</th>
+                            <th class="col-workshop sortable" data-col="workshop">Workshop <span class="sort-arrow">↕</span></th>
+                            <th class="col-name sortable" data-col="name">Name <span class="sort-arrow">↕</span></th>
+                            <th class="col-surname sortable" data-col="surname">Surname <span class="sort-arrow">↕</span></th>
+                            <th class="col-identifier">Member ID</th>
+                            <th class="col-rating sortable" data-col="rating">Commitment <span class="sort-arrow">↕</span></th>
+                            <th class="col-date sortable" data-col="createdAt">Date <span class="sort-arrow">↕</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Rows injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination / count -->
+            <div class="table-footer hidden" id="table-footer">
+                <span id="result-count" class="result-count"></span>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

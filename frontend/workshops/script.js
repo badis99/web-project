@@ -16,7 +16,7 @@ document.querySelectorAll('.video-polaroid').forEach(polaroid => {
 // Handle unified form submission
 const form = document.getElementById('unified-workshop-form');
 if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const formData = new FormData(form);
@@ -42,10 +42,34 @@ if (form) {
             return;
         }
 
-        // Success message
-        alert(`Registration successful!\n\nWorkshop: ${workshop}\nName: ${name} ${surname}\nMember ID: ${identifier}\nCommitment Level: ${rating} star(s)\n\nWe look forward to seeing you at the workshop!`);
+        try {
+            const response = await fetch('http://localhost:8000/api/workshop-registrations', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    workshop,
+                    name,
+                    surname,
+                    identifier,
+                    rating: parseInt(rating, 10)
+                })
+            });
 
-        // Reset form
-        form.reset();
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => null);
+                throw new Error(errorData?.message || 'Failed to register');
+            }
+
+            // Success message
+            alert(`Registration successful!\n\nWorkshop: ${workshop}\nName: ${name} ${surname}\nMember ID: ${identifier}\nCommitment Level: ${rating} star(s)\n\nWe look forward to seeing you at the workshop!`);
+
+            // Reset form
+            form.reset();
+        } catch (error) {
+            console.error('Error during registration:', error);
+            alert(`Registration failed: ${error.message}`);
+        }
     });
 }
