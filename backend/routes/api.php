@@ -4,6 +4,8 @@
  */
 
 declare(strict_types=1);
+ini_set('display_errors', '0');
+error_reporting(0);
 
 require_once __DIR__ . '/../Core/Cors.php';
 require_once __DIR__ . '/../config/app.php';
@@ -21,12 +23,8 @@ require_once __DIR__ . '/../Core/Session.php';
 require_once __DIR__ . '/../Core/Csrf.php';
 require_once __DIR__ . '/../Core/RateLimit.php';
 
-/**
- * Route l'action API vers le bon controleur.
- *
- * @param string $action Action demandee
- * @return void
- */
+// ← Plus aucun require_once de ton côté ici
+
 function dispatchApiAction(string $action): void
 {
     $action = normalizeApiAction($action);
@@ -65,6 +63,15 @@ function dispatchApiAction(string $action): void
             createContactController()->sendMessage();
             break;
 
+        case 'approval.handle':
+    require_once __DIR__ . '/../Repositories/PendingRepository.php';
+    require_once __DIR__ . '/../Repositories/UsingRepository.php';
+    require_once __DIR__ . '/../Services/MailService.php';
+    require_once __DIR__ . '/../Services/ApprovalService.php';
+    require_once __DIR__ . '/../Controllers/ApprovalController.php';
+    $data = json_decode(file_get_contents('php://input'), true) ?? [];
+    echo json_encode(createApprovalController()->handle($data));
+    break;
         default:
             http_response_code(404);
             echo json_encode(['error' => 'API route not found.']);
@@ -72,33 +79,23 @@ function dispatchApiAction(string $action): void
     }
 }
 
-/**
- * Normalise les alias d'action.
- *
- * @param string $action Action brute
- * @return string
- */
 function normalizeApiAction(string $action): string
 {
     $aliases = [
-        'csrf'           => 'csrf.token',
-        'login'          => 'auth.login',
-        'signup'         => 'auth.signup',
-        'logout'         => 'auth.logout',
-        'check-session'  => 'auth.checkSession',
-        'forgot-password'=> 'password.forgot',
-        'reset-password' => 'password.reset',
-        'send-message'   => 'contact.send',
+        'csrf'            => 'csrf.token',
+        'login'           => 'auth.login',
+        'signup'          => 'auth.signup',
+        'logout'          => 'auth.logout',
+        'check-session'   => 'auth.checkSession',
+        'forgot-password' => 'password.forgot',
+        'reset-password'  => 'password.reset',
+        'send-message'    => 'contact.send',
+        'approval'        => 'approval.handle',
     ];
 
     return $aliases[$action] ?? $action;
 }
 
-/**
- * Fabrique le controleur d'authentification.
- *
- * @return AuthController
- */
 function createAuthController(): AuthController
 {
     return new AuthController(new AuthService(
@@ -108,11 +105,6 @@ function createAuthController(): AuthController
     ));
 }
 
-/**
- * Fabrique le controleur de mot de passe.
- *
- * @return PasswordController
- */
 function createPasswordController(): PasswordController
 {
     return new PasswordController(new PasswordService(
@@ -122,14 +114,14 @@ function createPasswordController(): PasswordController
     ));
 }
 
-/**
- * Fabrique le controleur de contact.
- *
- * @return ContactController
- */
 function createContactController(): ContactController
 {
     return new ContactController(new ContactService(new MailerService()));
+}
+
+function createApprovalController(): ApprovalController
+{
+    return new ApprovalController(new ApprovalService());
 }
 
 $apiAction = $apiAction ?? ($_GET['action'] ?? '');

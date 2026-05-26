@@ -5,82 +5,123 @@
 
 declare(strict_types=1);
 
-use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\PHPMailer;
-
-require_once __DIR__ . '/../../vendor/autoload.php';
-
-/**
- * Envoie les emails via PHPMailer.
- */
 class MailerService
 {
     /**
      * Envoie un email HTML.
-     *
-     * @param string $to       Destinataire
-     * @param string $subject  Sujet
-     * @param string $htmlBody Corps HTML
-     * @param string $replyTo  Adresse de reponse optionnelle
-     * @return bool
      */
     public function sendEmail(string $to, string $subject, string $htmlBody, string $replyTo = ''): bool
     {
-        if (empty(SMTP_HOST) || empty(SMTP_USER) || empty(SMTP_PASS)) {
-            error_log('[MailerService] SMTP settings are missing.');
+        $host     = SMTP_HOST;
+        $port     = SMTP_PORT;
+        $username = SMTP_USER;
+        $password = SMTP_PASS;
+        $from     = SMTP_FROM;
+        $fromName = SMTP_FROM_NAME;
+
+        if (empty($host) || empty($username) || empty($password)) {
+            error_log('[MailerService] SMTP credentials not configured.');
             return false;
         }
 
-        $mail = new PHPMailer(true);
+        $context = stream_context_create([
+            'ssl' => [
+                'verify_peer'      => false,
+                'verify_peer_name' => false,
+            ]
+        ]);
 
-        try {
-            $mail->isSMTP();
-            $mail->Host       = SMTP_HOST;
-            $mail->SMTPAuth   = true;
-            $mail->Username   = SMTP_USER;
-            $mail->Password   = SMTP_PASS;
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = SMTP_PORT;
+        $errno = 0; $errstr = '';
+        $socket = @stream_socket_client(
+            "tcp://{$host}:{$port}",
+            $errno, $errstr, 15,
+            STREAM_CLIENT_CONNECT,
+            $context
+        );
 
-            if (LOCAL_DEV) {
-                $mail->SMTPOptions = [
-                    'ssl' => [
-                        'verify_peer'       => false,
-                        'verify_peer_name'  => false,
-                        'allow_self_signed' => true,
-                    ],
-                ];
-            }
-
-            $mail->setFrom(SMTP_FROM, SMTP_FROM_NAME);
-            $mail->addAddress($to);
-
-            if ($replyTo && filter_var($replyTo, FILTER_VALIDATE_EMAIL)) {
-                $mail->addReplyTo($replyTo);
-            }
-
-            $mail->isHTML(true);
-            $mail->Subject = $subject;
-            $mail->Body    = $htmlBody;
-            $mail->send();
-
-            return true;
-        } catch (Exception $exception) {
-            error_log('[MailerService] Send failed: ' . $mail->ErrorInfo);
+        if (!$socket) {
+            error_log("[MailerService] Connection failed: {$errstr}");
             return false;
         }
+
+        stream_set_timeout($socket, 15);
+
+        $cmd = function(string $command) use ($socket): string {
+            if ($command !== '') fwrite($socket, $command . "\r\n");
+            $response = '';
+            while ($line = fgets($socket, 512)) {
+                $response .= $line;
+                if (isset($line[3]) && $line[3] === ' ') break;
+            }
+            return $response;
+        };
+
+        $cmd('');
+        $cmd('EHLO localhost');
+
+        $r = $cmd('STARTTLS');
+        if (strpos($r, '220') === false) {
+            fclose($socket);
+            return false;
+        }
+
+        if (!stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)) {
+            error_log('[MailerService] TLS handshake failed.');
+            fclose($socket);
+            return false;
+        }
+
+        $cmd('EHLO localhost');
+        $cmd('AUTH LOGIN');
+        $cmd(base64_encode($username));
+        $r = $cmd(base64_encode($password));
+
+        if (strpos($r, '235') === false) {
+            error_log('[MailerService] SMTP authentication failed.');
+            fclose($socket);
+            return false;
+        }
+
+        $cmd("MAIL FROM:<{$from}>");
+        $cmd("RCPT TO:<{$to}>");
+        $cmd('DATA');
+
+        $date  = date('r');
+        $msgId = '<' . bin2hex(random_bytes(8)) . '@theatro.insat>';
+
+        $headers =
+            "Date: {$date}\r\n" .
+            "From: {$fromName} <{$from}>\r\n" .
+            "To: {$to}\r\n" .
+            "Message-ID: {$msgId}\r\n" .
+            "Subject: {$subject}\r\n" .
+            "MIME-Version: 1.0\r\n" .
+            "Content-Type: text/html; charset=UTF-8\r\n" .
+            "Content-Transfer-Encoding: base64\r\n";
+
+        if ($replyTo && filter_var($replyTo, FILTER_VALIDATE_EMAIL)) {
+            $headers .= "Reply-To: {$replyTo}\r\n";
+        }
+
+        $message = $headers . "\r\n" .
+            chunk_split(base64_encode($htmlBody)) .
+            "\r\n.\r\n";
+
+        fwrite($socket, $message);
+        $r = $cmd('');
+
+        $cmd('QUIT');
+        fclose($socket);
+
+        return strpos($r, '250') !== false;
     }
 
     /**
      * Genere le corps HTML du mail de reinitialisation.
-     *
-     * @param string $code      Code a six chiffres
-     * @param string $firstname Prenom
-     * @return string
      */
     public function buildResetEmailHtml(string $code, string $firstname = ''): string
     {
-        $greeting = $firstname ? "Hi {$firstname}," : 'Hello,';
+        $greeting      = $firstname ? "Hi {$firstname}," : 'Hello,';
         $formattedCode = substr($code, 0, 3) . ' ' . substr($code, 3, 3);
 
         return <<<HTML
