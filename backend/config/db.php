@@ -49,12 +49,12 @@ define('SUPABASE_KEY', $env['SUPABASE_SERVICE_ROLE_KEY'] ?? $env['SUPABASE_SERVI
 define('LOCAL_DEV', filter_var($env['LOCAL_DEV'] ?? 'true', FILTER_VALIDATE_BOOLEAN));
 
 // SMTP constants (used in mailer.php)
-define('SMTP_HOST', $env['SMTP_HOST'] ?? '');
-define('SMTP_PORT', (int) ($env['SMTP_PORT'] ?? 587));
-define('SMTP_USER', $env['SMTP_USER'] ?? '');
-define('SMTP_PASS', $env['SMTP_PASS'] ?? '');
-define('SMTP_FROM', $env['SMTP_FROM'] ?? '');
-define('SMTP_FROM_NAME', $env['SMTP_FROM_NAME'] ?? 'Theatro INSAT');
+define('SMTP_HOST', $env['SMTP_HOST2'] ?? '');
+define('SMTP_PORT', (int) ($env['SMTP_PORT2'] ?? 587));
+define('SMTP_USER', $env['SMTP_USER2'] ?? '');
+define('SMTP_PASS', $env['SMTP_PASS2'] ?? '');
+define('SMTP_FROM', $env['SMTP_FROM2'] ?? '');
+define('SMTP_FROM_NAME', $env['SMTP_FROM_NAME2'] ?? 'Theatro INSAT');
 
 if (empty(SUPABASE_URL) || empty(SUPABASE_KEY)) {
     // allow running locally without DB for health check
