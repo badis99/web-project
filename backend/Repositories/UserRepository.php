@@ -33,7 +33,7 @@ class UserRepository
             'GET',
             'users',
             [],
-            'email=eq.' . urlencode($email) . '&select=id,firstname,lastname,password'
+            'email=eq.' . urlencode($email) . '&select=id,firstname,lastname,password,role'
         );
 
         if ($res['status'] !== 200 || !is_array($res['data'])) {

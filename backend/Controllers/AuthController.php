@@ -58,6 +58,7 @@ class AuthController
         $_SESSION['user_id']      = $user['id'];
         $_SESSION['firstname']    = $user['firstname'];
         $_SESSION['lastname']     = $user['lastname'];
+        $_SESSION['role']         = $user['role'] ?? 'user'; 
         $_SESSION['logged_in_at'] = time();
 
         resetRateLimit();
@@ -148,6 +149,7 @@ class AuthController
             echo json_encode([
                 'logged_in' => true,
                 'firstname' => $_SESSION['firstname'] ?? '',
+                'role'      => $_SESSION['role'] ?? 'user',
             ]);
             return;
         }

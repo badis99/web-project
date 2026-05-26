@@ -46,6 +46,7 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#shows">Shows</a></li>
+            <li id="nav-approvals" style="display:none"><a href="/frontend/approvals/index.php">Approvals</a></li>
             <li id="nav-workshops" style="display:none"><a href="../workshops/index.html">Workshops</a></li>
             <li class="nav-join-link"><a href="/frontend/auth/signup.html">Join Us</a></li>
             <li><a href="../contact/index.html">Contact</a></li>
@@ -511,30 +512,37 @@
 
     <!-- Session-aware navbar -->
     <script>
-        fetch('/backend/routes/api.php?action=check-session', { credentials: 'include' })
-            .then(r => r.json())
-            .then(data => {
-                const workshopsLi = document.getElementById('nav-workshops');
-                if (workshopsLi) {
-                    workshopsLi.style.display = data.logged_in ? '' : 'none';
-                }
-                document.querySelectorAll('.nav-join-link, .join-cta').forEach(el => {
-                    el.style.display = data.logged_in ? 'none' : '';
+    fetch('/backend/routes/api.php?action=check-session', { credentials: 'include' })
+        .then(r => r.json())
+        .then(data => {
+            const workshopsLi = document.getElementById('nav-workshops');
+            if (workshopsLi) {
+                workshopsLi.style.display = data.logged_in ? '' : 'none';
+            }
+
+            const approvalsLi = document.getElementById('nav-approvals');
+            if (approvalsLi) {
+                approvalsLi.style.display = (data.logged_in && data.role?.toLowerCase() === 'admin') ? '' : 'none';
+            }
+
+            document.querySelectorAll('.nav-join-link, .join-cta').forEach(el => {
+                el.style.display = data.logged_in ? 'none' : '';
+            });
+
+            const btn = document.getElementById('nav-auth-btn');
+            if (!btn) return;
+            if (data.logged_in) {
+                btn.textContent = 'Logout';
+                btn.href = '#';
+                btn.addEventListener('click', e => {
+                    e.preventDefault();
+                    fetch('/backend/routes/api.php?action=logout', { method: 'POST', credentials: 'include' })
+                        .then(() => { window.location.href = '/frontend/home/index.html'; });
                 });
-                const btn = document.getElementById('nav-auth-btn');
-                if (!btn) return;
-                if (data.logged_in) {
-                    btn.textContent = 'Logout';
-                    btn.href = '#';
-                    btn.addEventListener('click', e => {
-                        e.preventDefault();
-                        fetch('/backend/routes/api.php?action=logout', { method: 'POST', credentials: 'include' })
-                            .then(() => { window.location.href = '/frontend/home/index.html'; });
-                    });
-                }
-            })
-            .catch(() => {});
-    </script>
+            }
+        })
+        .catch(() => {});
+</script>
 </body>
 
 </html>
