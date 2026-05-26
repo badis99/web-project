@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — THEATRO INSAT</title>
+    <meta name="description" content="Sign in to your Theatro INSAT account.">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="star-container"></div>
+
+    <nav class="auth-navbar">
+        <a href="/frontend/home/index.html" class="auth-nav-logo">
+            <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro Logo">
+        </a>
+        <ul class="auth-nav-links">
+            <li><a href="/frontend/home/index.html">Home</a></li>
+            <li><a href="/frontend/home/index.html#about">About</a></li>
+            <li><a href="/frontend/home/index.html#shows">Shows</a></li>
+            <li id="nav-workshops" style="display:none"><a href="/frontend/workshops/index.html">Workshops</a></li>
+            <li class="nav-join-link" style="display:none"><a href="/frontend/auth/signup.html">Join Us</a></li>
+            <li><a href="/frontend/contact/index.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <main class="auth-page">
+        <div class="auth-container">
+
+            <div class="auth-header">
+                <span class="auth-brand">Theatro</span>
+                <span class="auth-subtitle">Welcome Back</span>
+            </div>
+
+            <!-- Error/success toast rendered here by auth.js -->
+
+            <form class="auth-form" id="loginForm" novalidate>
+
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input
+                        type="email"
+                        id="login-email"
+                        name="email"
+                        placeholder="your@email.com"
+                        autocomplete="email"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input
+                        type="password"
+                        id="login-password"
+                        name="password"
+                        placeholder="••••••••"
+                        autocomplete="current-password"
+                        required>
+                </div>
+
+                <div class="form-actions">
+                    <a href="forgot-password.html" class="forgot-link">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="auth-btn" id="login-submit">Sign In</button>
+
+            </form>
+
+            <div class="auth-footer">
+                <p class="auth-join-link" style="display:none">Don't have an account? <a href="signup.html">Apply to join</a></p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Site footer -->
+    <footer class="auth-site-footer">
+        <div class="auth-site-footer-inner">
+            <span>&copy; 2026 Theatro INSAT. All Rights Reserved.</span>
+            <span class="auth-site-footer-links">
+                <a href="/frontend/contact/index.html">Contact</a>
+                <a href="/frontend/home/index.html#about">About</a>
+            </span>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+</body>
+</html>

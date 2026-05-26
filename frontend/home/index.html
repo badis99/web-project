@@ -4,11 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THEATRO</title>
+    <title>THEATRO — The Official Theatre Club of INSAT</title>
+    <meta name="description" content="Theatro INSAT — Where Art Meets Innovation. The official theatre club of INSAT since 2003.">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
+    <style>
+        .nav-auth-wrapper { display: flex; align-items: center; }
+        .nav-login-btn {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 8px 22px;
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.55);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(5px);
+            white-space: nowrap;
+        }
+        .nav-login-btn:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: white;
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,10 +46,13 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#shows">Shows</a></li>
-            <li><a href="../workshops/index.html">Workshops</a></li>
-            <li><a href="../joinus/index.html">Join Us</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li id="nav-workshops" style="display:none"><a href="../workshops/index.html">Workshops</a></li>
+            <li class="nav-join-link" style="display:none"><a href="/frontend/auth/signup.html">Join Us</a></li>
+            <li><a href="../contact/index.html">Contact</a></li>
         </ul>
+        <div class="nav-auth-wrapper">
+            <a href="../auth/login.html" class="nav-login-btn" id="nav-auth-btn">Login</a>
+        </div>
     </nav>
 
     <section class="hero" id="home">
@@ -47,7 +75,7 @@
             <p class="tagline">Dream. Act. Inspire...</p>
             <div class="hero-buttons">
                 <a href="#shows" class="btn btn-primary">View Shows</a>
-                <a href="#join" class="btn btn-secondary">Join Us</a>
+                <a href="/frontend/auth/signup.html" class="btn btn-secondary join-cta" style="display:none">Join Us</a>
             </div>
         </div>
     </section>
@@ -303,7 +331,7 @@
                 <span class="media-logo">IFM</span>
             </div>
             <div class="media-item">
-                <img src="../assets/RadioMed.png" alt="RadioMed" class="media-logo-img">
+                <img src="../assets/radiomed.png" alt="RadioMed" class="media-logo-img">
                 <span class="media-logo">RadioMed</span>
             </div>
             <div class="media-item">
@@ -366,9 +394,147 @@
         </div>
     </div>
 
+    <!-- Board Members Section -->
+    <section class="board-section" id="board">
+        <span class="section-label">BEHIND THE SCENES</span>
+        <h2 class="section-title">Our Board</h2>
+        <p class="section-description" style="margin-bottom: 60px;">The passionate individuals who keep Theatro INSAT
+            running behind the curtain.</p>
+
+        <div class="board-grid">
+            <div class="board-card">
+                <div class="board-avatar">
+                    <img src="../assets/presidente.png" alt="Oumayma Ben Saad" class="board-photo">
+                    <p class="board-role">PRÉSIDENTE</p>
+                </div>
+                <h3 class="board-name">Oumayma Ben Saad</h3>
+            </div>
+            <div class="board-card">
+                <div class="board-avatar">
+                    <img src="../assets/vice-presidente.png" alt="Aïcha Elloumi" class="board-photo">
+                    <p class="board-role">VICE-PRÉSIDENTE</p>
+                </div>
+                <h3 class="board-name">Aïcha Elloumi</h3>
+            </div>
+            <div class="board-card">
+                <div class="board-avatar">
+                    <img src="../assets/conseiller.png" alt="Firas Hammami" class="board-photo">
+                    <p class="board-role">CONSEILLER</p>
+                </div>
+                <h3 class="board-name">Firas Hammami</h3>
+            </div>
+            <div class="board-card">
+                <div class="board-avatar">
+                    <img src="../assets/secretairegenerale.png" alt="Yasmine Henny" class="board-photo">
+                    <p class="board-role">SECRÉTAIRE GÉNÉRALE</p>
+                </div>
+                <h3 class="board-name">Yasmine Henny</h3>
+            </div>
+            <div class="board-card">
+                <div class="board-avatar">
+                    <img src="../assets/tresoriere.png" alt="Sabrina Salem Gharsalli" class="board-photo">
+                    <p class="board-role">TRÉSORIÈRE</p>
+                </div>
+                <h3 class="board-name">Sabrina Salem Gharsalli</h3>
+            </div>
+            <div class="board-card">
+                <div class="board-avatar">
+                    <img src="../assets/hrmanager.png" alt="Aziz Mzoughi" class="board-photo">
+                    <p class="board-role">HR MANAGER</p>
+                </div>
+                <h3 class="board-name">Aziz Mzoughi</h3>
+            </div>
+            <div class="board-card">
+                <div class="board-avatar">
+                    <img src="../assets/mediamanager.png" alt="Ameni Tounsi" class="board-photo">
+                    <p class="board-role">MEDIA MANAGER</p>
+                </div>
+                <h3 class="board-name">Ameni Tounsi</h3>
+            </div>
+            <div class="board-card">
+                <div class="board-avatar">
+                    <img src="../assets/musicmanager.png" alt="Hedi Belhadj Hmida" class="board-photo">
+                    <p class="board-role">MUSIC MANAGER</p>
+                </div>
+                <h3 class="board-name">Hedi Belhadj Hmida</h3>
+            </div>
+            <div class="board-card">
+                <div class="board-avatar">
+                    <img src="../assets/comusicmanager.png" alt="Ilyes Arfa" class="board-photo">
+                    <p class="board-role">CO-MUSIC MANAGER</p>
+                </div>
+                <h3 class="board-name">Ilyes Arfa</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro INSAT Logo">
+                <h3>Theatro INSAT</h3>
+            </div>
+            <div class="footer-info">
+                <span class="info-label">INFORMATION</span>
+                <div class="footer-details">
+                    <div class="footer-detail-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>theatro@insat.ucar.tn</span>
+                    </div>
+                    <div class="footer-detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>676 INSAT, Centre Urbain Nord BP, Tunis Cedex 1080, Tunisia</span>
+                    </div>
+                    <div class="footer-detail-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+216 27 423 156</span>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/theatro.insat" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/TheatroINSAT" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Theatro INSAT. All Rights Reserved.</p>
+        </div>
+    </footer>
+
     <!-- JavaScript for counter animation -->
     <script src="script.js"></script>
 
+    <!-- Session-aware navbar -->
+    <script>
+        fetch('/backend/routes/api.php?action=check-session', { credentials: 'include' })
+            .then(r => r.json())
+            .then(data => {
+                const workshopsLi = document.getElementById('nav-workshops');
+                if (workshopsLi) {
+                    workshopsLi.style.display = data.logged_in ? '' : 'none';
+                }
+                document.querySelectorAll('.nav-join-link, .join-cta').forEach(el => {
+                    el.style.display = data.logged_in ? 'none' : '';
+                });
+                const btn = document.getElementById('nav-auth-btn');
+                if (!btn) return;
+                if (data.logged_in) {
+                    btn.textContent = 'Logout';
+                    btn.href = '#';
+                    btn.addEventListener('click', e => {
+                        e.preventDefault();
+                        fetch('/backend/routes/api.php?action=logout', { method: 'POST', credentials: 'include' })
+                            .then(() => { window.location.href = '/frontend/home/index.html'; });
+                    });
+                }
+            })
+            .catch(() => {});
+    </script>
 </body>
 
 </html>

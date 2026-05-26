@@ -1427,3 +1427,260 @@ body {
         font-size: 60px;
     }
 }
+
+/* ============================================
+   BOARD MEMBERS SECTION
+   ============================================ */
+
+.board-section {
+    padding: 100px 50px 120px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.board-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px 1%;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.board-card {
+    flex: 0 0 19%;
+    max-width: 240px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.board-card:hover {
+    transform: translateY(-8px);
+}
+
+.board-avatar {
+    width: 220px;
+    height: 280px;
+    display: block;
+    margin: 0 auto 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.board-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+}
+
+.board-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+    margin: 0;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+}
+
+.board-role {
+    position: absolute;
+    top: 92%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    color: black;
+    padding: 5px 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 7px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    z-index: 10;
+    white-space: nowrap;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.site-footer {
+    background: rgba(0, 0, 0, 0.8);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 80px 50px 30px;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 100px;
+    margin-bottom: 50px;
+}
+
+.footer-logo {
+    text-align: center;
+}
+
+.footer-logo img {
+    width: 120px;
+    height: auto;
+    filter: brightness(0) invert(1);
+    margin-bottom: 20px;
+}
+
+.footer-logo h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 2px;
+}
+
+.footer-info {
+    text-align: left;
+}
+
+.info-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.footer-details {
+    margin-bottom: 30px;
+}
+
+.footer-detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin: 15px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+}
+
+.footer-detail-item i {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 3px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-social a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 1px;
+}
+
+/* ============================================
+   RESPONSIVE — BOARD & FOOTER
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .board-grid {
+        gap: 40px 2%;
+    }
+
+    .board-card {
+        flex: 0 0 30%;
+        max-width: 220px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .footer-logo,
+    .footer-info {
+        text-align: center;
+    }
+
+    .footer-detail-item {
+        justify-content: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .board-card {
+        flex: 0 0 45%;
+        max-width: 180px;
+    }
+
+    .board-avatar {
+        width: 160px;
+        height: 210px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .board-card {
+        flex: 0 0 90%;
+        max-width: 220px;
+    }
+}

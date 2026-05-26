@@ -1,2 +1,20 @@
+# Dependencies
+/node_modules/
+/vendor/
 
+# Local environment and secrets
 .env
+.env.local
+.env.*.local
+
+# Runtime/generated files
+/tmp/
+/uploads/
+/docs/
+*.log
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
