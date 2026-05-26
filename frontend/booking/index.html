@@ -4,11 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theater Seating</title>
+    <title>Book a Show — THEATRO INSAT</title>
+    <meta name="description" content="Book your seat for a Theatro INSAT show.">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: white; }
+        .booking-navbar {
+            position: fixed; top: 0; left: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 5px 20px;
+            background: rgba(0,0,0,0.75); backdrop-filter: blur(10px);
+            z-index: 200;
+        }
+        .booking-navbar .logo img { height: 50px; width: auto; }
+        .booking-navbar .nav-links { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
+        .booking-navbar .nav-links a { color: white; text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; transition: opacity 0.3s; }
+        .booking-navbar .nav-links a:hover { opacity: 0.7; }
+        .nav-auth-wrapper { display: flex; align-items: center; }
+        .nav-login-btn { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 500; padding: 8px 22px; color: white; text-decoration: none; border: 1px solid rgba(255,255,255,0.55); letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease; background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); white-space: nowrap; }
+        .nav-login-btn:hover { background: rgba(255,255,255,0.15); border-color: white; opacity: 1; }
+        .theater-container { padding-top: 75px; }
+        /* Footer */
+        .site-footer { background: rgba(0,0,0,0.85); border-top: 1px solid rgba(255,255,255,0.1); padding: 60px 50px 30px; color: white; margin-top: 40px; }
+        .site-footer .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; margin-bottom: 40px; }
+        .site-footer .footer-logo { text-align: center; }
+        .site-footer .footer-logo img { width: 100px; height: auto; margin-bottom: 15px; }
+        .site-footer .footer-logo h3 { font-family: 'Cinzel Decorative', serif; font-size: 20px; color: white; letter-spacing: 2px; }
+        .site-footer .info-label { font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; color: rgba(255,255,255,0.4); text-transform: uppercase; display: block; margin-bottom: 20px; }
+        .site-footer .footer-detail-item { display: flex; align-items: flex-start; gap: 12px; margin: 12px 0; font-family: 'Montserrat', sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); }
+        .site-footer .footer-detail-item i { color: rgba(255,255,255,0.5); margin-top: 2px; }
+        .site-footer .footer-social { display: flex; gap: 15px; margin-top: 20px; }
+        .site-footer .footer-social a { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; color: white; font-size: 16px; text-decoration: none; transition: all 0.3s ease; }
+        .site-footer .footer-social a:hover { background: rgba(255,255,255,0.1); border-color: white; }
+        .site-footer .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; }
+        .site-footer .footer-bottom p { font-family: 'Montserrat', sans-serif; font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 1px; }
+    </style>
 </head>
 
 <body>
+    <!-- Navbar -->
+    <nav class="booking-navbar">
+        <div class="logo">
+            <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="../home/index.html">Home</a></li>
+            <li><a href="../home/index.html#shows">Shows</a></li>
+            <li id="nav-workshops" style="display:none"><a href="../workshops/index.html">Workshops</a></li>
+            <li class="nav-join-link" style="display:none"><a href="/frontend/auth/signup.html">Join Us</a></li>
+            <li><a href="../contact/index.html">Contact</a></li>
+        </ul>
+        <div class="nav-auth-wrapper">
+            <a href="../auth/login.html" class="nav-login-btn" id="nav-auth-btn">Login</a>
+        </div>
+    </nav>
     <div class="theater-container">
         <div class="scene">SCENE</div>
 
@@ -60,6 +111,71 @@
     </div>
 
     <script src="script.js"></script>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro INSAT Logo">
+                <h3>Theatro INSAT</h3>
+            </div>
+            <div class="footer-info">
+                <span class="info-label">INFORMATION</span>
+                <div class="footer-details">
+                    <div class="footer-detail-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>theatro@insat.ucar.tn</span>
+                    </div>
+                    <div class="footer-detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>676 INSAT, Centre Urbain Nord BP, Tunis Cedex 1080, Tunisia</span>
+                    </div>
+                    <div class="footer-detail-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+216 27 423 156</span>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/theatro.insat" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/TheatroINSAT" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Theatro INSAT. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Session-aware navbar -->
+    <script>
+        fetch('/backend/routes/api.php?action=check-session', { credentials: 'include' })
+            .then(r => r.json())
+            .then(data => {
+                const workshopsLi = document.getElementById('nav-workshops');
+                if (workshopsLi) {
+                    workshopsLi.style.display = data.logged_in ? '' : 'none';
+                }
+                document.querySelectorAll('.nav-join-link').forEach(el => {
+                    el.style.display = data.logged_in ? 'none' : '';
+                });
+                const btn = document.getElementById('nav-auth-btn');
+                if (!btn) return;
+                if (data.logged_in) {
+                    btn.textContent = 'Logout';
+                    btn.href = '#';
+                    btn.addEventListener('click', e => {
+                        e.preventDefault();
+                        fetch('/backend/routes/api.php?action=logout', { method: 'POST', credentials: 'include' })
+                            .then(() => { window.location.href = '/frontend/home/index.html'; });
+                    });
+                }
+            })
+            .catch(() => {});
+    </script>
 </body>
 
 </html>
