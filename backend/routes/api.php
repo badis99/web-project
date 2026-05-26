@@ -4,11 +4,11 @@ header("Content-Type: application/json");
 ini_set('display_errors', 0);
 
 require_once __DIR__ . '/../config/db.php';
-require_once __DIR__ . '/../backend/Repositories/PendingRepository.php';
-require_once __DIR__ . '/../backend/Repositories/UserRepository.php';
-require_once __DIR__ . '/../backend/Services/MailService.php';
-require_once __DIR__ . '/../backend/Services/ApprovalService.php';
-require_once __DIR__ . '/../backend/Controllers/ApprovalController.php';
+require_once __DIR__ . '/../repositories/PendingRepository.php';
+require_once __DIR__ . '/../repositories/UserRepository.php';
+require_once __DIR__ . '/../services/MailService.php';
+require_once __DIR__ . '/../services/ApprovalService.php';
+require_once __DIR__ . '/../controllers/ApprovalController.php';
 
 $service    = new ApprovalService();
 $controller = new ApprovalController($service);

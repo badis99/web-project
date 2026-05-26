@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../../config/db.php';
-require_once __DIR__ . '/../../backend/Repositories/PendingRepository.php';
+require_once __DIR__ . '/../../backend/config/db.php';
+require_once __DIR__ . '/../../backend/repositories/PendingRepository.php';
 
 $repo = new PendingRepository();
 $rows = $repo->findAll();

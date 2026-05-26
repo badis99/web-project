@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("➡️ Envoi:", { id, action });
 
             try {
-                const res = await fetch("../../routes/api.php", {
+                const res = await fetch("../../backend/routes/api.php", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
