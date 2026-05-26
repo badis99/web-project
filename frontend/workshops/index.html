@@ -4,13 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workshops - THEATRO</title>
+    <title>Workshops — THEATRO INSAT</title>
+    <meta name="description" content="Theatro INSAT workshops — Acting, Dancing and more. Learn, Grow, Perform.">
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="../home/styles.css">
     <link rel="stylesheet" href="workshops.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Marcellus&family=Pinyon+Script&family=Montserrat:wght@300;400;500&display=swap"
         rel="stylesheet">
+    <style>
+        .nav-auth-wrapper { display: flex; align-items: center; }
+        .nav-login-btn {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 8px 22px;
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.55);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(5px);
+            white-space: nowrap;
+        }
+        .nav-login-btn:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: white;
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
@@ -20,10 +45,15 @@
         </div>
         <ul class="nav-links">
             <li><a href="../home/index.html">Home</a></li>
-            <li><a href="../workshops/index.html">Workshops</a></li>
-            <li><a href="../joinus/index.html">Join Us</a></li>
-            <li><a href="../index.html#contact">Contact</a></li>
+            <li><a href="../home/index.html#about">About</a></li>
+            <li><a href="../home/index.html#shows">Shows</a></li>
+            <li id="nav-workshops" style="display:none"><a href="../workshops/index.html">Workshops</a></li>
+            <li class="nav-join-link" style="display:none"><a href="/frontend/auth/signup.html">Join Us</a></li>
+            <li><a href="../contact/index.html">Contact</a></li>
         </ul>
+        <div class="nav-auth-wrapper">
+            <a href="../auth/login.html" class="nav-login-btn" id="nav-auth-btn">Login</a>
+        </div>
     </nav>
 
     <!-- Stars Background -->
@@ -167,6 +197,73 @@
     </section>
 
     <script src="./script.js"></script>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro INSAT Logo">
+                <h3>Theatro INSAT</h3>
+            </div>
+            <div class="footer-info">
+                <span class="info-label">INFORMATION</span>
+                <div class="footer-details">
+                    <div class="footer-detail-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>theatro@insat.ucar.tn</span>
+                    </div>
+                    <div class="footer-detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>676 INSAT, Centre Urbain Nord BP, Tunis Cedex 1080, Tunisia</span>
+                    </div>
+                    <div class="footer-detail-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+216 27 423 156</span>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/theatro.insat" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/TheatroINSAT" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Theatro INSAT. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Session-aware navbar — redirects logged-out visitors to login -->
+    <script>
+        fetch('/routes/api.php?action=check-session', { credentials: 'include' })
+            .then(r => r.json())
+            .then(data => {
+                if (!data.logged_in) {
+                    window.location.href = '/frontend/auth/login.html';
+                    return;
+                }
+                document.querySelectorAll('.nav-join-link').forEach(el => {
+                    el.style.display = 'none';
+                });
+                const workshopsLi = document.getElementById('nav-workshops');
+                if (workshopsLi) {
+                    workshopsLi.style.display = '';
+                }
+                const btn = document.getElementById('nav-auth-btn');
+                if (!btn) return;
+                btn.textContent = 'Logout';
+                btn.href = '#';
+                btn.addEventListener('click', e => {
+                    e.preventDefault();
+                    fetch('/routes/api.php?action=logout', { method: 'POST', credentials: 'include' })
+                        .then(() => { window.location.href = '/frontend/home/index.html'; });
+                });
+            })
+            .catch(() => {});
+    </script>
 </body>
 
 </html>

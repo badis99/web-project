@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us — THEATRO INSAT</title>
+    <meta name="description" content="Get in touch with Theatro INSAT — The official theatre club of INSAT.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .nav-auth-wrapper { display: flex; align-items: center; }
+        .nav-login-btn {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 8px 22px;
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.55);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(5px);
+            white-space: nowrap;
+        }
+        .nav-login-btn:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: white;
+            opacity: 1;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Marcellus&family=Pinyon+Script&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="star-container"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="../home/index.html">Home</a></li>
+            <li><a href="../home/index.html#about">About</a></li>
+            <li><a href="../home/index.html#shows">Shows</a></li>
+            <li id="nav-workshops" style="display:none"><a href="../workshops/index.html">Workshops</a></li>
+            <li class="nav-join-link" style="display:none"><a href="/frontend/auth/signup.html">Join Us</a></li>
+            <li><a href="index.html">Contact</a></li>
+        </ul>
+        <div class="nav-auth-wrapper">
+            <a href="../auth/login.html" class="nav-login-btn" id="nav-auth-btn">Login</a>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <span class="section-label">REACH OUT</span>
+        <h1 class="section-hero-title">Contact Us</h1>
+
+        <div class="contact-container">
+            <!-- Contact Form -->
+            <div class="contact-form-wrapper">
+                <h2 class="contact-subtitle">Get in touch</h2>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="fullname">Name <span class="required">*</span></label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message <span class="required">*</span></label>
+                        <textarea id="message" name="message" rows="6" placeholder="Enter your message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        Submit <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Map -->
+            <div class="map-wrapper">
+                <a href="https://maps.google.com/?q=INSAT,Tunisia" target="_blank" class="map-link">View larger map</a>
+                <iframe width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                    src="https://maps.google.com/maps?q=36.842898,10.196162&hl=en&z=17&amp;output=embed">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsors Section -->
+    <section class="sponsors-section">
+        <h2 class="section-title">They Trusted Us</h2>
+        <div class="sponsors-slider">
+            <div class="sponsors-track">
+                <div class="sponsor-card"><img src="../assets/madchips.png" alt="MadChips"></div>
+                <div class="sponsor-card"><img src="../assets/pointm.png" alt="PointM"></div>
+                <div class="sponsor-card"><img src="../assets/twinpeaks.png" alt="Twin Peaks"></div>
+                <div class="sponsor-card"><img src="../assets/paraessentiel.png" alt="ParaEssentiel"></div>
+                <div class="sponsor-card"><img src="../assets/paintball.png" alt="Paintball"></div>
+                <div class="sponsor-card"><img src="../assets/chocoland.png" alt="Chocoland"></div>
+                <!-- Duplicate for seamless loop -->
+                <div class="sponsor-card"><img src="../assets/madchips.png" alt="MadChips"></div>
+                <div class="sponsor-card"><img src="../assets/pointm.png" alt="PointM"></div>
+                <div class="sponsor-card"><img src="../assets/twinpeaks.png" alt="Twin Peaks"></div>
+                <div class="sponsor-card"><img src="../assets/paraessentiel.png" alt="ParaEssentiel"></div>
+                <div class="sponsor-card"><img src="../assets/paintball.png" alt="Paintball"></div>
+                <div class="sponsor-card"><img src="../assets/chocoland.png" alt="Chocoland"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro INSAT Logo">
+                <h3>Theatro INSAT</h3>
+            </div>
+            <div class="footer-info">
+                <span class="info-label">INFORMATION</span>
+                <div class="footer-details">
+                    <div class="footer-detail-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>theatro@insat.ucar.tn</span>
+                    </div>
+                    <div class="footer-detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>676 INSAT, Centre Urbain Nord BP, Tunis Cedex 1080, Tunisia</span>
+                    </div>
+                    <div class="footer-detail-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+216 27 423 156</span>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/theatro.insat" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/TheatroINSAT" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Theatro INSAT. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        fetch('/routes/api.php?action=check-session', { credentials: 'include' })
+            .then(r => r.json())
+            .then(data => {
+                const workshopsLi = document.getElementById('nav-workshops');
+                if (workshopsLi) {
+                    workshopsLi.style.display = data.logged_in ? '' : 'none';
+                }
+                document.querySelectorAll('.nav-join-link').forEach(el => {
+                    el.style.display = data.logged_in ? 'none' : '';
+                });
+                const btn = document.getElementById('nav-auth-btn');
+                if (!btn) return;
+                if (data.logged_in) {
+                    btn.textContent = 'Logout';
+                    btn.href = '#';
+                    btn.addEventListener('click', e => {
+                        e.preventDefault();
+                        fetch('/routes/api.php?action=logout', { method: 'POST', credentials: 'include' })
+                            .then(() => { window.location.href = '/frontend/home/index.html'; });
+                    });
+                }
+            })
+            .catch(() => {});
+    </script>
+</body>
+
+</html>

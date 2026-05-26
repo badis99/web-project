@@ -1,0 +1,575 @@
+/* ============================================
+   AUTH PAGES — THEATRO INSAT
+   Shared styles for Login, Sign Up, Forgot Password
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Marcellus&family=Pinyon+Script&family=Montserrat:wght@300;400;500&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: transparent;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   STARFIELD BACKGROUND (same as home page)
+   ============================================ */
+
+#star-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #0a0a0a;
+    z-index: -1;
+    pointer-events: none;
+}
+
+#star-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 1px; height: 1px;
+    background: transparent;
+    box-shadow:
+        347px 223px rgba(255,255,255,0.8), 1703px 854px rgba(255,255,255,0.5),
+        1269px 420px rgba(255,255,255,0.9), 521px 391px rgba(255,255,255,0.4),
+        1580px 643px rgba(255,255,255,0.7), 934px 205px rgba(255,255,255,0.6),
+        1156px 729px rgba(255,255,255,0.3), 723px 687px rgba(255,255,255,0.8),
+        1892px 445px rgba(255,255,255,0.5), 456px 134px rgba(255,255,255,0.9),
+        1634px 234px rgba(255,255,255,0.4), 289px 876px rgba(255,255,255,0.7),
+        845px 567px rgba(255,255,255,0.6), 612px 498px rgba(255,255,255,0.8),
+        1423px 89px rgba(255,255,255,0.5), 945px 734px rgba(255,255,255,0.4),
+        1267px 712px rgba(255,255,255,0.9), 378px 456px rgba(255,255,255,0.3),
+        1789px 923px rgba(255,255,255,0.7), 834px 145px rgba(255,255,255,0.6),
+        1512px 823px rgba(255,255,255,0.8), 201px 567px rgba(255,255,255,0.5),
+        1678px 389px rgba(255,255,255,0.4), 923px 601px rgba(255,255,255,0.9),
+        1345px 178px rgba(255,255,255,0.7), 589px 812px rgba(255,255,255,0.3),
+        1834px 345px rgba(255,255,255,0.6), 412px 945px rgba(255,255,255,0.8),
+        1556px 262px rgba(255,255,255,0.5), 778px 489px rgba(255,255,255,0.4),
+        112px 523px rgba(255,255,255,0.9), 634px 756px rgba(255,255,255,0.7),
+        1467px 891px rgba(255,255,255,0.6), 289px 123px rgba(255,255,255,0.3),
+        1823px 678px rgba(255,255,255,0.8), 956px 234px rgba(255,255,255,0.5),
+        134px 567px rgba(255,255,255,0.4), 467px 723px rgba(255,255,255,0.9),
+        689px 334px rgba(255,255,255,0.7), 812px 456px rgba(255,255,255,0.6),
+        1345px 689px rgba(255,255,255,0.3), 534px 112px rgba(255,255,255,0.8),
+        1756px 345px rgba(255,255,255,0.5), 201px 456px rgba(255,255,255,0.4),
+        1512px 789px rgba(255,255,255,0.9), 923px 123px rgba(255,255,255,0.7),
+        1678px 567px rgba(255,255,255,0.6), 389px 234px rgba(255,255,255,0.8),
+        1234px 912px rgba(255,255,255,0.5), 756px 678px rgba(255,255,255,0.3);
+    animation: animStar 60s linear infinite, twinkle 3s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#star-container::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px; height: 2px;
+    background: transparent;
+    box-shadow:
+        567px 834px rgba(255,255,255,0.9), 1423px 156px rgba(255,255,255,0.6),
+        945px 534px rgba(255,255,255,0.8), 1789px 912px rgba(255,255,255,0.5),
+        234px 267px rgba(255,255,255,0.7), 1612px 423px rgba(255,255,255,0.4),
+        823px 689px rgba(255,255,255,0.9), 1345px 567px rgba(255,255,255,0.6),
+        456px 123px rgba(255,255,255,0.3), 1867px 789px rgba(255,255,255,0.8),
+        678px 456px rgba(255,255,255,0.5), 1534px 234px rgba(255,255,255,0.7),
+        312px 945px rgba(255,255,255,0.4), 1689px 312px rgba(255,255,255,0.9),
+        1023px 523px rgba(255,255,255,0.6), 1756px 645px rgba(255,255,255,0.3),
+        489px 312px rgba(255,255,255,0.8), 1267px 823px rgba(255,255,255,0.5),
+        734px 678px rgba(255,255,255,0.7), 1456px 045px rgba(255,255,255,0.4),
+        201px 534px rgba(255,255,255,0.9), 1601px 867px rgba(255,255,255,0.6),
+        912px 178px rgba(255,255,255,0.3), 1134px 389px rgba(255,255,255,0.8),
+        545px 712px rgba(255,255,255,0.5), 1823px 445px rgba(255,255,255,0.7),
+        378px 089px rgba(255,255,255,0.4), 1712px 178px rgba(255,255,255,0.9),
+        623px 734px rgba(255,255,255,0.6), 1389px 601px rgba(255,255,255,0.3),
+        867px 389px rgba(255,255,255,0.8), 1534px 267px rgba(255,255,255,0.5),
+        289px 456px rgba(255,255,255,0.7), 1645px 612px rgba(255,255,255,0.4),
+        1023px 734px rgba(255,255,255,0.9), 1756px 923px rgba(255,255,255,0.6),
+        445px 345px rgba(255,255,255,0.3), 1178px 267px rgba(255,255,255,0.8);
+    animation: animStar 80s linear infinite, twinkle 4s ease-in-out 1s infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes animStar {
+    from { transform: translateY(0px); }
+    to   { transform: translateY(-2000px); }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+}
+
+/* ============================================
+   AUTH NAVBAR (minimal, shows logo + back link)
+   ============================================ */
+
+.auth-navbar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 60px;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.auth-nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: white;
+}
+
+.auth-nav-logo img {
+    height: 52px;
+    width: auto;
+}
+
+.auth-nav-links {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+    align-items: center;
+}
+
+.auth-nav-links a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.auth-nav-links a:hover { color: white; }
+
+/* ============================================
+   PAGE LAYOUT
+   ============================================ */
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 130px 24px 80px;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 560px;
+}
+
+/* ============================================
+   AUTH HEADER
+   ============================================ */
+
+.auth-header {
+    margin-bottom: 48px;
+}
+
+.auth-brand {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 78px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 2px;
+    line-height: 1;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.auth-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.42);
+    text-transform: uppercase;
+}
+
+.auth-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.7;
+    margin-top: 22px;
+}
+
+/* ============================================
+   ERROR TOAST
+   ============================================ */
+
+.error-toast {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    background: rgba(10, 10, 10, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 3px solid #c0392b;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    animation: slideDown 0.25s ease;
+}
+
+.error-toast-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+    flex: 1;
+}
+
+.error-toast-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.2s;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.error-toast-close:hover { color: white; }
+
+.success-toast {
+    border-left-color: #27ae60;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   FORM
+   ============================================ */
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 16px 18px;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    transition: border-color 0.3s ease, background 0.3s ease;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-group input[type="password"] {
+    letter-spacing: 3px;
+    font-size: 16px;
+}
+
+/* Select dropdown custom arrow */
+.form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    padding-right: 46px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-group select option {
+    background: #111111;
+    color: white;
+}
+
+/* ============================================
+   FORM UTILITIES
+   ============================================ */
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 26px;
+    margin-top: -10px;
+}
+
+.forgot-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.42);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: color 0.3s;
+}
+
+.forgot-link:hover { color: rgba(255, 255, 255, 0.75); }
+
+/* ============================================
+   AUTH BUTTON
+   ============================================ */
+
+.auth-btn {
+    width: 100%;
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+}
+
+.auth-btn:hover::before {
+    width: 400px;
+    height: 400px;
+}
+
+.auth-btn:hover {
+    background: rgba(255, 255, 255, 0.13);
+    border-color: white;
+}
+
+.auth-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.auth-btn-spinner {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   AUTH FOOTER LINKS
+   ============================================ */
+
+.auth-footer {
+    text-align: center;
+}
+
+.auth-footer p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.8;
+}
+
+.auth-footer a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(255, 255, 255, 0.3);
+    transition: color 0.3s, text-decoration-color 0.3s;
+}
+
+.auth-footer a:hover {
+    color: white;
+    text-decoration-color: white;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 600px) {
+    .auth-brand { font-size: 52px; }
+    .auth-navbar { padding: 12px 24px; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    .auth-page { padding: 110px 20px 60px; }
+}
+
+/* ============================================
+   FILE INPUT (profile picture upload)
+   ============================================ */
+
+.form-group input[type="file"] {
+    padding: 12px 18px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px dashed rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.55);
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.form-group input[type="file"]::file-selector-button {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 6px 14px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-right: 12px;
+    transition: background 0.2s;
+}
+
+.form-group input[type="file"]::file-selector-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================
+   DATE INPUT
+   ============================================ */
+
+.form-group input[type="date"] {
+    color-scheme: dark;
+}
+
+/* ============================================
+   SITE FOOTER (shared slim footer on auth pages)
+   ============================================ */
+
+.auth-site-footer {
+    position: relative;
+    z-index: 10;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 20px 60px;
+    margin-top: 0;
+}
+
+.auth-site-footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.5px;
+}
+
+.auth-site-footer-links {
+    display: flex;
+    gap: 24px;
+}
+
+.auth-site-footer-links a {
+    color: rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+
+.auth-site-footer-links a:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* Extended responsive — wrap nav links on narrow viewports */
+@media (max-width: 860px) {
+    .auth-nav-links { gap: 18px; }
+    .auth-nav-links a { font-size: 11px; }
+}
+
+@media (max-width: 640px) {
+    .auth-navbar {
+        flex-wrap: wrap;
+        padding: 10px 20px;
+        gap: 10px;
+    }
+    .auth-nav-links {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+    .auth-site-footer { padding: 16px 20px; }
+}
