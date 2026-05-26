@@ -238,7 +238,7 @@
 
     <!-- Session-aware navbar — redirects logged-out visitors to login -->
     <script>
-        fetch('/routes/api.php?action=check-session', { credentials: 'include' })
+        fetch('/backend/routes/api.php?action=check-session', { credentials: 'include' })
             .then(r => r.json())
             .then(data => {
                 if (!data.logged_in) {
@@ -258,7 +258,7 @@
                 btn.href = '#';
                 btn.addEventListener('click', e => {
                     e.preventDefault();
-                    fetch('/routes/api.php?action=logout', { method: 'POST', credentials: 'include' })
+                    fetch('/backend/routes/api.php?action=logout', { method: 'POST', credentials: 'include' })
                         .then(() => { window.location.href = '/frontend/home/index.html'; });
                 });
             })

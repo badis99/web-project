@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../backend/Core/Cors.php';
+require_once __DIR__ . '/../Core/Cors.php';
 require_once __DIR__ . '/../config/app.php';
 
 try {
@@ -16,10 +16,10 @@ try {
     exit;
 }
 
-require_once __DIR__ . '/../backend/Core/Autoloader.php';
-require_once __DIR__ . '/../backend/Core/Session.php';
-require_once __DIR__ . '/../backend/Core/Csrf.php';
-require_once __DIR__ . '/../backend/Core/RateLimit.php';
+require_once __DIR__ . '/../Core/Autoloader.php';
+require_once __DIR__ . '/../Core/Session.php';
+require_once __DIR__ . '/../Core/Csrf.php';
+require_once __DIR__ . '/../Core/RateLimit.php';
 
 /**
  * Route l'action API vers le bon controleur.

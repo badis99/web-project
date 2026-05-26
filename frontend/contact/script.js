@@ -11,7 +11,7 @@ let _csrfToken = null;
 async function getCsrfToken() {
     if (_csrfToken) return _csrfToken;
     try {
-        const res  = await fetch('/routes/api.php?action=csrf', { credentials: 'include' });
+        const res  = await fetch('/backend/routes/api.php?action=csrf', { credentials: 'include' });
         const data = await res.json();
         _csrfToken = data.token;
         return _csrfToken;
@@ -58,7 +58,7 @@ if (contactForm) {
 
         try {
             const csrf = await getCsrfToken();
-            const res  = await fetch('/routes/api.php?action=send-message', {
+            const res  = await fetch('/backend/routes/api.php?action=send-message', {
                 method:      'POST',
                 credentials: 'include',
                 headers:     { 'Content-Type': 'application/json' },

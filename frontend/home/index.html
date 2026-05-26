@@ -511,7 +511,7 @@
 
     <!-- Session-aware navbar -->
     <script>
-        fetch('/routes/api.php?action=check-session', { credentials: 'include' })
+        fetch('/backend/routes/api.php?action=check-session', { credentials: 'include' })
             .then(r => r.json())
             .then(data => {
                 const workshopsLi = document.getElementById('nav-workshops');
@@ -528,7 +528,7 @@
                     btn.href = '#';
                     btn.addEventListener('click', e => {
                         e.preventDefault();
-                        fetch('/routes/api.php?action=logout', { method: 'POST', credentials: 'include' })
+                        fetch('/backend/routes/api.php?action=logout', { method: 'POST', credentials: 'include' })
                             .then(() => { window.location.href = '/frontend/home/index.html'; });
                     });
                 }

@@ -18,7 +18,7 @@ function loadAppConfig(): array
         return $config;
     }
 
-    $envPath = __DIR__ . '/../.env';
+    $envPath = __DIR__ . '/../../.env';
 
     if (!file_exists($envPath)) {
         throw new RuntimeException('Server configuration error: .env not found.');

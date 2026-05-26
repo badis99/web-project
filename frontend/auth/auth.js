@@ -104,7 +104,7 @@ let _csrfToken = null;
 async function getCsrfToken() {
     if (_csrfToken) return _csrfToken;
     try {
-        const res  = await fetch('/routes/api.php?action=csrf', { credentials: 'include' });
+        const res  = await fetch('/backend/routes/api.php?action=csrf', { credentials: 'include' });
         const data = await res.json();
         _csrfToken = data.token;
         return _csrfToken;
@@ -141,7 +141,7 @@ if (loginForm) {
 
         try {
             const csrf = await getCsrfToken();
-            const res  = await fetch('/routes/api.php?action=login', {
+            const res  = await fetch('/backend/routes/api.php?action=login', {
                 method:      'POST',
                 credentials: 'include',
                 headers:     { 'Content-Type': 'application/json' },
@@ -265,7 +265,7 @@ if (signupForm) {
             }
 
             // Do NOT set Content-Type header — browser sets it with correct multipart boundary
-            const res = await fetch('/routes/api.php?action=signup', {
+            const res = await fetch('/backend/routes/api.php?action=signup', {
                 method:      'POST',
                 credentials: 'include',
                 body:        formData
@@ -315,7 +315,7 @@ if (forgotForm) {
 
         try {
             const csrf = await getCsrfToken();
-            const res  = await fetch('/routes/api.php?action=forgot-password', {
+            const res  = await fetch('/backend/routes/api.php?action=forgot-password', {
                 method:      'POST',
                 credentials: 'include',
                 headers:     { 'Content-Type': 'application/json' },
@@ -373,7 +373,7 @@ if (resetForm) {
 
             try {
                 const csrf = await getCsrfToken();
-                await fetch('/routes/api.php?action=forgot-password', {
+                await fetch('/backend/routes/api.php?action=forgot-password', {
                     method:      'POST',
                     credentials: 'include',
                     headers:     { 'Content-Type': 'application/json' },
@@ -431,7 +431,7 @@ if (resetForm) {
 
         try {
             const csrf = await getCsrfToken();
-            const res  = await fetch('/routes/api.php?action=reset-password', {
+            const res  = await fetch('/backend/routes/api.php?action=reset-password', {
                 method:      'POST',
                 credentials: 'include',
                 headers:     { 'Content-Type': 'application/json' },
@@ -462,7 +462,7 @@ if (resetForm) {
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const res  = await fetch('/routes/api.php?action=check-session', { credentials: 'include' });
+        const res  = await fetch('/backend/routes/api.php?action=check-session', { credentials: 'include' });
         const data = await res.json();
 
         // Show Workshops link only for logged-in users
