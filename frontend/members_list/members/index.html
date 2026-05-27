@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="styles.css">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Lora&family=Montserrat&display=swap" rel="stylesheet">
+
+<!-- DataTables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+
+<title>Member Management</title>
+</head>
+
+<body>
+
+    <div id="star-container"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../../assets/logo.png" alt="Theatro INSAT">
+        </div>
+        <ul class="nav-links">
+            <li><a href="/frontend/home/index.html">Home</a></li>
+            <li><a href="/frontend/home/index.html#about">About</a></li>
+            <li><a href="/frontend/home/index.html#shows">Shows</a></li>
+            <li><a href="/frontend/joinus/index.html">Join Us</a></li>
+            <li><a href="/frontend/contact/index.html">Contact</a></li>
+        </ul>
+            <div class="nav-auth-wrapper">
+                <button class="nav-logout-btn" id="logout-btn">Logout</button>
+            </div>
+    </nav>
+
+    <h1 id="main-title">Members List</h1>
+
+    <div id="filter-add">
+        <form id="filter-section">
+            <select id="filter-column">
+                <option value="firstname">First Name</option>
+                <option value="lastname">Last Name</option>
+                <option value="department">Department</option>
+                <option value="fieldofstudy">Field Of Study</option>
+                <option value="yearofstudy">Year Of Study</option>
+            </select>
+
+            <input type="text" id="filter-value" placeholder="Value to search for...">
+
+            <button type="submit" id="filter-button">Filter</button>
+        </form>
+    </div>
+
+    <table id="members-list">
+        <thead>
+            <tr>
+                <th>IMAGE</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Department</th>
+                <th>Field Of Study</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody id="table-body">
+            
+        </tbody>
+    </table>
+
+    <!-- jQuery + DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+
+    <script src="script.js"></script>
+
+</body>
+</html>

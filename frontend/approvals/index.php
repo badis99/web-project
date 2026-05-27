@@ -44,7 +44,7 @@ $rows = $repo->findAll();
 
     <nav class="navbar">
     <div class="logo">
-        <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro INSAT">
+        <img src="../assets/logo.png" alt="Theatro INSAT">
     </div>
 <ul class="nav-links">
     <li><a href="/frontend/home/index.html">Home</a></li>
