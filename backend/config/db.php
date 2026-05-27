@@ -12,7 +12,7 @@
 
 declare(strict_types=1);
 
-$envPath = dirname(__DIR__, 2) . '/.env';
+$envPath = dirname(__DIR__, 1) . '/.env';
 
 if (!file_exists($envPath)) {
     $envPath = ''; // Skip loading

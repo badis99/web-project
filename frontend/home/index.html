@@ -4,10 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THEATRO — The Official Theatre Club of INSAT</title>
-    <meta name="description" content="Theatro INSAT — Where Art Meets Innovation. The official theatre club of INSAT since 2003.">
+    <title>THEATRO</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
@@ -37,22 +35,26 @@
 </head>
 
 <body>
+
+    <div class="homepage">
+
     <div id="star-container"></div>
     <nav class="navbar">
         <div class="logo">
-            <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro Logo">
+            <img src="../assets/logo.png" alt="Theatro Logo">
         </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#shows">Shows</a></li>
-            <li id="nav-approvals" style="display:none"><a href="/frontend/approvals/index.php">Approvals</a></li>
+            <li><a href="#upcoming-shows">Shows</a></li>
             <li id="nav-workshops" style="display:none"><a href="../workshops/index.html">Workshops</a></li>
-            <li class="nav-join-link"><a href="/frontend/auth/signup.html">Join Us</a></li>
-            <li><a href="../contact/index.html">Contact</a></li>
+            <li id="nav-members" style="display:none"><a href="/frontend/members_list/members/index.php">Members</a></li>
+            <li id="nav-approvals" style="display:none"><a href="/frontend/approvals/index.php">Approvals</a></li>
+            <li><a href="../joinus/index.html">Join Us</a></li>
+            <li><a href="/frontend/contact/index.html">Contact</a></li>
         </ul>
         <div class="nav-auth-wrapper">
-            <a href="../auth/login.html" class="nav-login-btn" id="nav-auth-btn">Login</a>
+            <a id="nav-auth-btn" href="../auth/login.html" class="nav-login-btn">Login</a>
         </div>
     </nav>
 
@@ -74,10 +76,6 @@
             <p class="welcome-text">Welcome to the stage</p>
             <h1 class="main-title">THEATRO</h1>
             <p class="tagline">Dream. Act. Inspire...</p>
-            <div class="hero-buttons">
-                <a href="#shows" class="btn btn-primary">View Shows</a>
-                <a href="/frontend/auth/signup.html" class="btn btn-secondary join-cta" style="display:none">Join Us</a>
-            </div>
         </div>
     </section>
 
@@ -286,6 +284,111 @@
         </div>
     </section>
 
+    <!-- Previous Shows Section -->
+    <section class="previous-shows" id="previous-shows">
+        <h2 class="section-title">PREVIOUS SHOWS</h2>
+        <div id="timeline">
+            <svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="8" markerHeight="8" orient="auto">
+                        <path d="M1 1L9 5L1 9" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round"/>
+                    </marker>
+                    <marker id="arrowhead-bright" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="8" markerHeight="8" orient="auto">
+                        <path d="M1 1L9 5L1 9" fill="none" stroke="white" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round"/>
+                    </marker>
+                </defs>
+
+                <g transform="translate(0, 0)">
+                    <path id="rail"       d="M 160 50 L 1100 50" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <path id="arrow-path" d="M 160 50 L 1100 50" fill="none" stroke="white" stroke-width="2" marker-end="url(#arrowhead-bright)"/>
+
+                    <circle cx="160"  cy="50" r="6" fill="white"/>
+                    <circle cx="600"  cy="50" r="6" fill="white"/>
+                    <circle cx="1050" cy="50" r="6" fill="white"/>
+
+                    <text x="160"  y="78" text-anchor="middle">BahamUS, December 2024</text>
+                    <text x="600"  y="78" text-anchor="middle">Damous, February 2025</text>
+                    <text x="1050" y="78" text-anchor="middle">Al Fazaa, December 2025</text>
+                </g>
+            </svg>
+        </div>
+        <div class="show1">
+            <div class="intro-show">
+                <div class="text-intro-show">
+                    <div class="text">
+                        <div class="title">Al Fazaa</div>
+                        <p>The theatre entertains, but also to questions, challenges, and brings people together. A sincere performance by passionate young artists who believe in the power of art, denouncing the atrocities committed in the name of self-interest.</p>
+                    </div>
+                </div>
+                <img src="../assets/fazaa.png">
+            </div>
+            <div class="cast">
+                <h2>CAST</h2>
+                <div class="row1">
+                    <div class="box1"><img src="../assets/20.PNG"></div>
+                    <div class="box2"><img src="../assets/21.PNG"></div>
+                    <div class="box3"><img src="../assets/22.PNG"></div>
+                </div>
+
+                <div class="row2">
+                    <div class="box4"><img src="../assets/23.PNG"></div>
+                    <div class="box5"><img src="../assets/24.PNG"></div>
+                    <div class="box6"><img src="../assets/25.PNG"></div>
+                    <div class="box7"><img src="../assets/26.PNG"></div>
+                </div>
+
+                <div class="row3">
+                    <div class="box8"><img src="../assets/27.PNG"></div>
+                    <div class="box9"><img src="../assets/28.PNG"></div>
+                    <div class="box10"><img src="../assets/29.PNG"></div>
+                    <div class="box11"><img src="../assets/30.PNG"></div>
+                    <div class="box12"><img src="../assets/31.PNG"></div>
+                </div>
+
+                <div class="row4">
+                    <div class="box13"><img src="../assets/32.PNG"></div>
+                    <div class="box14"><img src="../assets/33.PNG"></div>
+                    <div class="box15"><img src="../assets/34.PNG"></div>
+                    <div class="box16"><img src="../assets/35.PNG"></div>
+                </div>
+
+                <div class="row5">
+                    <div class="box17"><img src="../assets/36.PNG"></div>
+                    <div class="box18"><img src="../assets/37.PNG"></div>
+                    <div class="box19"><img src="../assets/38.PNG"></div>
+                </div>
+            </div>
+        </div>
+        <div class="show2">
+                <div class="intro-show">
+                    <img src="../assets/damous.jpg">
+                    <div class="text-intro-show">
+                        <div class="text">
+                            <div class="title">Damous</div>
+                            <p>The battle for the soul has never been more intense. In this theatrical piece, inner struggle takes center stage. A powerful performance exploring human conflict, brought to life by passionate artists who reveal the fragile balance between light and darkness.</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+         <div class="show3">
+                <div class="intro-show">
+                    <div class="text-intro-show">
+                        <div class="text">
+                            <div class="title">BahamUS</div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. 
+Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est 
+eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. </p>
+                        </div>
+                    </div>
+                    <img src="../assets/bahamus.png">
+                </div>
+        </div>
+    </section>
+ 
     <!-- Guests of Honour Section -->
     <section class="guests" id="guests">
         <h2 class="section-title">Guests of Honour</h2>
@@ -332,7 +435,7 @@
                 <span class="media-logo">IFM</span>
             </div>
             <div class="media-item">
-                <img src="../assets/radiomed.png" alt="RadioMed" class="media-logo-img">
+                <img src="../assets/RadioMed.png" alt="RadioMed" class="media-logo-img">
                 <span class="media-logo">RadioMed</span>
             </div>
             <div class="media-item">
@@ -350,52 +453,7 @@
         </div>
     </section>
 
-    <div class="upcoming-shows" id="shows">
-        <h1 class="title-upcoming-shows">Upcoming Shows</h1>
-        <div class="shows">
-            <div class="show">
-                <img src="../assets/eighty.jpeg" alt="Eighty Show" loop>
-                <div class="text">
-                    <h2 class="titles">3am-ba3d-80</h2>
-                    <p class="desc">3am-Ba3d-80, a compelling blend of comedy and tragedy, will be performed on
-                        Wednesday, n month, 2000, at the INSAT auditorium. This powerful piece explores a profound
-                        social issue, confronting truths that make you think, laugh, and reflect. Don’t miss the chance
-                        to experience a story
-                        that stays with you long after the curtain falls.
-                    </p>
-                </div>
-                <button><a class="book-button" href="../booking/index.html">Book Now</a></button>
-            </div>
-            <div class="show">
-                <img src="../assets/fazaa.png" alt="Fazaa Show">
-                <div class="text">
-                    <h2 class="titles">El-Faz3a</h2>
-                    <p class="desc">El-Faz3a, a compelling blend of comedy and tragedy, will be performed on Wednesday,
-                        March 3, 2025, at the INSAT auditorium. This powerful piece explores a profound social issue,
-                        confronting truths that make you think, laugh, and reflect. Don’t miss the chance to experience
-                        a story
-                        that stays with you long after the curtain falls.
-                </div>
-                <button><a class="book-button" href="../booking/index.html">Book Now</a></button>
-            </div>
-            <div class="show">
-                <img src="../assets/damous.jpeg" alt="Damous Show">
-                <div class="text">
-                    <h2 class="titles">El-Damous</h2>
-                    <p class="desc">El-Damous, a compelling blend of comedy and tragedy, will be performed on Wednesday,
-                        n month, 2000, at the INSAT auditorium. This powerful piece explores a profound social issue,
-                        confronting truths that make you think, laugh, and reflect. Don’t miss the chance to experience
-                        a story
-                        that stays with you long after the curtain falls.
-                    </p>
-                </div>
-                <button><a class="book-button" href="../booking/index.html">Book Now</a></button>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Board Members Section -->
+     <!-- Board Members Section -->
     <section class="board-section" id="board">
         <span class="section-label">BEHIND THE SCENES</span>
         <h2 class="section-title">Our Board</h2>
@@ -469,11 +527,33 @@
         </div>
     </section>
 
+    <!-- Upcoming Shows Section -->
+    <section class="upcoming-shows" id="upcoming-shows">
+        
+        <h2 class="section-title">Upcoming show</h2>
+        <div class="shows-grid">
+            <h3>3am-ba3d-80</h3>
+            <div class="box1"><img src="../assets/0.jpg"></img></div>
+            <div class="box2"><img src="../assets/1.jpg"></img></div>
+            <div class="box3"><img src="../assets/2.jpg"></img></div>
+            <div class="box4"><img src="../assets/3.jpg"></img></div>
+            <div class="box5"><img src="../assets/4.jpg"></img></div>
+            <div class="box6"><img src="../assets/5.jpg"></img></div>
+            <div class="box7"><img src="../assets/6.jpg"></img></div>
+            <div class="box8"><img src="../assets/7.jpg"></img></div>
+            <div class="box9"><img src="../assets/8.jpg"></img></div>
+            <div class="box10"><img src="../assets/9.jpg"></img></div>
+            <div class="text1"><p>A compelling blend of comedy and tragedy will be performed on Friday, 20th February 2026,</p></div>
+            <div class="text2"><p>at the INSAT Auditorium. Through moments of sharp wit and quiet intensity, the piece revisits a chapter of our shared past — a time marked by struggle, resilience, and the unbreakable spirit of a people determined to reclaim their voice.</p></div>
+            <div class="text3"><p>Balancing humor with gravity, it invites the audience to reflect on memory, identity, and the cost of freedom. Don’t miss the opportunity to experience a story that lingers long after the curtain falls.</p></div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro INSAT Logo">
+                <img src="../assets/logo.png" alt="Theatro INSAT Logo">
                 <h3>Theatro INSAT</h3>
             </div>
             <div class="footer-info">
@@ -507,42 +587,50 @@
         </div>
     </footer>
 
+    </div>
     <!-- JavaScript for counter animation -->
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 
     <!-- Session-aware navbar -->
     <script>
-    fetch('/backend/routes/api.php?action=check-session', { credentials: 'include' })
-        .then(r => r.json())
-        .then(data => {
-            const workshopsLi = document.getElementById('nav-workshops');
-            if (workshopsLi) {
-                workshopsLi.style.display = data.logged_in ? '' : 'none';
-            }
+        fetch('/backend/routes/api.php?action=check-session', { credentials: 'include' })
+            .then(r => r.json())
+            .then(data => {
+                const workshopsLi = document.getElementById('nav-workshops');
+                if (workshopsLi) {
+                    workshopsLi.style.display = data.logged_in ? '' : 'none';
+                }
 
-            const approvalsLi = document.getElementById('nav-approvals');
-            if (approvalsLi) {
-                approvalsLi.style.display = (data.logged_in && data.role?.toLowerCase() === 'admin') ? '' : 'none';
-            }
+                const approvalsLi = document.getElementById('nav-approvals');
+                const membersLi = document.getElementById('nav-members');
+                const isAdmin = data.logged_in && data.role?.toLowerCase() === 'admin';
 
-            document.querySelectorAll('.nav-join-link, .join-cta').forEach(el => {
-                el.style.display = data.logged_in ? 'none' : '';
-            });
+                if (approvalsLi) {
+                    approvalsLi.style.display = isAdmin ? '' : 'none';
+                }
+                if (membersLi) {
+                    membersLi.style.display = isAdmin ? '' : 'none';
+                }
 
-            const btn = document.getElementById('nav-auth-btn');
-            if (!btn) return;
-            if (data.logged_in) {
-                btn.textContent = 'Logout';
-                btn.href = '#';
-                btn.addEventListener('click', e => {
-                    e.preventDefault();
-                    fetch('/backend/routes/api.php?action=logout', { method: 'POST', credentials: 'include' })
-                        .then(() => { window.location.href = '/frontend/home/index.html'; });
+                document.querySelectorAll('.nav-join-link, .join-cta').forEach(el => {
+                    el.style.display = data.logged_in ? 'none' : '';
                 });
-            }
-        })
-        .catch(() => {});
-</script>
+
+                const btn = document.getElementById('nav-auth-btn');
+                if (!btn) return;
+                if (data.logged_in) {
+                    btn.textContent = 'Logout';
+                    btn.href = '#';
+                    btn.addEventListener('click', e => {
+                        e.preventDefault();
+                        fetch('/backend/routes/api.php?action=logout', { method: 'POST', credentials: 'include' })
+                            .then(() => { window.location.href = '/frontend/home/index.html'; });
+                    });
+                }
+            })
+            .catch(() => {});
+    </script>
+
 </body>
 
 </html>
