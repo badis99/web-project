@@ -47,7 +47,7 @@
     <!-- Navbar -->
     <nav class="booking-navbar">
         <div class="logo">
-            <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro Logo">
+            <img src="../assets/logo.png" alt="Theatro Logo">
         </div>
         <ul class="nav-links">
             <li><a href="../home/index.html">Home</a></li>
@@ -108,6 +108,11 @@
                 <div class="section-label">ENTREE DROITE</div>
             </div>
         </div>
+
+        <div class="booking-actions">
+            <button id="confirm-booking-btn" class="booking-action-btn" type="button">Confirm Booking</button>
+            <button id="release-booking-btn" class="booking-action-btn booking-action-secondary" type="button">Release selected seats</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
@@ -116,7 +121,7 @@
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro INSAT Logo">
+                <img src="../assets/logo.png" alt="Theatro INSAT Logo">
                 <h3>Theatro INSAT</h3>
             </div>
             <div class="footer-info">
@@ -155,6 +160,11 @@
         fetch('/backend/routes/api.php?action=check-session', { credentials: 'include' })
             .then(r => r.json())
             .then(data => {
+                const isAdmin = data.logged_in && String(data.role || '').trim().toLowerCase() === 'admin';
+                if (!isAdmin) {
+                    window.location.href = '/frontend/home/index.html';
+                    return;
+                }
                 const workshopsLi = document.getElementById('nav-workshops');
                 if (workshopsLi) {
                     workshopsLi.style.display = data.logged_in ? '' : 'none';

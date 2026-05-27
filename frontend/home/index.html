@@ -83,7 +83,7 @@
         <div class="book-content">
             <h2 class="book-title">Witness the <span class="italic-text">Magic</span></h2>
             <p class="book-tagline">Reserve your place in history. Every seat tells a story.</p>
-            <a href="#shows" class="btn btn-primary">Book Show</a>
+            <a href="/frontend/booking/index.html?show_name=3am-ba3d-80" class="btn btn-primary" id="book-show-btn" style="display:none">Book Show</a>
         </div>
     </section>
 
@@ -589,7 +589,7 @@ eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa
 
     </div>
     <!-- JavaScript for counter animation -->
-    <script type="module" src="script.js"></script>
+    <script type="module" src="/frontend/home/script.js"></script>
 
     <!-- Session-aware navbar -->
     <script>
@@ -603,7 +603,7 @@ eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa
 
                 const approvalsLi = document.getElementById('nav-approvals');
                 const membersLi = document.getElementById('nav-members');
-                const isAdmin = data.logged_in && data.role?.toLowerCase() === 'admin';
+                const isAdmin = data.logged_in && String(data.role || '').trim().toLowerCase() === 'admin';
 
                 if (approvalsLi) {
                     approvalsLi.style.display = isAdmin ? '' : 'none';
@@ -615,6 +615,12 @@ eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa
                 document.querySelectorAll('.nav-join-link, .join-cta').forEach(el => {
                     el.style.display = data.logged_in ? 'none' : '';
                 });
+
+                // Book Show CTA: admin-only
+                const bookShowBtn = document.getElementById('book-show-btn');
+                if (bookShowBtn) {
+                    bookShowBtn.style.display = isAdmin ? '' : 'none';
+                }
 
                 const btn = document.getElementById('nav-auth-btn');
                 if (!btn) return;

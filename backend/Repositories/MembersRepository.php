@@ -35,6 +35,8 @@ class MembersRepository
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_CUSTOMREQUEST  => $method,
             CURLOPT_HTTPHEADER     => array_merge($defaultHeaders, $headers),
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => 0,
         ]);
 
         if ($body !== null) {
@@ -42,6 +44,13 @@ class MembersRepository
         }
 
         $response = curl_exec($ch);
+
+        if ($response === false) {
+            $error = curl_error($ch);
+            curl_close($ch);
+            throw new RuntimeException("cURL Error: " . $error);
+        }
+
         curl_close($ch);
         return json_decode($response, true);
     }

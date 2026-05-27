@@ -1,8 +1,8 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 const profileElement = document.getElementById("profile");
-const profileApiUrl = `http://localhost:8000/backend/controllers/members_list/profile.php?id=${id}`;
-const modifyApiUrl = "http://localhost:8000/backend/controllers/members_list/modify_user.php";
+const profileApiUrl = `http://localhost:8006/backend/controllers/members_list/profile.php?id=${id}`;
+const modifyApiUrl = "http://localhost:8006/backend/controllers/members_list/modify_user.php";
 
 const editableFields = [
     { key: 'firstname', label: 'First Name', type: 'text', icon: 'fa-user' },
