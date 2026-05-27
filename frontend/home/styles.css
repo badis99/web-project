@@ -82,6 +82,7 @@ html::-webkit-scrollbar-thumb:hover {
 
 .logo-name {
     font-family: 'Cinzel Decorative', cursive;
+    font-weight: 400; 
     font-size: 28px;
     /* Reduced font size */
     padding-left: 0;
@@ -1004,7 +1005,7 @@ html::-webkit-scrollbar-thumb:hover {
 .milestone-year {
     font-family: 'Cinzel Decorative', serif;
     font-size: 32px;
-    font-weight: 700;
+    font-weight: 400;
     color: white;
     margin-bottom: 10px;
 }
@@ -1901,7 +1902,7 @@ svg text {
 .footer-logo h3 {
     font-family: 'Cinzel Decorative', serif;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 400;
     color: white;
     letter-spacing: 2px;
 }

@@ -1,0 +1,66 @@
+<?php
+require_once __DIR__ . '/../../../backend/Core/Session.php';
+require_once __DIR__ . '/../../../backend/config/db.php';
+startAuthSession();
+
+if (empty($_SESSION['user_id']) || strtolower($_SESSION['role'] ?? '') !== 'admin') {
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Access Denied — Theatro INSAT</title>
+        <link rel="stylesheet" href="/frontend/approvals/styles.css">
+    </head>
+    <body class="access-denied-body">
+        <h1>This section is for admins only</h1>
+        <p>You do not have permission to view this page.</p>
+        <a href="/frontend/home/index.html">← Back to Home</a>
+    </body>
+    </html>
+    <?php
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Profile</title>
+</head>
+<body>
+    <div id="star-container"></div>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../../assets/logo.png" alt="Theatro Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="/frontend/home/index.html">Home</a></li>
+            <li><a href="/frontend/workshops/index.html">Workshops</a></li>
+            <li><a href="/frontend/approvals/index.php">Approvals</a></li>
+            <li><a href="/frontend/members_list/members/index.php">Members</a></li>
+        </ul>
+        <div class="nav-auth-wrapper">
+            <button class="nav-logout-btn" id="logout-btn">Logout</button>
+        </div>
+    </nav>
+
+    <div id="profile"></div>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('logout-btn')?.addEventListener('click', () => {
+            fetch('/backend/routes/api.php?action=logout', {
+                method: 'POST',
+                credentials: 'include'
+            }).then(() => {
+                window.location.href = '/frontend/home/index.html';
+            });
+        });
+    </script>
+</body>
+</html>

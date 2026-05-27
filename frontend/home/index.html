@@ -46,13 +46,15 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#shows">Shows</a></li>
-            <li><a href="../workshops/index.html">Workshops</a></li>
+            <li><a href="#upcoming-shows">Shows</a></li>
+            <li id="nav-workshops" style="display:none"><a href="../workshops/index.html">Workshops</a></li>
+            <li id="nav-members" style="display:none"><a href="/frontend/members_list/members/index.php">Members</a></li>
+            <li id="nav-approvals" style="display:none"><a href="/frontend/approvals/index.php">Approvals</a></li>
             <li><a href="../joinus/index.html">Join Us</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="/frontend/contact/index.html">Contact</a></li>
         </ul>
         <div class="nav-auth-wrapper">
-            <a href="../auth/login.html" class="nav-login-btn">Login</a>
+            <a id="nav-auth-btn" href="../auth/login.html" class="nav-login-btn">Login</a>
         </div>
     </nav>
 
@@ -526,7 +528,7 @@ eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa
     </section>
 
     <!-- Upcoming Shows Section -->
-    <section class="upcoming-shows">
+    <section class="upcoming-shows" id="upcoming-shows">
         
         <h2 class="section-title">Upcoming show</h2>
         <div class="shows-grid">
@@ -600,8 +602,14 @@ eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa
                 }
 
                 const approvalsLi = document.getElementById('nav-approvals');
+                const membersLi = document.getElementById('nav-members');
+                const isAdmin = data.logged_in && data.role?.toLowerCase() === 'admin';
+
                 if (approvalsLi) {
-                    approvalsLi.style.display = (data.logged_in && data.role?.toLowerCase() === 'admin') ? '' : 'none';
+                    approvalsLi.style.display = isAdmin ? '' : 'none';
+                }
+                if (membersLi) {
+                    membersLi.style.display = isAdmin ? '' : 'none';
                 }
 
                 document.querySelectorAll('.nav-join-link, .join-cta').forEach(el => {

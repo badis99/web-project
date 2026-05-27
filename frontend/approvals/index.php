@@ -47,11 +47,10 @@ $rows = $repo->findAll();
         <img src="../assets/logo.png" alt="Theatro INSAT">
     </div>
 <ul class="nav-links">
-    <li><a href="/frontend/home/index.html">Home</a></li>
-    <li><a href="/frontend/home/index.html#about">About</a></li>
-    <li><a href="/frontend/home/index.html#shows">Shows</a></li>
-    <li><a href="/frontend/joinus/index.html">Join Us</a></li>
-    <li><a href="/frontend/contact/index.html">Contact</a></li>
+    <li><a href="../home/index.html">Home</a></li>
+    <li><a href="../approvals/index.php">Approvals</a></li>
+    <li><a href="/frontend/members_list/members/index.php">Members</a></li>
+    <li><a href="/frontend/workshops/index.html">Workshops</a></li>
 </ul>
     <div class="nav-auth-wrapper">
         <button class="nav-logout-btn" id="logout-btn">Logout</button>

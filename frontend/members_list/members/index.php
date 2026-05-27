@@ -1,3 +1,27 @@
+<?php
+require_once __DIR__ . '/../../../backend/Core/Session.php';
+require_once __DIR__ . '/../../../backend/config/db.php';
+startAuthSession();
+
+if (empty($_SESSION['user_id']) || strtolower($_SESSION['role'] ?? '') !== 'admin') {
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Access Denied — Theatro INSAT</title>
+        <link rel="stylesheet" href="/frontend/approvals/styles.css">
+    </head>
+    <body class="access-denied-body">
+        <h1>This section is for admins only</h1>
+        <p>You do not have permission to view this page.</p>
+        <a href="/frontend/home/index.html">← Back to Home</a>
+    </body>
+    </html>
+    <?php
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,10 +52,9 @@
         </div>
         <ul class="nav-links">
             <li><a href="/frontend/home/index.html">Home</a></li>
-            <li><a href="/frontend/home/index.html#about">About</a></li>
-            <li><a href="/frontend/home/index.html#shows">Shows</a></li>
-            <li><a href="/frontend/joinus/index.html">Join Us</a></li>
-            <li><a href="/frontend/contact/index.html">Contact</a></li>
+            <li><a href="/frontend/workshops/index.html">Workshops</a></li>
+            <li><a href="/frontend/approvals/index.php">Approvals</a></li>
+            <li><a href="/frontend/members_list/members/index.php">Members</a></li>
         </ul>
             <div class="nav-auth-wrapper">
                 <button class="nav-logout-btn" id="logout-btn">Logout</button>
@@ -86,6 +109,16 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
 
     <script src="script.js"></script>
+    <script>
+        document.getElementById('logout-btn')?.addEventListener('click', () => {
+            fetch('/backend/routes/api.php?action=logout', {
+                method: 'POST',
+                credentials: 'include'
+            }).then(() => {
+                window.location.href = '/frontend/home/index.html';
+            });
+        });
+    </script>
 
 </body>
 </html>

@@ -164,7 +164,7 @@
 .section-title1 {
     font-family: 'Cinzel Decorative', serif;
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: 4px;
     color: white;
     text-align: center;
@@ -208,7 +208,7 @@
 .workshop-info-section .workshop-title {
     font-family: 'Cinzel Decorative', serif;
     font-size: 36px;
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: 2px;
     color: white;
     margin-bottom: 30px;
@@ -276,7 +276,7 @@
 .form-section-title {
     font-family: 'Cinzel Decorative', serif;
     font-size: 28px;
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: 2px;
     color: white;
     text-align: center;
@@ -345,7 +345,7 @@
 .workshop-title {
     font-family: 'Cinzel Decorative', serif;
     font-size: 32px;
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: 2px;
     color: white;
     margin-bottom: 15px;
@@ -485,6 +485,12 @@
     width: 100%;
     font-size: 13px;
     padding: 18px 40px;
+}
+
+/*footer*/
+.footer-logo h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 400;
 }
 
 /* Responsive Design */
