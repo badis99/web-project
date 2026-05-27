@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8000/backend/controllers/members_list/get_members.php";
+const API_URL = "http://localhost:8006/backend/controllers/members_list/get_members.php";
 
 function loadUsers() {
     fetch(API_URL)
@@ -65,7 +65,7 @@ async function confirmDelete(id) {
     if (result.isConfirmed) {
 
         const res = await fetch(
-            `http://localhost:8000/backend/controllers/members_list/delete_user.php?id=${id}`
+            `http://localhost:8006/backend/controllers/members_list/delete_user.php?id=${id}`
         );
 
         console.log("fetch status:", res.status);
@@ -89,7 +89,7 @@ document.getElementById("filter-section").addEventListener("submit", async (e) =
     const val = document.querySelector("input[id='filter-value']").value;
 
     const res = await fetch(
-        `http://localhost:8000/backend/controllers/members_list/filter_users.php?filter-column=${col}&filter-value=${val}`
+        `http://localhost:8006/backend/controllers/members_list/filter_users.php?filter-column=${col}&filter-value=${val}`
     );
 
     const users = await res.json();
