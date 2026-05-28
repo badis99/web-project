@@ -41,7 +41,8 @@ foreach ($updatableFields as $field) {
 if (!empty($_FILES['picture']['tmp_name']) && is_uploaded_file($_FILES['picture']['tmp_name'])) {
     $pictureFile = $_FILES['picture'];
     $extension = pathinfo($pictureFile['name'], PATHINFO_EXTENSION) ?: 'jpg';
-    $filename = sprintf('profile_%s_%s.%s', $id, time(), $extension);
+    $originalName = preg_replace('/[^A-Za-z0-9._-]/', '_', basename($pictureFile['name']));
+    $filename = $originalName !== '' ? $originalName : sprintf('profile_%s.%s', $id, $extension);
     $content = file_get_contents($pictureFile['tmp_name']);
     $contentType = $pictureFile['type'] ?: 'application/octet-stream';
 

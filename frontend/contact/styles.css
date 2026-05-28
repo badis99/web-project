@@ -1,119 +1,6 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
 
 body {
-    font-family: 'Montserrat', sans-serif;
     background-color: transparent;
-    color: white;
-    overflow-x: hidden;
-}
-
-/* Star Container Background */
-#star-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #0a0a0a;
-    z-index: -1;
-    pointer-events: none;
-}
-
-#star-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1px;
-    height: 1px;
-    background: transparent;
-    box-shadow:
-        347px 223px rgba(255, 255, 255, 0.8), 1703px 854px rgba(255, 255, 255, 0.5), 1269px 1420px rgba(255, 255, 255, 0.9),
-        521px 391px rgba(255, 255, 255, 0.4), 1580px 643px rgba(255, 255, 255, 0.7), 934px 1205px rgba(255, 255, 255, 0.6),
-        1156px 29px rgba(255, 255, 255, 0.3), 723px 1687px rgba(255, 255, 255, 0.8), 1892px 445px rgba(255, 255, 255, 0.5),
-        456px 1134px rgba(255, 255, 255, 0.9), 1634px 234px rgba(255, 255, 255, 0.4), 289px 876px rgba(255, 255, 255, 0.7),
-        1845px 1567px rgba(255, 255, 255, 0.6), 612px 498px rgba(255, 255, 255, 0.8), 1423px 1089px rgba(255, 255, 255, 0.5);
-    animation: animStar 60s linear infinite, twinkle 3s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 1;
-}
-
-@keyframes animStar {
-    from {
-        transform: translateY(0px);
-    }
-
-    to {
-        transform: translateY(-2000px);
-    }
-}
-
-@keyframes twinkle {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.3;
-    }
-}
-
-/* Navbar */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 60px;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    z-index: 100;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    margin-left: 150px;
-    gap: 15px;
-}
-
-.logo img {
-    height: 80px;
-    width: auto;
-}
-
-.nav-links {
-    margin-right: 150px;
-    display: flex;
-    list-style: none;
-    gap: 40px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: opacity 0.3s;
-}
-
-.nav-links a:hover {
-    opacity: 0.7;
 }
 
 /* Contact Section */
@@ -138,7 +25,7 @@ body {
 .section-hero-title {
     font-family: 'Cinzel Decorative', serif;
     font-size: 64px;
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: 4px;
     color: white;
     margin-bottom: 80px;
@@ -308,7 +195,7 @@ body {
 .org-title {
     font-family: 'Cinzel Decorative', serif;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 400;
     color: white;
     margin-bottom: 25px;
     letter-spacing: 2px;
@@ -374,7 +261,7 @@ body {
 .section-title {
     font-family: 'Cinzel Decorative', serif;
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: 3px;
     color: white;
     text-align: center;
@@ -434,163 +321,14 @@ body {
     }
 }
 
-/* Footer */
-.site-footer {
-    background: rgba(0, 0, 0, 0.8);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 80px 50px 30px;
-}
-
-.footer-content {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 100px;
-    margin-bottom: 50px;
-}
-
-.footer-logo {
-    text-align: center;
-}
-
-.footer-logo img {
-    width: 120px;
-    height: auto;
-    filter: brightness(0) invert(1);
-    margin-bottom: 20px;
-}
-
-.footer-logo h3 {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: white;
-    letter-spacing: 2px;
-}
-
-.footer-info {
-    text-align: left;
-}
-
-.info-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 3px;
-    color: rgba(255, 255, 255, 0.4);
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 25px;
-}
-
-.footer-details {
-    margin-bottom: 30px;
-}
-
-.footer-detail-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    margin: 15px 0;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
-}
-
-.footer-detail-item i {
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.5);
-    margin-top: 3px;
-}
-
-.footer-social {
-    display: flex;
-    gap: 20px;
-}
-
-.footer-social a {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    color: white;
-    font-size: 18px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.footer-social a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: white;
-}
-
-.footer-bottom {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-}
-
-.footer-bottom p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
-    letter-spacing: 1px;
-}
-
 /* Responsive Design */
 @media (max-width: 1024px) {
     .contact-container {
         grid-template-columns: 1fr;
     }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 50px;
-    }
-
-    .footer-logo,
-    .footer-info {
-        text-align: center;
-    }
-
-    .footer-detail-item {
-        justify-content: center;
-    }
-
-    .footer-social {
-        justify-content: center;
-    }
 }
 
 @media (max-width: 768px) {
-    .navbar {
-        padding: 15px 30px;
-    }
-
-    .logo {
-        margin-left: 0;
-    }
-
-    .logo img {
-        height: 60px;
-    }
-
-    .nav-links {
-        margin-right: 0;
-        gap: 20px;
-    }
-
-    .nav-links a {
-        font-size: 12px;
-    }
-
     .section-hero-title {
         font-size: 40px;
     }
@@ -602,12 +340,6 @@ body {
     .sponsor-card {
         flex: 0 0 200px;
         margin: 0 15px;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
     }
 }
 /* ============================================

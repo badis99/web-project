@@ -1,8 +1,8 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 const profileElement = document.getElementById("profile");
-const profileApiUrl = `http://localhost:8006/backend/controllers/members_list/profile.php?id=${id}`;
-const modifyApiUrl = "http://localhost:8006/backend/controllers/members_list/modify_user.php";
+const profileApiUrl = `/backend/Controllers/members_list/profile.php?id=${id}`;
+const modifyApiUrl = "/backend/Controllers/members_list/modify_user.php";
 
 const editableFields = [
     { key: 'firstname', label: 'First Name', type: 'text', icon: 'fa-user' },
@@ -20,7 +20,7 @@ function formatValue(value) {
 }
 
 function renderProfile(data) {
-    const pictureUrl = `https://luiillhngqpddvlbeeay.supabase.co/storage/v1/object/public/images/${data.picture ?? 'default.png'}`;
+    const pictureUrl = `https://luiillhngqpddvlbeeay.supabase.co/storage/v1/object/public/profile-pictures/${data.picture ?? 'default.png'}`;
 
     const fieldsHtml = [];
     for (let i = 0; i < editableFields.length; i += 2) {
@@ -101,7 +101,7 @@ function attachProfileListeners() {
 }
 
 profileElement.addEventListener('click', event => {
-    const button = event.target.closest('.edit-btn');
+    const button = event.target.closest('.edit-btn, .photo-btn');
     if (!button) {
         return;
     }
@@ -147,7 +147,8 @@ async function saveProfile() {
     try {
         const response = await fetch(modifyApiUrl, {
             method: 'POST',
-            body: formData
+            body: formData,
+            credentials: 'include'
         });
 
         const result = await response.json();
@@ -168,7 +169,7 @@ async function saveProfile() {
 
 async function loadProfile() {
     try {
-        const response = await fetch(profileApiUrl);
+        const response = await fetch(profileApiUrl, { credentials: 'include' });
         const data = await response.json();
         renderProfile(data);
     } catch (error) {

@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THEATRO</title>
+    <link rel="stylesheet" href="styles_base.css">
     <link rel="stylesheet" href="styles.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .nav-auth-wrapper { display: flex; align-items: center; }
         .nav-login-btn {
@@ -44,17 +46,18 @@
             <img src="../assets/logo.png" alt="Theatro Logo">
         </div>
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#upcoming-shows">Shows</a></li>
-            <li id="nav-workshops" style="display:none"><a href="../workshops/index.html">Workshops</a></li>
-            <li id="nav-members" style="display:none"><a href="/frontend/members_list/members/index.php">Members</a></li>
+            <li id="nav-home"><a href="/frontend/home/index.html#home">Home</a></li>
+            <li id="nav-about" style="display:none"><a href="/frontend/home/index.html#about">About</a></li>
+            <li id="nav-shows" style="display:none"><a href="/frontend/home/index.html#upcoming-shows">Shows</a></li>
+            <li id="nav-workshops" style="display:none"><a href="/frontend/workshops/index.html">Workshops</a></li>
+            <li id="nav-members" style="display:none"><a href="/frontend/members_list/members/index.html">Members</a></li>
+            <li id="nav-booking" style="display:none"><a href="/frontend/booking/index.html">Booking</a></li>
             <li id="nav-approvals" style="display:none"><a href="/frontend/approvals/index.php">Approvals</a></li>
-            <li><a href="../joinus/index.html">Join Us</a></li>
-            <li><a href="/frontend/contact/index.html">Contact</a></li>
+            <li id="nav-joinus" style="display:none"><a href="/frontend/joinus/index.html">Join Us</a></li>
+            <li id="nav-contact" style="display:none"><a href="/frontend/contact/index.html">Contact</a></li>
         </ul>
         <div class="nav-auth-wrapper">
-            <a id="nav-auth-btn" href="../auth/login.html" class="nav-login-btn">Login</a>
+            <a id="nav-auth-btn" href="/frontend/auth/login.html" class="nav-login-btn">Login</a>
         </div>
     </nav>
 
@@ -573,21 +576,20 @@ eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa
                     </div>
                 </div>
                 <div class="footer-social">
-                    <a href="https://www.instagram.com/theatro.insat" target="_blank" aria-label="Instagram">
+                    <a href="https://www.instagram.com/theatro.insat" target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://www.facebook.com/TheatroINSAT" target="_blank" aria-label="Facebook">
+                    <a href="https://www.facebook.com/TheatroINSAT" target="_blank">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Theatro INSAT. All Rights Reserved.</p>
+            <p>© 2026 Theatro INSAT. All Rights Reserved.</p>
         </div>
     </footer>
 
-    </div>
     <!-- JavaScript for counter animation -->
     <script type="module" src="/frontend/home/script.js"></script>
 
@@ -596,32 +598,34 @@ eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa
         fetch('/backend/routes/api.php?action=check-session', { credentials: 'include' })
             .then(r => r.json())
             .then(data => {
-                const workshopsLi = document.getElementById('nav-workshops');
-                if (workshopsLi) {
-                    workshopsLi.style.display = data.logged_in ? '' : 'none';
-                }
-
-                const approvalsLi = document.getElementById('nav-approvals');
-                const membersLi = document.getElementById('nav-members');
                 const isAdmin = data.logged_in && String(data.role || '').trim().toLowerCase() === 'admin';
 
-                if (approvalsLi) {
-                    approvalsLi.style.display = isAdmin ? '' : 'none';
-                }
-                if (membersLi) {
-                    membersLi.style.display = isAdmin ? '' : 'none';
+                // Define which links to show per role
+                let show = [];
+                if (!data.logged_in) {
+                    show = ['nav-home', 'nav-about', 'nav-shows', 'nav-joinus', 'nav-contact'];
+                } else if (isAdmin) {
+                    show = ['nav-home', 'nav-workshops', 'nav-members', 'nav-booking', 'nav-approvals'];
+                } else {
+                    show = ['nav-home', 'nav-about', 'nav-shows', 'nav-workshops'];
                 }
 
-                document.querySelectorAll('.nav-join-link, .join-cta').forEach(el => {
-                    el.style.display = data.logged_in ? 'none' : '';
+                // Hide all first, then show only the right ones
+                ['nav-home','nav-about','nav-shows','nav-workshops','nav-members',
+                'nav-booking','nav-approvals','nav-joinus','nav-contact'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.style.display = 'none';
+                });
+                show.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.style.display = '';
                 });
 
                 // Book Show CTA: admin-only
                 const bookShowBtn = document.getElementById('book-show-btn');
-                if (bookShowBtn) {
-                    bookShowBtn.style.display = isAdmin ? '' : 'none';
-                }
+                if (bookShowBtn) bookShowBtn.style.display = isAdmin ? '' : 'none';
 
+                // Login/Logout button
                 const btn = document.getElementById('nav-auth-btn');
                 if (!btn) return;
                 if (data.logged_in) {
@@ -636,7 +640,6 @@ eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa
             })
             .catch(() => {});
     </script>
-
 </body>
 
 </html>

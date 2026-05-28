@@ -226,43 +226,40 @@ setInterval(() => {
 
 });
 
-/* PREVIOUS SHOWS
-   The static import from ../../node_modules breaks on typical PHP hosting (node_modules not served),
-   which prevents this whole module from executing (and kills earlier counter animations).
-   Use a dynamic import so the rest of the home animations still work even if AnimeJS isn't available.
-*/
-(async () => {
-  try {
-    const mod = await import('https://cdn.jsdelivr.net/npm/animejs@4.0.2/+esm');
-    const { animate, stagger, splitText, svg } = mod;
+/*PREVIOUS SHOWS*/
+import { animate, stagger, splitText, svg } from '../../node_modules/animejs/dist/bundles/anime.esm.js';
 
-    const titles = document.querySelectorAll('.section-title');
-    const allChars = [];
-    titles.forEach(title => {
-      const { chars } = splitText(title, { words: false, chars: true });
-      allChars.push(...chars);
-    });
 
-    animate(allChars, {
-      y: [
-        { to: '-2.75rem', ease: 'outExpo', duration: 600 },
-        { to: 0, ease: 'outBounce', duration: 800, delay: 100 }
-      ],
-      rotate: { from: '-1turn', delay: 0 },
-      delay: stagger(50),
-      ease: 'inOutCirc',
-      loopDelay: 600,
-      loop: true
-    });
+// Get all .section-title elements
+const titles = document.querySelectorAll('.section-title');
 
-    animate(svg.createDrawable('#arrow-path'), {
-      draw: '0 1',
-      ease: 'linear',
-      duration: 5000,
-      loop: true,
-    });
-  } catch (e) {
-    // ignore: keeps rest of page animations working
-  }
-})();
+// Split each one individually
+const allChars = [];
+titles.forEach(title => {
+  const { chars } = splitText(title, { words: false, chars: true });
+  allChars.push(...chars);
+});
 
+animate(allChars, {
+  y: [
+    { to: '-2.75rem', ease: 'outExpo', duration: 600 },
+    { to: 0, ease: 'outBounce', duration: 800, delay: 100 }
+  ],
+  rotate: {
+    from: '-1turn',
+    delay: 0
+  },
+  delay: stagger(50),
+  ease: 'inOutCirc',
+  loopDelay: 600,
+  loop: true
+});
+
+
+// bright white stroke draws itself on top of the dim rail
+animate(svg.createDrawable('#arrow-path'), {
+  draw: '0 1',
+  ease: 'linear',
+  duration: 5000,
+  loop: true,
+});
