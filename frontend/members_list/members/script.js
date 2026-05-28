@@ -1,8 +1,13 @@
-const API_URL = "http://localhost:8006/backend/controllers/members_list/get_members.php";
+const API_URL = "/backend/Controllers/members_list/get_members.php";
 
 function loadUsers() {
-    fetch(API_URL)
-        .then(res => res.json())
+    fetch(API_URL, { credentials: 'include' })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`Failed to load members: ${res.status}`);
+            }
+            return res.json();
+        })
         .then(users => {
 
             const tbody = document.getElementById("table-body");
@@ -12,7 +17,7 @@ function loadUsers() {
                 tbody.innerHTML += `
                     <tr>
                         <td>
-                            <img src="https://luiillhngqpddvlbeeay.supabase.co/storage/v1/object/public/images/${m.picture}" class="member-img">
+                            <img src="https://luiillhngqpddvlbeeay.supabase.co/storage/v1/object/public/profile-pictures/${m.picture}" class="member-img">
                         </td>
                         <td>${m.firstname}</td>
                         <td>${m.lastname}</td>
@@ -65,7 +70,8 @@ async function confirmDelete(id) {
     if (result.isConfirmed) {
 
         const res = await fetch(
-            `http://localhost:8006/backend/controllers/members_list/delete_user.php?id=${id}`
+            `/backend/Controllers/members_list/delete_user.php?id=${id}`,
+            { credentials: 'include' }
         );
 
         console.log("fetch status:", res.status);
@@ -89,7 +95,8 @@ document.getElementById("filter-section").addEventListener("submit", async (e) =
     const val = document.querySelector("input[id='filter-value']").value;
 
     const res = await fetch(
-        `http://localhost:8006/backend/controllers/members_list/filter_users.php?filter-column=${col}&filter-value=${val}`
+        `/backend/Controllers/members_list/filter_users.php?filter-column=${col}&filter-value=${val}`,
+        { credentials: 'include' }
     );
 
     const users = await res.json();
@@ -105,7 +112,7 @@ document.getElementById("filter-section").addEventListener("submit", async (e) =
     users.forEach(m => {
         tbody.innerHTML += `
             <tr>
-                <td><img src="https://luiillhngqpddvlbeeay.supabase.co/storage/v1/object/public/images/${m.picture}" class="member-img"></td>
+                <td><img src="https://luiillhngqpddvlbeeay.supabase.co/storage/v1/object/public/profile-pictures/${m.picture}" class="member-img"></td>
                 <td>${m.firstname}</td>
                 <td>${m.lastname}</td>
                 <td>${m.department}</td>

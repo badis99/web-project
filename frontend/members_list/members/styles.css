@@ -1,6 +1,5 @@
 body {
     padding-top: 80px; /*navbar position teha fixed donc bech nra les boutons csv w kol lezem naamel padding wala margin >= height ta navbar*/
-    color: white;
     font-family: Lora, serif;
 }
 
@@ -16,62 +15,13 @@ body {
     color: #D4AF37;
 }
 
-/* ================= NAVBAR ================= 
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 20px;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 100;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    margin-left: 150px;
-    gap: 15px;
-}
-
-.logo img {
-    height: 50px;
-    width: auto;
-}
-
-.nav-links {
-    margin-right: 150px;
-    display: flex;
-    list-style: none;
-    gap: 40px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: opacity 0.3s;
-}
-
-.nav-links a:hover {
-    opacity: 0.7;
-}
-
+/* ================= NAVBAR ================= */
 .nav-auth-wrapper {
     display: flex;
     align-items: center;
 }
 
 .nav-logout-btn {
-    display: inline-block;
     font-family: 'Montserrat', sans-serif;
     font-size: 11px;
     font-weight: 500;
