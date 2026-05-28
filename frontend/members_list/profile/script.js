@@ -3,6 +3,21 @@ const id = params.get("id");
 const profileElement = document.getElementById("profile");
 const profileApiUrl = `/backend/Controllers/members_list/profile.php?id=${id}`;
 const modifyApiUrl = "/backend/Controllers/members_list/modify_user.php";
+const SUPABASE_PROFILE_PICTURES_BASE = "https://luiillhngqpddvlbeeay.supabase.co/storage/v1/object/public/profile-pictures/";
+
+function getProfilePictureUrl(picture) {
+    const value = typeof picture === "string" ? picture.trim() : "";
+
+    if (!value) {
+        return `${SUPABASE_PROFILE_PICTURES_BASE}default.png`;
+    }
+
+    if (/^https?:\/\//i.test(value)) {
+        return value;
+    }
+
+    return `${SUPABASE_PROFILE_PICTURES_BASE}${value}`;
+}
 
 const editableFields = [
     { key: 'firstname', label: 'First Name', type: 'text', icon: 'fa-user' },
@@ -20,7 +35,7 @@ function formatValue(value) {
 }
 
 function renderProfile(data) {
-    const pictureUrl = `https://luiillhngqpddvlbeeay.supabase.co/storage/v1/object/public/profile-pictures/${data.picture ?? 'default.png'}`;
+    const pictureUrl = getProfilePictureUrl(data.picture);
 
     const fieldsHtml = [];
     for (let i = 0; i < editableFields.length; i += 2) {
@@ -59,8 +74,8 @@ function renderProfile(data) {
         <div class="section first-sec">
             <div class="profile-photo">
                 <img id="profile-picture" src="${pictureUrl}" alt="Profile Picture">
-                <button class="photo-btn" type="button" data-key="picture">✏️</button>
-                <input id="picture-input" name="picture" type="file" accept="image/*" class="hidden">
+                <!-- <button class="photo-btn" type="button" data-key="picture">✏️</button> -->
+                <!-- <input id="picture-input" name="picture" type="file" accept="image/*" class="hidden"> -->
             </div>
             <div class="profile-details">
                 <h2>${formatValue(data.firstname) || 'First Name'}</h2>
@@ -82,17 +97,17 @@ function renderProfile(data) {
 }
 
 function attachProfileListeners() {
-    const pictureInput = document.getElementById('picture-input');
-    if (pictureInput) {
-        pictureInput.addEventListener('change', event => {
-            const file = event.target.files[0];
-            if (!file) {
-                return;
-            }
-            const picture = document.getElementById('profile-picture');
-            picture.src = URL.createObjectURL(file);
-        });
-    }
+    // const pictureInput = document.getElementById('picture-input');
+    // if (pictureInput) {
+    //     pictureInput.addEventListener('change', event => {
+    //         const file = event.target.files[0];
+    //         if (!file) {
+    //             return;
+    //         }
+    //         const picture = document.getElementById('profile-picture');
+    //         picture.src = URL.createObjectURL(file);
+    //     });
+    // }
 
     const saveButton = document.getElementById('save-profile');
     if (saveButton) {
@@ -107,13 +122,13 @@ profileElement.addEventListener('click', event => {
     }
 
     const key = button.dataset.key;
-    if (key === 'picture') {
-        const pictureInput = document.getElementById('picture-input');
-        if (pictureInput) {
-            pictureInput.click();
-        }
-        return;
-    }
+    // if (key === 'picture') {
+    //     const pictureInput = document.getElementById('picture-input');
+    //     if (pictureInput) {
+    //         pictureInput.click();
+    //     }
+    //     return;
+    // }
 
     const input = profileElement.querySelector(`.field-input[name="${key}"]`);
     const text = profileElement.querySelector(`.field-text[data-key="${key}"]`);
@@ -139,10 +154,10 @@ async function saveProfile() {
         }
     });
 
-    const pictureInput = document.getElementById('picture-input');
-    if (pictureInput && pictureInput.files[0]) {
-        formData.append('picture', pictureInput.files[0]);
-    }
+    // const pictureInput = document.getElementById('picture-input');
+    // if (pictureInput && pictureInput.files[0]) {
+    //     formData.append('picture', pictureInput.files[0]);
+    // }
 
     try {
         const response = await fetch(modifyApiUrl, {

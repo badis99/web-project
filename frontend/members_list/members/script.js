@@ -1,4 +1,19 @@
 const API_URL = "/backend/Controllers/members_list/get_members.php";
+const SUPABASE_PROFILE_PICTURES_BASE = "https://luiillhngqpddvlbeeay.supabase.co/storage/v1/object/public/profile-pictures/";
+
+function getProfilePictureUrl(picture) {
+    const value = typeof picture === "string" ? picture.trim() : "";
+
+    if (!value) {
+        return `${SUPABASE_PROFILE_PICTURES_BASE}default.png`;
+    }
+
+    if (/^https?:\/\//i.test(value)) {
+        return value;
+    }
+
+    return `${SUPABASE_PROFILE_PICTURES_BASE}${value}`;
+}
 
 function loadUsers() {
     fetch(API_URL, { credentials: 'include' })
@@ -14,10 +29,11 @@ function loadUsers() {
             tbody.innerHTML = "";
 
             users.forEach(m => {
+                const pictureUrl = getProfilePictureUrl(m.picture);
                 tbody.innerHTML += `
                     <tr>
                         <td>
-                            <img src="https://luiillhngqpddvlbeeay.supabase.co/storage/v1/object/public/profile-pictures/${m.picture}" class="member-img">
+                            <img src="${pictureUrl}" class="member-img">
                         </td>
                         <td>${m.firstname}</td>
                         <td>${m.lastname}</td>
@@ -110,9 +126,10 @@ document.getElementById("filter-section").addEventListener("submit", async (e) =
     tbody.innerHTML = "";
 
     users.forEach(m => {
+        const pictureUrl = getProfilePictureUrl(m.picture);
         tbody.innerHTML += `
             <tr>
-                <td><img src="https://luiillhngqpddvlbeeay.supabase.co/storage/v1/object/public/profile-pictures/${m.picture}" class="member-img"></td>
+                <td><img src="${pictureUrl}" class="member-img"></td>
                 <td>${m.firstname}</td>
                 <td>${m.lastname}</td>
                 <td>${m.department}</td>

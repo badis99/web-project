@@ -50,6 +50,7 @@
             <li id="nav-about" style="display:none"><a href="/frontend/home/index.html#about">About</a></li>
             <li id="nav-shows" style="display:none"><a href="/frontend/home/index.html#upcoming-shows">Shows</a></li>
             <li id="nav-workshops" style="display:none"><a href="/frontend/workshops/index.html">Workshops</a></li>
+            <li id="nav-workshops-management" style="display:none"><a href="/frontend/workshop_registration/index.html">Workshop Management</a></li>
             <li id="nav-members" style="display:none"><a href="/frontend/members_list/members/index.html">Members</a></li>
             <li id="nav-booking" style="display:none"><a href="/frontend/booking/index.html">Booking</a></li>
             <li id="nav-approvals" style="display:none"><a href="/frontend/approvals/index.php">Approvals</a></li>
@@ -605,13 +606,13 @@ eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa
                 if (!data.logged_in) {
                     show = ['nav-home', 'nav-about', 'nav-shows', 'nav-joinus', 'nav-contact'];
                 } else if (isAdmin) {
-                    show = ['nav-home', 'nav-workshops', 'nav-members', 'nav-booking', 'nav-approvals'];
+                    show = ['nav-home', 'nav-workshops', 'nav-workshops-management', 'nav-members', 'nav-booking', 'nav-approvals'];
                 } else {
                     show = ['nav-home', 'nav-about', 'nav-shows', 'nav-workshops'];
                 }
 
                 // Hide all first, then show only the right ones
-                ['nav-home','nav-about','nav-shows','nav-workshops','nav-members',
+                ['nav-home','nav-about','nav-shows','nav-workshops','nav-workshops-management','nav-members',
                 'nav-booking','nav-approvals','nav-joinus','nav-contact'].forEach(id => {
                     const el = document.getElementById(id);
                     if (el) el.style.display = 'none';
