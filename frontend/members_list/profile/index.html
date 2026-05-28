@@ -1,27 +1,3 @@
-<?php
-require_once __DIR__ . '/../../../backend/Core/Session.php';
-require_once __DIR__ . '/../../../backend/config/db.php';
-startAuthSession();
-
-if (empty($_SESSION['user_id']) || strtolower($_SESSION['role'] ?? '') !== 'admin') {
-    ?>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Access Denied — Theatro INSAT</title>
-        <link rel="stylesheet" href="/frontend/approvals/styles.css">
-    </head>
-    <body class="access-denied-body">
-        <h1>This section is for admins only</h1>
-        <p>You do not have permission to view this page.</p>
-        <a href="/frontend/home/index.html">← Back to Home</a>
-    </body>
-    </html>
-    <?php
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +18,7 @@ if (empty($_SESSION['user_id']) || strtolower($_SESSION['role'] ?? '') !== 'admi
         <ul class="nav-links">
             <li><a href="/frontend/home/index.html">Home</a></li>
             <li><a href="/frontend/workshops/index.html">Workshops</a></li>
-            <li><a href="/frontend/members_list/members/index.php">Members</a></li>
+            <li><a href="/frontend/members_list/members/index.html">Members</a></li>
             <li><a href="/frontend/booking/index.html">Booking</a></li>
             <li><a href="/frontend/approvals/index.php">Approvals</a></li>
         </ul>
@@ -63,6 +39,18 @@ if (empty($_SESSION['user_id']) || strtolower($_SESSION['role'] ?? '') !== 'admi
                 window.location.href = '/frontend/home/index.html';
             });
         });
+
+        fetch('/backend/routes/api.php?action=check-session', { credentials: 'include' })
+            .then(r => r.json())
+            .then(data => {
+                const isAdmin = data.logged_in && String(data.role || '').trim().toLowerCase() === 'admin';
+                if (!isAdmin) {
+                    window.location.href = '/frontend/home/index.html';
+                }
+            })
+            .catch(() => {
+                window.location.href = '/frontend/home/index.html';
+            });
     </script>
 </body>
 </html>

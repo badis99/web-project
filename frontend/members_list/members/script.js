@@ -24,7 +24,7 @@ function loadUsers() {
                         <td>${m.department}</td>
                         <td>${m.fieldofstudy}</td>
                         <td>
-                                <a href="/frontend/members_list/profile/index.php?id=${m.id}">ℹ️</a>
+                                <a href="/frontend/members_list/profile/index.html?id=${m.id}">ℹ️</a>
                             <button class="delete-btn" data-id="${m.id}">🧹</button>
                         </td>
                     </tr>
@@ -118,7 +118,7 @@ document.getElementById("filter-section").addEventListener("submit", async (e) =
                 <td>${m.department}</td>
                 <td>${m.fieldofstudy}</td>
                 <td>
-                        <a href="/frontend/members_list/profile/index.php?id=${m.id}">ℹ️</a>
+                        <a href="/frontend/members_list/profile/index.html?id=${m.id}">ℹ️</a>
                     <button class="delete-btn" data-id="${m.id}">🧹</button>
                 </td>
             </tr>
