@@ -26,17 +26,26 @@ require_once __DIR__ . '/../Core/RateLimit.php';
 // ← Plus aucun require_once de ton côté ici
 
 // ------------------------------------------------------------
-// REST booking API (admin-only)
-// Supports rewritten routes like:
+// REST API (/api/*)
+// Booking:
 //   GET  /api/shows
 //   GET  /api/shows/name/{name}
 //   POST /api/shows/ensure
 //   GET  /api/shows/{showId}/seats
 //   POST /api/tickets
-// If the web server rewrites /api/* to this file, REQUEST_URI will start with /api.
+// Workshops:
+//   GET    /api/workshops              (logged in)
+//   GET    /api/workshops/{id}         (logged in)
+//   POST   /api/workshops              (admin)
+//   PUT    /api/workshops/{id}         (admin)
+//   DELETE /api/workshops/{id}         (admin)
+//   GET    /api/workshop-registrations (admin)
+//   POST   /api/workshop-registrations (logged in, user id from session)
+//   POST   /api/upload/video           (admin, multipart field "video")
+// Fallback: /backend/routes/api.php?rest=workshops
 // ------------------------------------------------------------
 
-function booking_requireAdmin(): void
+function requireAdmin(): void
 {
     startAuthSession(false);
     $role = strtolower(trim((string)($_SESSION['role'] ?? '')));
@@ -46,6 +55,19 @@ function booking_requireAdmin(): void
         echo json_encode(['error' => 'Admin access required.']);
         exit;
     }
+}
+
+function api_requireLoggedIn(): string
+{
+    startAuthSession(false);
+    if (empty($_SESSION['user_id'])) {
+        http_response_code(401);
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode(['error' => 'Login required.']);
+        exit;
+    }
+
+    return (string)$_SESSION['user_id'];
 }
 
 function booking_normalizePath(string $path): string
@@ -71,11 +93,11 @@ function booking_pathAfterApi(string $path): array
     return array_values(array_filter(explode('/', $rest), fn($s) => $s !== ''));
 }
 
-function dispatchBookingRestApiIfMatched(): void
+function dispatchRestApiIfMatched(): void
 {
     // Supports 2 modes:
-    // 1) Rewritten REST paths: /api/shows, /api/tickets, ...
-    // 2) Non-rewritten fallback: /backend/routes/api.php?rest=shows
+    // 1) Rewritten REST paths: /api/shows, /api/workshops, ...
+    // 2) Non-rewritten fallback: /backend/routes/api.php?rest=workshops
     $requestUri = (string)($_SERVER['REQUEST_URI'] ?? '/');
     $rest = isset($_GET['rest']) ? trim((string)$_GET['rest']) : '';
     if ($rest !== '') {
@@ -90,6 +112,84 @@ function dispatchBookingRestApiIfMatched(): void
     $method = (string)($_SERVER['REQUEST_METHOD'] ?? 'GET');
     $segments = booking_pathAfterApi($requestUri);
 
+    header('Content-Type: application/json; charset=utf-8');
+
+    $isWorkshopApi =
+        ($segments[0] ?? '') === 'workshops' ||
+        ($segments[0] ?? '') === 'workshop-registrations' ||
+        (($segments[0] ?? '') === 'upload' && ($segments[1] ?? '') === 'video');
+
+    if ($isWorkshopApi) {
+        $workshopController = new WorkshopController(new WorkshopRepository());
+        $registrationController = new WorkshopRegistrationController(new WorkshopRegistrationRepository());
+        $videoUploadController = new VideoUploadController();
+
+        // GET /api/workshops
+        if ($method === 'GET' && $segments === ['workshops']) {
+            api_requireLoggedIn();
+            $workshopController->index();
+            exit;
+        }
+
+        // GET /api/workshops/{id}
+        if ($method === 'GET' && count($segments) === 2 && $segments[0] === 'workshops') {
+            api_requireLoggedIn();
+            $workshopController->workshop($segments[1]);
+            exit;
+        }
+
+        // POST /api/workshops
+        if ($method === 'POST' && $segments === ['workshops']) {
+            requireAdmin();
+            $workshopController->store();
+            exit;
+        }
+
+        // PUT /api/workshops/{id}
+        if ($method === 'PUT' && count($segments) === 2 && $segments[0] === 'workshops') {
+            requireAdmin();
+            $workshopController->update($segments[1]);
+            exit;
+        }
+
+        // DELETE /api/workshops/{id}
+        if ($method === 'DELETE' && count($segments) === 2 && $segments[0] === 'workshops') {
+            requireAdmin();
+            $workshopController->destroy($segments[1]);
+            exit;
+        }
+
+        // GET /api/workshop-registrations
+        if ($method === 'GET' && $segments === ['workshop-registrations']) {
+            requireAdmin();
+            $registrationController->index();
+            exit;
+        }
+
+        // POST /api/workshop-registrations
+        if ($method === 'POST' && $segments === ['workshop-registrations']) {
+            $idUser=api_requireLoggedIn();
+            $registrationController->store($idUser);
+            exit;
+        }
+
+        // POST /api/upload/video
+        if ($method === 'POST' && $segments === ['upload', 'video']) {
+            requireAdmin();
+            $videoUploadController->upload();
+            exit;
+        }
+
+        http_response_code(404);
+        echo json_encode(['error' => 'Not found.']);
+        exit;
+    }
+
+    $isBookingApi = ($segments[0] ?? '') === 'shows' || ($segments[0] ?? '') === 'tickets';
+    if (!$isBookingApi) {
+        return;
+    }
+
     // Public (no admin) endpoints:
     // - GET /api/shows
     // - GET /api/shows/name/{name}
@@ -98,10 +198,8 @@ function dispatchBookingRestApiIfMatched(): void
         ($method === 'GET' && count($segments) === 3 && $segments[0] === 'shows' && $segments[1] === 'name');
 
     if (!$isPublic) {
-        booking_requireAdmin();
+        requireAdmin();
     }
-
-    header('Content-Type: application/json; charset=utf-8');
 
     $bookingController = new BookingController(
         new BookingService(new ShowsRepository(), new SeatsRepository(), new TicketsRepository()),
@@ -145,12 +243,11 @@ function dispatchBookingRestApiIfMatched(): void
     }
 
     http_response_code(404);
-    header('Content-Type: application/json; charset=utf-8');
     echo json_encode(['error' => 'Not found.']);
     exit;
 }
 
-dispatchBookingRestApiIfMatched();
+dispatchRestApiIfMatched();
 
 function dispatchApiAction(string $action): void
 {

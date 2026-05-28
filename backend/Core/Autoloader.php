@@ -9,6 +9,7 @@ spl_autoload_register(function (string $className): void {
     $directories = [
         __DIR__,
         __DIR__ . '/../Controllers',
+        __DIR__ . '/../Controllers/WorkshopControllers',
         __DIR__ . '/../Services',
         __DIR__ . '/../Repositories',
         __DIR__ . '/../Models',
