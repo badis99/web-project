@@ -1,0 +1,742 @@
+/* ============================================================
+   THEATRO – Admin: Change Workshop  (styles.css)
+   ============================================================ */
+
+/* ─── Stars Background (same as workshops page) ─────────────── */
+.stars-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0a0a;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.stars-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    box-shadow:
+        347px 223px rgba(255, 255, 255, .8), 1703px 854px rgba(255, 255, 255, .5),
+        1269px 1420px rgba(255, 255, 255, .9), 521px 391px rgba(255, 255, 255, .4),
+        1580px 643px rgba(255, 255, 255, .7), 934px 1205px rgba(255, 255, 255, .6),
+        1156px 29px rgba(255, 255, 255, .3), 723px 1687px rgba(255, 255, 255, .8),
+        1892px 445px rgba(255, 255, 255, .5), 456px 1134px rgba(255, 255, 255, .9),
+        1634px 234px rgba(255, 255, 255, .4), 289px 876px rgba(255, 255, 255, .7),
+        1845px 1567px rgba(255, 255, 255, .6), 612px 498px rgba(255, 255, 255, .8),
+        1423px 1089px rgba(255, 255, 255, .5), 945px 1734px rgba(255, 255, 255, .4),
+        1267px 712px rgba(255, 255, 255, .9), 378px 1456px rgba(255, 255, 255, .3),
+        1789px 923px rgba(255, 255, 255, .7), 834px 145px rgba(255, 255, 255, .6);
+    animation: animStar 60s linear infinite;
+}
+
+.stars-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    box-shadow:
+        567px 834px rgba(255, 255, 255, .9), 1423px 156px rgba(255, 255, 255, .6),
+        945px 1534px rgba(255, 255, 255, .8), 1789px 912px rgba(255, 255, 255, .5),
+        234px 1267px rgba(255, 255, 255, .7), 1612px 423px rgba(255, 255, 255, .4),
+        823px 1689px rgba(255, 255, 255, .9), 1345px 567px rgba(255, 255, 255, .6),
+        456px 1123px rgba(255, 255, 255, .3), 1867px 789px rgba(255, 255, 255, .8);
+    animation: animStar 80s linear infinite;
+}
+
+@keyframes animStar {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-2000px);
+    }
+}
+
+/* ─── Layout ─────────────────────────────────────────────────── */
+.admin-section {
+    padding: 140px 40px 100px;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* ─── Page Header ────────────────────────────────────────────── */
+.admin-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: rgba(255, 255, 255, .5);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.section-subtitle {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: white;
+    margin-bottom: 16px;
+}
+
+.section-description {
+    font-family: 'Marcellus', serif;
+    font-size: 15px;
+    color: rgba(255, 255, 255, .55);
+    margin: 0 auto;
+    max-width: 560px;
+    line-height: 1.8;
+}
+
+/* ─── Admin Cards ────────────────────────────────────────────── */
+.admin-card {
+    background: rgba(255, 255, 255, .035);
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 10px;
+    padding: 40px 44px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, .35);
+    transition: border-color .3s;
+}
+
+.admin-card:hover {
+    border-color: rgba(255, 255, 255, .18);
+}
+
+.card-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.card-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: white;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-header-row .card-title {
+    margin-bottom: 0;
+}
+
+.card-icon {
+    opacity: .7;
+    font-size: 22px;
+}
+
+.workshops-count {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, .4);
+    text-transform: uppercase;
+}
+
+/* ─── Forms ──────────────────────────────────────────────────── */
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, .7);
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 6px;
+    padding: 13px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: white;
+    transition: border-color .25s, background .25s, box-shadow .25s;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.6;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, .25);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: rgba(255, 255, 255, .4);
+    background: rgba(255, 255, 255, .08);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .06);
+}
+
+/* Date input calendar icon colour fix */
+.form-group input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) opacity(.5);
+    cursor: pointer;
+}
+
+.form-group select option {
+    background: #1a1a1a;
+    color: white;
+}
+
+/* ─── Buttons ────────────────────────────────────────────────── */
+.btn-admin {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 6px;
+    padding: 14px 32px;
+    cursor: pointer;
+    transition: all .25s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-add {
+    background: rgba(255, 255, 255, .9);
+    color: #0a0a0a;
+    align-self: flex-start;
+    margin-top: 4px;
+}
+
+.btn-add:hover {
+    background: white;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, .2);
+    transform: translateY(-1px);
+}
+
+.btn-save {
+    background: rgba(255, 255, 255, .9);
+    color: #0a0a0a;
+}
+
+.btn-save:hover {
+    background: white;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, .15);
+}
+
+.btn-cancel {
+    background: transparent;
+    color: rgba(255, 255, 255, .6);
+    border: 1px solid rgba(255, 255, 255, .2);
+}
+
+.btn-cancel:hover {
+    color: white;
+    border-color: rgba(255, 255, 255, .5);
+}
+
+.btn-delete {
+    background: rgba(220, 50, 50, .15);
+    color: #ff6b6b;
+    border: 1px solid rgba(220, 50, 50, .4);
+}
+
+.btn-delete:hover {
+    background: rgba(220, 50, 50, .3);
+    border-color: rgba(220, 50, 50, .7);
+}
+
+.btn-admin:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn-spinner {
+    display: inline-block;
+    animation: spin .8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ─── Workshop Row Items ─────────────────────────────────────── */
+.ws-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .07);
+    transition: background .2s;
+}
+
+.ws-row:last-child {
+    border-bottom: none;
+}
+
+.ws-row-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ws-row-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 17px;
+    color: white;
+    letter-spacing: .5px;
+}
+
+.ws-row-meta {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, .4);
+    text-transform: uppercase;
+}
+
+.ws-row-desc {
+    font-family: 'Marcellus', serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, .6);
+    line-height: 1.6;
+    margin-top: 4px;
+    max-width: 600px;
+    /* Show only first 3 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.ws-row-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.btn-icon {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 5px;
+    padding: 9px 18px;
+    cursor: pointer;
+    background: transparent;
+    transition: all .2s;
+    white-space: nowrap;
+}
+
+.btn-edit {
+    color: rgba(255, 255, 255, .75);
+}
+
+.btn-edit:hover {
+    color: white;
+    background: rgba(255, 255, 255, .08);
+    border-color: rgba(255, 255, 255, .35);
+}
+
+.btn-del {
+    color: rgba(255, 100, 100, .75);
+    border-color: rgba(220, 50, 50, .2);
+}
+
+.btn-del:hover {
+    color: #ff6b6b;
+    background: rgba(220, 50, 50, .1);
+    border-color: rgba(220, 50, 50, .5);
+}
+
+/* ─── State messages ─────────────────────────────────────────── */
+.state-message {
+    font-family: 'Marcellus', serif;
+    font-size: 15px;
+    color: rgba(255, 255, 255, .45);
+    text-align: center;
+    padding: 30px 0;
+}
+
+.state-message.error {
+    color: #ff6b6b;
+}
+
+/* ─── Toast Notification ─────────────────────────────────────── */
+.toast {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30, 30, 30, .97);
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 8px;
+    padding: 14px 28px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    letter-spacing: .5px;
+    color: white;
+    z-index: 9999;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, .5);
+    animation: fadeInUp .3s ease;
+    max-width: 420px;
+    text-align: center;
+}
+
+.toast.error {
+    border-color: rgba(220, 50, 50, .4);
+    color: #ff9999;
+}
+
+.toast.hidden {
+    display: none;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* ─── Modals ─────────────────────────────────────────────────── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .75);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    animation: fadeIn .2s ease;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-box {
+    background: #141414;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 12px;
+    padding: 44px 48px;
+    max-width: 620px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, .7);
+    animation: slideUp .25s ease;
+}
+
+.modal-box--sm {
+    max-width: 440px;
+    padding: 40px 40px;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, .4);
+    font-size: 26px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color .2s;
+    padding: 4px;
+}
+
+.modal-close:hover {
+    color: white;
+}
+
+.modal-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 22px;
+    color: white;
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+}
+
+.modal-body {
+    font-family: 'Marcellus', serif;
+    font-size: 15px;
+    color: rgba(255, 255, 255, .7);
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: flex-end;
+    margin-top: 6px;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 700px) {
+    .admin-section {
+        padding: 110px 20px 80px;
+    }
+
+    .admin-card {
+        padding: 28px 22px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .ws-row {
+        flex-direction: column;
+    }
+
+    .ws-row-actions {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .btn-icon {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .modal-box {
+        padding: 32px 24px;
+    }
+
+    .modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .btn-admin {
+        width: 100%;
+    }
+}
+
+/* ─── Video Upload UI ─────────────────────────────────────────── */
+.label-optional {
+    font-size: 10px;
+    color: rgba(255, 255, 255, .35);
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-left: 4px;
+    text-transform: none;
+}
+
+.upload-hint {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, .3);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Progress indicator */
+.upload-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.upload-progress.hidden {
+    display: none;
+}
+
+.upload-progress-bar {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, .15);
+    border-top-color: rgba(255, 255, 255, .8);
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+    flex-shrink: 0;
+}
+
+.upload-progress-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, .5);
+}
+
+/* Workshop row – embedded video player */
+.ws-row-video {
+    margin-top: 12px;
+}
+
+.ws-video-player {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, .1);
+    background: #000;
+    display: block;
+}
+
+/* Edit modal – current video preview */
+.current-video-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.current-video-wrap.hidden {
+    display: none;
+}
+
+.video-preview-sm {
+    width: 100%;
+    max-width: 380px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    background: #000;
+}
+
+.btn-remove-video {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: transparent;
+    border: 1px solid rgba(220, 50, 50, .3);
+    border-radius: 5px;
+    color: rgba(255, 100, 100, .7);
+    padding: 7px 14px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: all .2s;
+}
+
+.btn-remove-video:hover {
+    color: #ff6b6b;
+    border-color: rgba(220, 50, 50, .6);
+    background: rgba(220, 50, 50, .08);
+}
+
+/* File input styling */
+.form-group input[type="file"] {
+    background: rgba(255, 255, 255, .04);
+    border: 1px dashed rgba(255, 255, 255, .2);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, .6);
+    cursor: pointer;
+    transition: border-color .25s, background .25s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group input[type="file"]:hover {
+    border-color: rgba(255, 255, 255, .4);
+    background: rgba(255, 255, 255, .07);
+}
+
+.form-group input[type="file"]::file-selector-button {
+    background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 4px;
+    color: rgba(255, 255, 255, .8);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    margin-right: 12px;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.form-group input[type="file"]::file-selector-button:hover {
+    background: rgba(255, 255, 255, .18);
+}

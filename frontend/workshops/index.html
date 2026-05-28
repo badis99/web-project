@@ -45,7 +45,7 @@
         <ul class="nav-links">
             <li><a href="../home/index.html">Home</a></li>
             <li><a href="../approvals/index.php">Approvals</a></li>
-            <li><a href="/frontend/members_list/members/index.html">Members</a></li>
+            <li><a href="/frontend/members_list/members/index.php">Members</a></li>
             <li id="nav-workshops" style="display:none"><a href="../workshops/index.html">Workshops</a></li>
             <li class="nav-join-link" style="display:none"><a href="/frontend/auth/signup.html">Join Us</a></li>
             <li><a href="../contact/index.html">Contact</a></li>
@@ -67,71 +67,7 @@
 
         <!-- Workshop Information Sections -->
         <div class="workshops-info-container">
-            <!-- Acting Workshop Info -->
-            <div class="workshop-info-section">
-                <h3 class="workshop-title">Acting Workshop</h3>
-
-                <div class="workshop-polaroid">
-                    <div class="polaroid activity-polaroid video-polaroid">
-                        <div class="polaroid-img">
-                            <video class="polaroid-video" loop muted playsinline>
-                                <source src="../assets/acting_workshop1.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="workshop-full-description">
-                    <p>Master the art of performance with professional guidance in our comprehensive Acting Workshop.
-                        This immersive program is designed for passionate individuals who want to develop their acting
-                        skills,
-                        explore character development, and learn essential stage techniques.</p>
-
-                    <p>Through a combination of practical exercises, scene work, and improvisation, you'll discover how
-                        to
-                        bring characters to life, develop your vocal and physical presence, and build confidence on
-                        stage.
-                        Our experienced instructors will guide you through various acting methods and help you find your
-                        unique
-                        artistic voice.</p>
-
-                    <p>Whether you're a beginner or looking to refine your craft, this workshop offers a supportive
-                        environment to grow as a performer and connect with fellow theatre enthusiasts.</p>
-                </div>
-            </div>
-
-            <!-- Dancing Workshop Info -->
-            <div class="workshop-info-section">
-                <h3 class="workshop-title">Dancing Workshop</h3>
-
-                <div class="workshop-polaroid">
-                    <div class="polaroid activity-polaroid video-polaroid">
-                        <div class="polaroid-img">
-                            <video class="polaroid-video" loop muted playsinline>
-                                <source src="../assets/dancing_workshop1.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="workshop-full-description">
-                    <p>Express yourself through movement in our dynamic Dancing Workshop. This program welcomes dancers
-                        of
-                        all levels to explore various dance styles, improve technique, and discover the joy of movement
-                        as a
-                        form of artistic expression.</p>
-
-                    <p>You'll learn fundamental choreography, develop rhythm and coordination, and understand how dance
-                        complements theatrical performance. Our instructors will teach you how to tell stories through
-                        movement,
-                        work with music, and create compelling stage presence through dance.</p>
-
-                    <p>Join us to enhance your physical expression, build stamina and flexibility, and become part of a
-                        vibrant community that celebrates the art of dance in theatre.</p>
-                </div>
-            </div>
+           
         </div>
 
         <!-- Unified Registration Form -->
@@ -151,28 +87,10 @@
                 <div class="form-group">
                     <label for="workshop-selection">Select Workshop *</label>
                     <select id="workshop-selection" name="workshop" required>
-                        <option value="">Choose a workshop...</option>
-                        <option value="Acting Workshop">Acting Workshop</option>
-                        <option value="Dancing Workshop">Dancing Workshop</option>
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="surname">Surname</label>
-                    <input type="text" id="surname" name="surname" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="identifier">Member Identifier</label>
-                    <input type="text" id="identifier" name="identifier" placeholder="Your club membership ID" required>
-                    <span class="field-hint">Enter the identifier you received after signing up</span>
-                </div>
-
+            
                 <div class="form-group">
                     <label>Are you sure you're coming?</label>
                     <div class="rating-container">
