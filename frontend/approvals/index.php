@@ -34,6 +34,7 @@ $rows = $repo->findAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pending Requests — Theatro INSAT</title>
+    <link rel="stylesheet" href="/frontend/home/styles_base.css">
     <link rel="stylesheet" href="styles.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Cinzel:wght@400;600&family=Montserrat:wght@400;500&display=swap"
@@ -41,21 +42,22 @@ $rows = $repo->findAll();
 </head>
 
 <body>
-
+    <div id="star-container"></div>
     <nav class="navbar">
-    <div class="logo">
-        <img src="../assets/logo.png" alt="Theatro INSAT">
-    </div>
-<ul class="nav-links">
-    <li><a href="../home/index.html">Home</a></li>
-    <li><a href="../approvals/index.php">Approvals</a></li>
-    <li><a href="/frontend/members_list/members/index.php">Members</a></li>
-    <li><a href="/frontend/workshops/index.html">Workshops</a></li>
-</ul>
-    <div class="nav-auth-wrapper">
-        <button class="nav-logout-btn" id="logout-btn">Logout</button>
-    </div>
-</nav>
+        <div class="logo">
+            <img src="../assets/logo.png" alt="Theatro INSAT">
+        </div>
+        <ul class="nav-links">
+            <li><a href="../home/index.html">Home</a></li>
+            <li><a href="/frontend/workshops/index.html">Workshops</a></li>
+            <li><a href="/frontend/members_list/members/index.php">Members</a></li>
+            <li><a href="/frontend/booking/index.html">Booking</a></li>
+            <li><a href="../approvals/index.php">Approvals</a></li>
+        </ul>
+        <div class="nav-auth-wrapper">
+            <button class="nav-logout-btn" id="logout-btn">Logout</button>
+        </div>
+    </nav>
 
     <!-- BACKGROUND -->
     <div class="stars-bg"></div>
@@ -182,15 +184,15 @@ $rows = $repo->findAll();
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-    document.getElementById('logout-btn').addEventListener('click', () => {
-        fetch('/backend/routes/api.php?action=logout', {
-            method: 'POST',
-            credentials: 'include'
-        }).then(() => {
-            window.location.href = '/frontend/home/index.html';
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            fetch('/backend/routes/api.php?action=logout', {
+                method: 'POST',
+                credentials: 'include'
+            }).then(() => {
+                window.location.href = '/frontend/home/index.html';
+            });
         });
-    });
-</script>
+    </script>
 </body>
 
 </html>

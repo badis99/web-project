@@ -5,25 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login — THEATRO INSAT</title>
     <meta name="description" content="Sign in to your Theatro INSAT account.">
+    <link rel="stylesheet" href="/frontend/home/styles_base.css">
     <link rel="stylesheet" href="auth.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .nav-auth-wrapper { display: flex; align-items: center; }
+        .nav-login-btn {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 8px 22px;
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.55);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(5px);
+            white-space: nowrap;
+        }
+        .nav-login-btn:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: white;
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
     <div id="star-container"></div>
-
-    <nav class="auth-navbar">
-        <a href="/frontend/home/index.html" class="auth-nav-logo">
-            <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro Logo">
-        </a>
-        <ul class="auth-nav-links">
-            <li><a href="/frontend/home/index.html">Home</a></li>
-            <li><a href="/frontend/home/index.html#about">About</a></li>
-            <li><a href="/frontend/home/index.html#shows">Shows</a></li>
-            <li id="nav-workshops" style="display:none"><a href="/frontend/workshops/index.html">Workshops</a></li>
-            <li class="nav-join-link" style="display:none"><a href="/frontend/auth/signup.html">Join Us</a></li>
-            <li><a href="/frontend/contact/index.html">Contact</a></li>
-            <li><a href="login.html">Login</a></li>
-        </ul>
+    <nav class="navbar">
+            <div class="logo">
+                <img src="../assets/logo.png" alt="Theatro Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="/frontend/home/index.html#home">Home</a></li>
+                <li><a href="/frontend/home/index.html#about">About</a></li>
+                <li><a href="/frontend/home/index.html#upcoming-shows">Shows</a></li>
+                <li id="nav-workshops" style="display:none"><a href="../workshops/index.html">Workshops</a></li>
+                <li id="nav-members" style="display:none"><a href="/frontend/members_list/members/index.php">Members</a></li>
+                <li id="nav-approvals" style="display:none"><a href="/frontend/approvals/index.php">Approvals</a></li>
+                <li><a href="../joinus/index.html">Join Us</a></li>
+                <li><a href="/frontend/contact/index.html">Contact</a></li>
+            </ul>
+            <div class="nav-auth-wrapper">
+                <a id="nav-auth-btn" href="../auth/login.html" class="nav-login-btn">Login</a>
+            </div>
     </nav>
 
     <main class="auth-page">
@@ -75,14 +102,41 @@
         </div>
     </main>
 
-    <!-- Site footer -->
-    <footer class="auth-site-footer">
-        <div class="auth-site-footer-inner">
-            <span>&copy; 2026 Theatro INSAT. All Rights Reserved.</span>
-            <span class="auth-site-footer-links">
-                <a href="/frontend/contact/index.html">Contact</a>
-                <a href="/frontend/home/index.html#about">About</a>
-            </span>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="../assets/logo.png" alt="Theatro INSAT Logo">
+                <h3>Theatro INSAT</h3>
+            </div>
+            <div class="footer-info">
+                <span class="info-label">INFORMATION</span>
+                <div class="footer-details">
+                    <div class="footer-detail-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>theatro@insat.ucar.tn</span>
+                    </div>
+                    <div class="footer-detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>676 INSAT, Centre Urbain Nord BP, Tunis Cedex 1080, Tunisia</span>
+                    </div>
+                    <div class="footer-detail-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+216 27 423 156</span>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/theatro.insat" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/TheatroINSAT" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Theatro INSAT. All Rights Reserved.</p>
         </div>
     </footer>
 

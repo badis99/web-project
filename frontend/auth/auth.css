@@ -3,7 +3,7 @@
    Shared styles for Login, Sign Up, Forgot Password
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Marcellus&family=Pinyon+Script&family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Marcellus&family=Pinyon+Script&family=Montserrat:wght@300;400;500&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -20,7 +20,7 @@ body {
 /* ============================================
    STARFIELD BACKGROUND (same as home page)
    ============================================ */
-
+/*
 #star-container {
     position: fixed;
     top: 0; left: 0;
@@ -186,7 +186,7 @@ body {
 .auth-brand {
     font-family: 'Cinzel Decorative', serif;
     font-size: 78px;
-    font-weight: 700;
+    font-weight: 400;
     color: white;
     letter-spacing: 2px;
     line-height: 1;
@@ -572,4 +572,55 @@ body {
         flex-wrap: wrap;
     }
     .auth-site-footer { padding: 16px 20px; }
+}
+
+/* ============================================
+   SPOTLIGHT
+   ============================================ */
+
+.stage-lights {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.spotlight {
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        rgba(255,255,255,0.35) 0%,
+        rgba(255,255,255,0.18) 40%,
+        transparent 70%);
+    filter: blur(28px);
+    pointer-events: none;
+}
+
+.spotlight-left {
+    top: -200px; left: -200px;
+    animation: spotlightMoveLeft 10s ease-in-out infinite;
+}
+
+.spotlight-right {
+    top: -200px; right: -200px;
+    animation: spotlightMoveRight 10s ease-in-out infinite 1.5s;
+}
+
+@keyframes spotlightMoveLeft {
+    0%, 100% { transform: translate(0,0) scale(1); opacity: .8; }
+    20%       { transform: translate(100px,150px) scale(1.1); opacity: .9; }
+    40%       { transform: translate(200px,300px) scale(1.3); opacity: 1; }
+    60%       { transform: translate(150px,450px) scale(.95); opacity: .7; }
+    80%       { transform: translate(250px,350px) scale(1.15); opacity: .85; }
+}
+
+@keyframes spotlightMoveRight {
+    0%, 100% { transform: translate(0,0) scale(1); opacity: .8; }
+    20%       { transform: translate(-100px,150px) scale(1.1); opacity: .9; }
+    40%       { transform: translate(-200px,300px) scale(1.3); opacity: 1; }
+    60%       { transform: translate(-150px,450px) scale(.95); opacity: .7; }
+    80%       { transform: translate(-250px,350px) scale(1.15); opacity: .85; }
 }

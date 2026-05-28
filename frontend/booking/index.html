@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book a Show — THEATRO INSAT</title>
     <meta name="description" content="Book your seat for a Theatro INSAT show.">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/frontend/home/styles_base.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
     <style>
         body { margin: 0; font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: white; }
-        .booking-navbar {
+        /*.booking-navbar {
             position: fixed; top: 0; left: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
             padding: 5px 20px;
@@ -26,7 +27,7 @@
         .nav-login-btn { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 500; padding: 8px 22px; color: white; text-decoration: none; border: 1px solid rgba(255,255,255,0.55); letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease; background: rgba(255,255,255,0.05); backdrop-filter: blur(5px); white-space: nowrap; }
         .nav-login-btn:hover { background: rgba(255,255,255,0.15); border-color: white; opacity: 1; }
         .theater-container { padding-top: 75px; }
-        /* Footer */
+        
         .site-footer { background: rgba(0,0,0,0.85); border-top: 1px solid rgba(255,255,255,0.1); padding: 60px 50px 30px; color: white; margin-top: 40px; }
         .site-footer .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; margin-bottom: 40px; }
         .site-footer .footer-logo { text-align: center; }
@@ -40,11 +41,12 @@
         .site-footer .footer-social a:hover { background: rgba(255,255,255,0.1); border-color: white; }
         .site-footer .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; }
         .site-footer .footer-bottom p { font-family: 'Montserrat', sans-serif; font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 1px; }
+        */
     </style>
 </head>
 
 <body>
-    <!-- Navbar -->
+    <!-- Navbar 
     <nav class="booking-navbar">
         <div class="logo">
             <img src="../assets/logo.png" alt="Theatro Logo">
@@ -58,6 +60,21 @@
         </ul>
         <div class="nav-auth-wrapper">
             <a href="../auth/login.html" class="nav-login-btn" id="nav-auth-btn">Login</a>
+        </div>
+    </nav>-->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../assets/logo.png" alt="Theatro INSAT">
+        </div>
+        <ul class="nav-links">
+            <li><a href="../home/index.html">Home</a></li>
+            <li><a href="/frontend/workshops/index.html">Workshops</a></li>
+            <li><a href="/frontend/members_list/members/index.php">Members</a></li>
+            <li><a href="/frontend/booking/index.html">Booking</a></li>
+            <li><a href="../approvals/index.php">Approvals</a></li>
+        </ul>
+        <div class="nav-auth-wrapper">
+            <button class="nav-logout-btn" id="logout-btn">Logout</button>
         </div>
     </nav>
     <div class="theater-container">
@@ -156,6 +173,16 @@
     </footer>
 
     <!-- Session-aware navbar -->
+    <script>
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            fetch('/backend/routes/api.php?action=logout', {
+                method: 'POST',
+                credentials: 'include'
+            }).then(() => {
+                window.location.href = '/frontend/home/index.html';
+            });
+        });
+    </script>
     <script>
         fetch('/backend/routes/api.php?action=check-session', { credentials: 'include' })
             .then(r => r.json())

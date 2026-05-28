@@ -27,10 +27,13 @@ if (empty($_SESSION['user_id']) || strtolower($_SESSION['role'] ?? '') !== 'admi
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel="stylesheet" href="/frontend/home/styles_base.css">
 <link rel="stylesheet" href="styles.css">
+<!--
+<link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Cinzel:wght@400;600&family=Montserrat:wght@400;500&display=swap"
+        rel="stylesheet">-->
 
-<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Lora&family=Montserrat&display=swap" rel="stylesheet">
@@ -48,17 +51,18 @@ if (empty($_SESSION['user_id']) || strtolower($_SESSION['role'] ?? '') !== 'admi
 
     <nav class="navbar">
         <div class="logo">
-            <img src="../../assets/logo.png" alt="Theatro INSAT">
+            <img src="../assets/logo.png" alt="Theatro INSAT">
         </div>
         <ul class="nav-links">
             <li><a href="/frontend/home/index.html">Home</a></li>
-            <li><a href="/frontend/workshops/index.html">Workshops</a></li>
             <li><a href="/frontend/approvals/index.php">Approvals</a></li>
             <li><a href="/frontend/members_list/members/index.php">Members</a></li>
+            <li><a href="/frontend/workshops/index.html">Workshops</a></li>
+            <li><a href="/frontend/booking/index.html">Booking</a></li>
         </ul>
-            <div class="nav-auth-wrapper">
-                <button class="nav-logout-btn" id="logout-btn">Logout</button>
-            </div>
+        <div class="nav-auth-wrapper">
+            <button class="nav-logout-btn" id="logout-btn">Logout</button>
+        </div>
     </nav>
 
     <h1 id="main-title">Members List</h1>
