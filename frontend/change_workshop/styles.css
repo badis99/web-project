@@ -435,9 +435,10 @@
     backdrop-filter: blur(4px);
     z-index: 1000;
     display: flex;
-    align-items: center;
+    align-items: flex-start;        /* allow tall modals to start from top */
     justify-content: center;
     padding: 24px;
+    overflow-y: auto;               /* overlay itself scrolls when modal is taller than viewport */
     animation: fadeIn .2s ease;
 }
 
@@ -465,6 +466,10 @@
     position: relative;
     box-shadow: 0 20px 70px rgba(0, 0, 0, .7);
     animation: slideUp .25s ease;
+    /* Keep the box within the viewport; its own content scrolls if needed */
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    margin: auto 0;                 /* vertical centering when shorter than viewport */
 }
 
 .modal-box--sm {
