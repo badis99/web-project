@@ -1,7 +1,7 @@
 // ============================================================
 // ADMIN – Manage Workshops
 // Calls:  GET    /workshops
-//         POST   /workshops/upload-video  (ADMIN, multipart)
+//         POST   /upload/video            (ADMIN, multipart)
 //         POST   /workshops              (ADMIN)
 //         PATCH  /workshops/:id          (ADMIN)
 //         DELETE /workshops/:id          (ADMIN)
@@ -9,13 +9,14 @@
 
 const API_BASE = '/backend/routes/api.php?rest=';
 const WORKSHOPS_ENDPOINT = `${API_BASE}workshops`;
+const VIDEO_UPLOAD_ENDPOINT = `${API_BASE}upload/video`;
 
 // ─── Guard: only logged-in users may use this page ──────────
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const res = await fetch('/backend/routes/api.php?action=check-session', { credentials: 'include' });
         const data = await parseJsonSafe(res, {});
-        if (!data.logged_in || data.role !== 'ADMIN') {
+        if (!data.logged_in || String(data.role || '').toLowerCase() !== 'admin') {
             window.location.href = '../auth/login.html';
             return;
         }
@@ -58,7 +59,12 @@ function formatDate(iso) {
 
 function toInputDate(iso) {
     if (!iso) return '';
-    return iso.slice(0, 10);
+    // Slice the first 10 chars ("YYYY-MM-DD") directly from the Supabase string.
+    // Never pass through `new Date()`: that parses date-only strings as UTC midnight,
+    // which local timezones (e.g. UTC+1) then shift to the previous calendar day.
+    const datePart = String(iso).slice(0, 10);          // "2024-05-15"
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(datePart)) return ''; // guard malformed values
+    return datePart;
 }
 
 function setLoading(btnId, loading) {
@@ -76,26 +82,16 @@ function showProgress(progressId, show) {
     if (el) el.classList.toggle('hidden', !show);
 }
 
-// ─── Upload video directly to Cloudinary (signed via backend) ─
+// ─── Upload video to Supabase Storage via backend ─
 async function uploadVideo(file, progressId) {
     showProgress(progressId, true);
-
-    // 1. Get a short-lived signature from our backend (secret never leaves server)
-    const signRes = await fetch('/backend/cloudinary/sign.php', { credentials: 'include' });
-    if (!signRes.ok) throw new Error('Could not get upload signature from server.');
-    const { cloud_name, api_key, signature, timestamp, folder } = await signRes.json();
-
-    // 2. Upload the file directly from the browser to Cloudinary
     return new Promise((resolve, reject) => {
         const formData = new FormData();
-        formData.append('file',      file);
-        formData.append('api_key',   api_key);
-        formData.append('timestamp', timestamp);
-        formData.append('signature', signature);
-        formData.append('folder',    folder);
+        formData.append('video', file);
 
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', `https://api.cloudinary.com/v1_1/${cloud_name}/video/upload`);
+        xhr.open('POST', VIDEO_UPLOAD_ENDPOINT);
+        xhr.withCredentials = true;
 
         // Real upload progress
         xhr.upload.addEventListener('progress', (e) => {
@@ -107,13 +103,15 @@ async function uploadVideo(file, progressId) {
 
         xhr.addEventListener('load', () => {
             showProgress(progressId, false);
-            if (xhr.status === 200) {
-                const data = JSON.parse(xhr.responseText);
-                resolve(data.secure_url);
+            let data = {};
+            try {
+                data = JSON.parse(xhr.responseText);
+            } catch {}
+
+            if (xhr.status >= 200 && xhr.status < 300 && data.url) {
+                resolve(data.url);
             } else {
-                let msg = 'Upload failed.';
-                try { msg = JSON.parse(xhr.responseText)?.error?.message || msg; } catch {}
-                reject(new Error(msg));
+                reject(new Error(data.error || `Upload failed (HTTP ${xhr.status}).`));
             }
         });
 
@@ -214,7 +212,7 @@ function bindAddForm() {
         setLoading('add-btn', true);
 
         try {
-            // 1. Upload video to Cloudinary (if provided)
+            // 1. Upload video to Supabase Storage (if provided)
             let videoUrl = null;
             if (videoFile) {
                 videoUrl = await uploadVideo(videoFile, 'new-video-progress');

@@ -50,6 +50,7 @@ $rows = $repo->findAll();
         <ul class="nav-links">
             <li><a href="../home/index.html">Home</a></li>
             <li><a href="/frontend/workshops/index.html">Workshops</a></li>
+            <li id="nav-workshops-management" style="display:none"><a href="/frontend/workshop_registration/index.html">Workshop Management</a></li>
             <li><a href="/frontend/members_list/members/index.html">Members</a></li>
             <li><a href="/frontend/booking/index.html">Booking</a></li>
             <li><a href="../approvals/index.php">Approvals</a></li>
@@ -184,6 +185,17 @@ $rows = $repo->findAll();
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        fetch('/backend/routes/api.php?action=check-session', { credentials: 'include' })
+            .then(r => r.json())
+            .then(data => {
+                const isAdmin = data.logged_in && String(data.role || '').trim().toLowerCase() === 'admin';
+                const workshopsManagementLi = document.getElementById('nav-workshops-management');
+                if (workshopsManagementLi && isAdmin) {
+                    workshopsManagementLi.style.display = '';
+                }
+            })
+            .catch(() => {});
+
         document.getElementById('logout-btn').addEventListener('click', () => {
             fetch('/backend/routes/api.php?action=logout', {
                 method: 'POST',

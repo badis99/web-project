@@ -5,31 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Workshops – THEATRO Admin</title>
-    <link rel="stylesheet" href="../home/styles.css">
+    <link rel="stylesheet" href="/frontend/home/styles_base.css">
     <link rel="stylesheet" href="./styles.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Marcellus&family=Pinyon+Script&family=Montserrat:wght@300;400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;400&family=Marcellus&family=Pinyon+Script&family=Montserrat:wght@300;400;500&display=swap"
         rel="stylesheet">
 
 </head>
 
 <body>
+    <!-- Stars Background -->
+    <div id="star-container"></div>
+
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <img src="../assets/592223353_1450031396707025_4416535021509855370_n.png" alt="Theatro Logo">
+            <img src="../assets/logo.png" alt="Theatro INSAT">
         </div>
         <ul class="nav-links">
             <li><a href="../home/index.html">Home</a></li>
-            <li><a href="../workshops/index.html">Workshops</a></li>
-            <li><a href="../approvals/index.html">Approvals</a></li>
-            <li><a href="../change workshop/index.html">Change Workshop</a></li>
-            <li><a href="../home/index.html#contact">Contact</a></li>
+            <li><a href="/frontend/workshops/index.html">Workshops</a></li>
+            <li><a href="/frontend/workshop_registration/index.html">Workshop Management</a></li>
+            <li id="nav-workshops-management" style="display:none"><a href="/frontend/workshop_registration/index.html">Workshop Management</a></li>
+            <li><a href="/frontend/members_list/members/index.html">Members</a></li>
+            <li><a href="/frontend/booking/index.html">Booking</a></li>
+            <li><a href="../approvals/index.php">Approvals</a></li>
         </ul>
+        <div class="nav-auth-wrapper">
+            <button class="nav-logout-btn" id="logout-btn">Logout</button>
+        </div>
     </nav>
 
-    <!-- Stars Background -->
-    <div class="stars-background"></div>
+
 
     <!-- Main Content -->
     <section class="admin-section">
@@ -194,6 +201,18 @@
     </div>
 
     <script src="./script.js"></script>
+    <script>
+        document.getElementById('logout-btn')?.addEventListener('click', () => {
+            fetch('/backend/routes/api.php?action=logout', {
+                method: 'POST',
+                credentials: 'include'
+            }).then(() => {
+                window.location.href = '/frontend/home/index.html';
+            }).catch(() => {
+                window.location.href = '/frontend/home/index.html';
+            });
+        });
+    </script>
 </body>
 
 </html>

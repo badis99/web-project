@@ -12,7 +12,7 @@ declare(strict_types=1);
  * the videoUrl when creating / updating a workshop.
  *
  * Requires in .env:
- *   SUPABASE_URL             (already used by db.php)
+ *   SUPABASE_URL              (already used by db.php)
  *   SUPABASE_SERVICE_ROLE_KEY (already used by db.php → SUPABASE_KEY)
  */
 final class VideoUploadController
@@ -26,8 +26,14 @@ final class VideoUploadController
         'video/x-msvideo',   // .avi
     ];
 
-    /** Max upload size: 200 MB */
-    private const MAX_BYTES = 200 * 1024 * 1024;
+    /**
+     * Max upload size sent to Supabase Storage.
+     *
+     * Supabase free plan  : 50 MB per object  ← current setting
+     * Supabase Pro plan   : 5 GB per object   (raise this value and the
+     *                       PHP limits in package.json accordingly)
+     */
+    private const MAX_BYTES = 50 * 1024 * 1024;
 
     public function upload(): void
     {
@@ -35,7 +41,10 @@ final class VideoUploadController
 
         // ── 1. Verify a file was sent ────────────────────────────
         if (empty($_FILES['video'])) {
-            $this->jsonError('No video file received. Send the file as multipart/form-data with field name "video".', 422);
+            $this->jsonError(
+                'No video file received. Send the file as multipart/form-data with field name "video".',
+                422
+            );
         }
 
         $file = $_FILES['video'];
@@ -50,21 +59,24 @@ final class VideoUploadController
             $this->jsonError("Video exceeds the {$maxMb} MB limit.", 422);
         }
 
-        if (!is_uploaded_file((string)$file['tmp_name'])) {
+        if (!is_uploaded_file((string) $file['tmp_name'])) {
             $this->jsonError('Invalid uploaded file.', 400);
         }
 
         // ── 3. Validate MIME type (use finfo, not user-supplied) ─
-        $finfo    = new finfo(FILEINFO_MIME_TYPE);
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
         $mimeType = $finfo->file($file['tmp_name']);
 
         if (!in_array($mimeType, self::ALLOWED_TYPES, true)) {
-            $this->jsonError("Unsupported file type \"{$mimeType}\". Allowed: mp4, webm, ogg, mov, avi.", 415);
+            $this->jsonError(
+                "Unsupported file type \"{$mimeType}\". Allowed: mp4, webm, ogg, mov, avi.",
+                415
+            );
         }
 
         // ── 4. Build a unique storage path ───────────────────────
-        $ext       = $this->mimeToExtension($mimeType);
-        $uuid      = $this->generateUuid();
+        $ext = $this->mimeToExtension($mimeType);
+        $uuid = $this->generateUuid();
         $storagePath = "workshops/{$uuid}.{$ext}";
         $publicUrl = '';
 
@@ -88,41 +100,54 @@ final class VideoUploadController
         string $mimeType
     ): string {
         $supabaseUrl = rtrim(SUPABASE_URL, '/');
-        $serviceKey  = SUPABASE_KEY;
-        $bucket      = 'workshop-videos';
+        $serviceKey = SUPABASE_KEY;
+        $bucket = 'workshop-videos';
 
         $endpoint = "{$supabaseUrl}/storage/v1/object/{$bucket}/{$storagePath}";
 
-        $fileContents = file_get_contents($tmpPath);
-        if ($fileContents === false) {
-            throw new RuntimeException('Failed to read uploaded file from temp storage.', 500);
+        $fileSize = filesize($tmpPath);
+        if ($fileSize === false) {
+            throw new RuntimeException('Failed to stat uploaded file from temp storage.', 500);
+        }
+
+        // Stream the file instead of loading it all into RAM
+        $fh = fopen($tmpPath, 'rb');
+        if ($fh === false) {
+            throw new RuntimeException('Failed to open uploaded file for streaming.', 500);
         }
 
         $ch = curl_init($endpoint);
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT        => 120,           // large files need time
-            CURLOPT_CUSTOMREQUEST  => 'POST',
-            CURLOPT_POSTFIELDS     => $fileContents,
-            CURLOPT_HTTPHEADER     => [
+            CURLOPT_TIMEOUT => 300,           // allow up to 5 min for large files
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            // Stream directly from the file handle – avoids loading the whole video into RAM
+            CURLOPT_UPLOAD => true,
+            CURLOPT_INFILE => $fh,
+            CURLOPT_INFILESIZE => $fileSize,
+            CURLOPT_HTTPHEADER => [
+                'apikey: ' . $serviceKey,
                 'Authorization: Bearer ' . $serviceKey,
-                'Content-Type: '         . $mimeType,
+                'Content-Type: ' . $mimeType,
+                'Content-Length: ' . $fileSize,
                 'x-upsert: true',                    // overwrite if re-uploaded
             ],
             CURLOPT_SSL_VERIFYPEER => defined('LOCAL_DEV') ? !LOCAL_DEV : true,
         ]);
 
-        $raw      = curl_exec($ch);
+        $raw = curl_exec($ch);
         $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $curlErr  = curl_error($ch);
+        $curlErr = curl_error($ch);
         curl_close($ch);
+        fclose($fh);
 
         if ($curlErr) {
             throw new RuntimeException('Storage upload failed (cURL): ' . $curlErr, 502);
         }
 
         if ($httpCode < 200 || $httpCode >= 300) {
-            $detail = json_decode((string) $raw, true)['message'] ?? $raw;
+            $body = (string) $raw;
+            $detail = json_decode($body, true)['message'] ?? $body;
             throw new RuntimeException("Storage upload failed (HTTP {$httpCode}): {$detail}", 502);
         }
 
@@ -137,7 +162,7 @@ final class VideoUploadController
         }
     }
 
-    private function jsonError(string $message, int $status): void
+    private function jsonError(string $message, int $status): never
     {
         http_response_code($status);
         echo json_encode(['error' => $message]);
@@ -146,7 +171,7 @@ final class VideoUploadController
 
     private function generateUuid(): string
     {
-        $data    = random_bytes(16);
+        $data = random_bytes(16);
         $data[6] = chr(ord($data[6]) & 0x0f | 0x40); // version 4
         $data[8] = chr(ord($data[8]) & 0x3f | 0x80); // variant
         return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
@@ -155,12 +180,12 @@ final class VideoUploadController
     private function mimeToExtension(string $mime): string
     {
         return match ($mime) {
-            'video/mp4'       => 'mp4',
-            'video/webm'      => 'webm',
-            'video/ogg'       => 'ogv',
+            'video/mp4' => 'mp4',
+            'video/webm' => 'webm',
+            'video/ogg' => 'ogv',
             'video/quicktime' => 'mov',
             'video/x-msvideo' => 'avi',
-            default           => 'bin',
+            default => 'bin',
         };
     }
 
@@ -168,11 +193,11 @@ final class VideoUploadController
     {
         return match ($code) {
             UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE => 'File exceeds the maximum allowed size.',
-            UPLOAD_ERR_PARTIAL   => 'File was only partially uploaded.',
-            UPLOAD_ERR_NO_FILE   => 'No file was uploaded.',
+            UPLOAD_ERR_PARTIAL => 'File was only partially uploaded.',
+            UPLOAD_ERR_NO_FILE => 'No file was uploaded.',
             UPLOAD_ERR_NO_TMP_DIR => 'Server is missing a temp folder.',
             UPLOAD_ERR_CANT_WRITE => 'Server failed to write the file to disk.',
-            default              => "Upload error (code {$code}).",
+            default => "Upload error (code {$code}).",
         };
     }
 }

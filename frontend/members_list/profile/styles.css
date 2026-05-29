@@ -45,6 +45,8 @@
     gap: 110px;
     margin-bottom: 40px;
     align-items: center;
+    justify-content: flex-start;
+    margin-left: 18px;
 }
 
 .first-sec .profile-details {

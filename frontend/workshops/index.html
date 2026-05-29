@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workshops — THEATRO INSAT</title>
     <meta name="description" content="Theatro INSAT workshops — Acting, Dancing and more. Learn, Grow, Perform.">
+    <link rel="stylesheet" href="/frontend/home/styles_base.css">
+    <link rel="stylesheet" href="/frontend/home/styles.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="../home/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@300;400;500&family=Marcellus&family=Pinyon+Script&family=Montserrat:wght@300;400;500&display=swap"
@@ -38,25 +39,27 @@
 </head>
 
 <body>
+    <!-- Stars Background -->
+    <div id="star-container"></div>
+
     <nav class="navbar">
         <div class="logo">
             <img src="../assets/logo.png" alt="Theatro Logo">
         </div>
         <ul class="nav-links">
-            <li><a href="../home/index.html">Home</a></li>
-            <li><a href="../approvals/index.php">Approvals</a></li>
-            <li><a href="/frontend/members_list/members/index.php">Members</a></li>
-            <li id="nav-workshops" style="display:none"><a href="../workshops/index.html">Workshops</a></li>
-            <li class="nav-join-link" style="display:none"><a href="/frontend/auth/signup.html">Join Us</a></li>
-            <li><a href="../contact/index.html">Contact</a></li>
+            <li id="nav-home"><a href="/frontend/home/index.html#home">Home</a></li>
+            <li id="nav-about"><a href="/frontend/home/index.html#about">About</a></li>
+            <li id="nav-shows"><a href="/frontend/home/index.html#upcoming-shows">Shows</a></li>
+            <li id="nav-workshops"><a href="/frontend/workshops/index.html">Workshops</a></li>
+            <li id="nav-workshops-management" style="display:none"><a href="/frontend/workshop_registration/index.html">Workshop Management</a></li>
+            <li id="nav-members" style="display:none"><a href="/frontend/members_list/members/index.html">Members</a></li>
+            <li id="nav-booking" style="display:none"><a href="/frontend/booking/index.html">Booking</a></li>
+            <li id="nav-approvals" style="display:none"><a href="/frontend/approvals/index.php">Approvals</a></li>
         </ul>
         <div class="nav-auth-wrapper">
-            <a href="../auth/login.html" class="nav-login-btn" id="nav-auth-btn">Login</a>
+            <a id="nav-auth-btn" href="/frontend/auth/login.html" class="nav-login-btn">Login</a>
         </div>
     </nav>
-
-    <!-- Stars Background -->
-    <div class="stars-background"></div>
 
     <!-- Workshops Section -->
     <section class="workshops-section">
@@ -115,7 +118,7 @@
 
     <script src="./script.js"></script>
 
-    <!-- Footer -->
+<!-- Footer -->
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-logo">
@@ -139,17 +142,17 @@
                     </div>
                 </div>
                 <div class="footer-social">
-                    <a href="https://www.instagram.com/theatro.insat" target="_blank" aria-label="Instagram">
+                    <a href="https://www.instagram.com/theatro.insat" target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://www.facebook.com/TheatroINSAT" target="_blank" aria-label="Facebook">
+                    <a href="https://www.facebook.com/TheatroINSAT" target="_blank">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Theatro INSAT. All Rights Reserved.</p>
+            <p>© 2026 Theatro INSAT. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -165,9 +168,41 @@
                 document.querySelectorAll('.nav-join-link').forEach(el => {
                     el.style.display = 'none';
                 });
+                const isAdmin = String(data.role || '').trim().toLowerCase() === 'admin';
+
+                const aboutLi = document.getElementById('nav-about');
+                if (aboutLi) {
+                    aboutLi.style.display = isAdmin ? 'none' : '';
+                }
+
+                const showsLi = document.getElementById('nav-shows');
+                if (showsLi) {
+                    showsLi.style.display = isAdmin ? 'none' : '';
+                }
+
                 const workshopsLi = document.getElementById('nav-workshops');
                 if (workshopsLi) {
                     workshopsLi.style.display = '';
+                }
+
+                const workshopsManagementLi = document.getElementById('nav-workshops-management');
+                if (workshopsManagementLi) {
+                    workshopsManagementLi.style.display = isAdmin ? '' : 'none';
+                }
+
+                const membersLi = document.getElementById('nav-members');
+                if (membersLi) {
+                    membersLi.style.display = isAdmin ? '' : 'none';
+                }
+
+                const bookingLi = document.getElementById('nav-booking');
+                if (bookingLi) {
+                    bookingLi.style.display = isAdmin ? '' : 'none';
+                }
+
+                const approvalsLi = document.getElementById('nav-approvals');
+                if (approvalsLi) {
+                    approvalsLi.style.display = isAdmin ? '' : 'none';
                 }
                 const btn = document.getElementById('nav-auth-btn');
                 if (!btn) return;

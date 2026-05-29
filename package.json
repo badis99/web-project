@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "serve": "php -d upload_max_filesize=200M -d post_max_size=210M -d memory_limit=512M -d max_execution_time=300 -d max_input_time=300 -S localhost:8000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
